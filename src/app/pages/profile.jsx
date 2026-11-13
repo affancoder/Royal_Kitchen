@@ -52,6 +52,12 @@ export default function ProfileScreen() {
       action: "terms",
     },
     {
+      title: "Contact",
+      icon: "call",
+      type: "ion",
+      action: "contact",
+    },
+    {
       title: "Settings",
       icon: "settings",
       type: "ion",
@@ -79,6 +85,10 @@ export default function ProfileScreen() {
 
       case "terms":
         Alert.alert("Terms & Policy", "Coming soon.");
+        break;
+
+      case "contact":
+        router.push("/pages/contact");
         break;
 
       case "settings":
@@ -133,7 +143,6 @@ export default function ProfileScreen() {
 
           {/* User Information */}
           <View style={styles.profileHeader}>
-
             <View style={styles.avatar}>
               <Text style={styles.avatarText}>AD</Text>
             </View>
@@ -144,12 +153,10 @@ export default function ProfileScreen() {
                 alexdadrio@gmail.com
               </Text>
             </View>
-
           </View>
 
           {/* Statistics */}
           <View style={styles.statsContainer}>
-
             <View style={styles.statCard}>
               <Text style={styles.statTitle}>
                 Reward Points
@@ -167,12 +174,10 @@ export default function ProfileScreen() {
                 4 <Text style={styles.activeText}>Active</Text>
               </Text>
             </View>
-
           </View>
 
           {/* Profile Menu */}
           <View style={styles.menuContainer}>
-
             {menuItems.map((item, index) => (
               <TouchableOpacity
                 key={index}
@@ -214,14 +219,12 @@ export default function ProfileScreen() {
                 logout
               </Text>
             </TouchableOpacity>
-
           </View>
 
         </ScrollView>
 
         {/* Bottom Navigation */}
         <View style={styles.bottomNav}>
-
           <TouchableOpacity
             style={styles.navItem}
             onPress={() => navigateTo("/pages/homescreen")}
@@ -274,7 +277,6 @@ export default function ProfileScreen() {
             />
             <Text style={styles.navText}>Profile</Text>
           </TouchableOpacity>
-
         </View>
 
       </View>

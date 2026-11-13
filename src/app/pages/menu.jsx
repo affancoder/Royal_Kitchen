@@ -91,7 +91,7 @@ export default function Menu() {
         >
           {/* Page Heading */}
           <View style={styles.heading}>
-            <Text style={styles.smallTitle}>ROYAL KITCHEN</Text>
+            <Text style={styles.smallTitle}>THE ROYAL KITCHEN & CATERER</Text>
             <Text style={styles.title}>Our Menu</Text>
             <View style={styles.goldLine} />
             <Text style={styles.subtitle}>
@@ -275,6 +275,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BLACK,
+    marginTop: StatusBar.currentHeight || 0,
   },
   scrollContent: {
     paddingBottom: 25,
@@ -287,7 +288,7 @@ const styles = StyleSheet.create({
   },
   smallTitle: {
     color: GOLD,
-    fontSize: 10,
+    fontSize: 14,
     letterSpacing: 3,
     fontWeight: "700",
   },
@@ -295,13 +296,13 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 30,
     fontWeight: "bold",
-    marginTop: 7,
+    marginTop: 2,
   },
   goldLine: {
     width: 48,
     height: 2,
     backgroundColor: GOLD,
-    marginTop: 12,
+    marginTop: 6,
   },
   subtitle: {
     color: "#AAAAAA",
