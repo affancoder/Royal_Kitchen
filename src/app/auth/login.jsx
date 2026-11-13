@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   View,
@@ -9,6 +10,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   StatusBar,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
@@ -49,24 +51,13 @@ export default function LoginScreen() {
         >
           <View style={styles.container}>
 
-            {/* Logo */}
+            {/* Actual App Logo */}
             <View style={styles.logoContainer}>
-              <View style={styles.logoOuter}>
-                <View style={styles.logoInner}>
-                  <FontAwesome5
-                    name="crown"
-                    size={27}
-                    color={GOLD}
-                  />
-                  <Text style={styles.logoText}>
-                    ROYAL KITCHEN
-                  </Text>
-                  <View style={styles.logoDivider} />
-                  <Text style={styles.logoSubText}>
-                    EST. ROYAL DINING
-                  </Text>
-                </View>
-              </View>
+              <Image
+                source={require("../../../assets/images/icon.png")}
+                style={styles.logoImage}
+                resizeMode="contain"
+              />
             </View>
 
             {/* Heading */}
@@ -200,7 +191,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BLACK,
-    paddingHorizontal: 22,
+    paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 25,
@@ -208,49 +199,13 @@ const styles = StyleSheet.create({
 
   logoContainer: {
     alignItems: "center",
-    marginBottom: 12,
-  },
-
-  logoOuter: {
-    width: 86,
-    height: 86,
-    borderRadius: 43,
-    borderWidth: 2,
-    borderColor: GOLD,
-    alignItems: "center",
     justifyContent: "center",
-    padding: 4,
+    marginBottom: 18,
   },
 
-  logoInner: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 40,
-    borderWidth: 1,
-    borderColor: "#806900",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  logoText: {
-    color: GOLD,
-    fontSize: 8,
-    fontWeight: "bold",
-    marginTop: 4,
-    letterSpacing: 0.5,
-  },
-
-  logoDivider: {
-    width: 43,
-    height: 1,
-    backgroundColor: GOLD,
-    marginVertical: 3,
-  },
-
-  logoSubText: {
-    color: "#C5A900",
-    fontSize: 5,
-    letterSpacing: 0.6,
+  logoImage: {
+    width: 120,
+    height: 120,
   },
 
   heading: {
@@ -269,7 +224,7 @@ const styles = StyleSheet.create({
 
   label: {
     color: GOLD,
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: Platform.OS === "ios" ? "Georgia" : "serif",
     marginBottom: 5,
     marginLeft: 2,
@@ -291,7 +246,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     color: "#FFFFFF",
-    fontSize: 13,
+    fontSize: 14,
     paddingHorizontal: 12,
   },
 
@@ -312,7 +267,7 @@ const styles = StyleSheet.create({
 
   loginButtonText: {
     color: BLACK,
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: "bold",
   },
 
@@ -348,7 +303,7 @@ const styles = StyleSheet.create({
 
   googleButtonText: {
     color: "#FFFFFF",
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: "500",
   },
 
@@ -362,13 +317,12 @@ const styles = StyleSheet.create({
 
   footerText: {
     color: "#CCCCCC",
-    fontSize: 11,
+    fontSize: 16,
   },
 
   registerText: {
     color: GOLD,
-    fontSize: 11,
+    fontSize: 16,
     fontWeight: "bold",
-    textDecorationLine: "underline",
   },
 });
