@@ -265,20 +265,19 @@ const styles = StyleSheet.create({
   },
   smallHeading: {
     color: GOLD,
-    fontSize: 9,
-    letterSpacing: 1.5,
-    marginBottom: 10,
+    fontSize: 12,
+    letterSpacing: 1,
   },
   pageTitle: {
     color: "#FFFFFF",
-    fontSize: 25,
+    fontSize: 28,
     fontFamily: "Georgia",
     fontWeight: "bold",
   },
   subtitle: {
     color: "#AAAAAA",
-    fontSize: 10,
-    marginTop: 9,
+    fontSize: 11,
+    marginTop: 2,
     textAlign: "center",
   },
 
@@ -296,7 +295,7 @@ const styles = StyleSheet.create({
   },
   cardLabel: {
     color: "#AAAAAA",
-    fontSize: 8,
+    fontSize: 10,
     letterSpacing: 1,
   },
   statusText: {
@@ -326,7 +325,7 @@ const styles = StyleSheet.create({
   },
   bookingIdLabel: {
     color: "#AAAAAA",
-    fontSize: 8,
+    fontSize: 10,
     letterSpacing: 1,
   },
   bookingId: {
@@ -389,11 +388,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 10,
+    gap: 5,
+    paddingHorizontal: 15,
   },
   actionButtonText: {
     color: BLACK,
-    fontSize: 11,
+    fontSize: 14,
     fontWeight: "bold",
     flex: 1,
   },
@@ -408,12 +408,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 10,
+    gap: 5,
     marginTop: 10,
   },
   cancelButtonText: {
     color: "#E57373",
-    fontSize: 11,
+    fontSize: 14,
     fontWeight: "600",
   },
   disabledCancel: {
@@ -435,13 +435,13 @@ const styles = StyleSheet.create({
   },
   infoTitle: {
     color: GOLD,
-    fontSize: 11,
+    fontSize: 14,
     fontWeight: "bold",
     marginBottom: 6,
   },
   infoText: {
     color: "#BBBBBB",
-    fontSize: 9,
+    fontSize: 12,
     lineHeight: 15,
   },
 
@@ -459,7 +459,7 @@ const styles = StyleSheet.create({
   },
   contactButtonText: {
     color: GOLD,
-    fontSize: 10,
+    fontSize: 14,
     fontWeight: "600",
   },
   bottomSpace: {

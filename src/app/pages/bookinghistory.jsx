@@ -308,23 +308,22 @@ const styles = StyleSheet.create({
 
   smallHeading: {
     color: GOLD,
-    fontSize: 9,
-    letterSpacing: 1.5,
-    marginBottom: 9,
+    fontSize: 12,
+    letterSpacing: 1,
   },
 
   pageTitle: {
     color: "#FFFFFF",
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: "bold",
     fontFamily: "Georgia",
   },
 
   subtitle: {
     color: "#AAAAAA",
-    fontSize: 10,
+    fontSize: 12,
     textAlign: "center",
-    marginTop: 9,
+    marginTop: 2,
   },
 
   summaryContainer: {
@@ -345,14 +344,14 @@ const styles = StyleSheet.create({
 
   summaryNumber: {
     color: "#FFFFFF",
-    fontSize: 19,
+    fontSize: 22,
     fontWeight: "bold",
     marginTop: 6,
   },
 
   summaryLabel: {
     color: "#AAAAAA",
-    fontSize: 8,
+    fontSize: 12,
     marginTop: 4,
     textAlign: "center",
   },
@@ -392,7 +391,7 @@ const styles = StyleSheet.create({
 
   filterText: {
     color: GOLD,
-    fontSize: 8,
+    fontSize: 12,
   },
 
   activeFilterText: {
@@ -417,13 +416,13 @@ const styles = StyleSheet.create({
 
   bookingIdLabel: {
     color: "#AAAAAA",
-    fontSize: 8,
+    fontSize: 10,
     letterSpacing: 1,
   },
 
   bookingId: {
     color: GOLD,
-    fontSize: 11,
+    fontSize: 14,
     fontWeight: "bold",
     marginTop: 5,
   },
@@ -445,7 +444,7 @@ const styles = StyleSheet.create({
 
   statusText: {
     color: GOLD,
-    fontSize: 8,
+    fontSize: 12,
     fontWeight: "bold",
   },
 
@@ -481,12 +480,12 @@ const styles = StyleSheet.create({
 
   infoLabel: {
     color: "#AAAAAA",
-    fontSize: 9,
+    fontSize: 14,
   },
 
   infoValue: {
     color: "#FFFFFF",
-    fontSize: 10,
+    fontSize: 14,
     fontWeight: "600",
     marginTop: 6,
     marginLeft: 21,
@@ -504,7 +503,7 @@ const styles = StyleSheet.create({
 
   occasionText: {
     color: "#CCCCCC",
-    fontSize: 10,
+    fontSize: 14,
   },
 
   detailsButton: {
@@ -521,7 +520,7 @@ const styles = StyleSheet.create({
 
   detailsButtonText: {
     color: GOLD,
-    fontSize: 10,
+    fontSize: 14,
     fontWeight: "bold",
   },
 
@@ -539,7 +538,7 @@ const styles = StyleSheet.create({
 
   emptyText: {
     color: "#AAAAAA",
-    fontSize: 10,
+    fontSize: 12,
     marginTop: 7,
   },
 
@@ -563,7 +562,7 @@ const styles = StyleSheet.create({
 
   newBookingDescription: {
     color: "#AAAAAA",
-    fontSize: 9,
+    fontSize: 12,
     lineHeight: 15,
     textAlign: "center",
     marginTop: 9,
@@ -579,7 +578,7 @@ const styles = StyleSheet.create({
 
   newBookingButtonText: {
     color: BLACK,
-    fontSize: 10,
+    fontSize: 14,
     fontWeight: "bold",
   },
 
