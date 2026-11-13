@@ -62,23 +62,29 @@ export default function ProfileScreen() {
   const handleMenuPress = (action) => {
     switch (action) {
       case "booking":
-        Alert.alert("Book a Table", "Reservation screen coming soon.");
+        router.push("/pages/booking");
         break;
+
       case "reservation":
         Alert.alert("Manage Reservation", "Coming soon.");
         break;
+
       case "history":
         Alert.alert("Booking History", "Coming soon.");
         break;
+
       case "refer":
         Alert.alert("Refer a Friend", "Coming soon.");
         break;
+
       case "terms":
         Alert.alert("Terms & Policy", "Coming soon.");
         break;
+
       case "settings":
         Alert.alert("Settings", "Coming soon.");
         break;
+
       default:
         break;
     }
@@ -128,12 +134,10 @@ export default function ProfileScreen() {
           {/* User Information */}
           <View style={styles.profileHeader}>
 
-            {/* Profile Avatar */}
             <View style={styles.avatar}>
               <Text style={styles.avatarText}>AD</Text>
             </View>
 
-            {/* User Details */}
             <View style={styles.userDetails}>
               <Text style={styles.userName}>Alex Dadrio</Text>
               <Text style={styles.userEmail}>
@@ -146,7 +150,6 @@ export default function ProfileScreen() {
           {/* Statistics */}
           <View style={styles.statsContainer}>
 
-            {/* Reward Points */}
             <View style={styles.statCard}>
               <Text style={styles.statTitle}>
                 Reward Points
@@ -156,7 +159,6 @@ export default function ProfileScreen() {
               </Text>
             </View>
 
-            {/* Bookings */}
             <View style={styles.statCard}>
               <Text style={styles.statTitle}>
                 Bookings
@@ -242,9 +244,7 @@ export default function ProfileScreen() {
 
           <TouchableOpacity
             style={styles.navItem}
-            onPress={() =>
-              Alert.alert("Booking", "Booking screen coming soon.")
-            }
+            onPress={() => navigateTo("/pages/booking")}
           >
             <Ionicons
               name="calendar"
@@ -266,9 +266,7 @@ export default function ProfileScreen() {
             <Text style={styles.navText}>Services</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.navItem}
-          >
+          <TouchableOpacity style={styles.navItem}>
             <Ionicons
               name="person"
               size={21}
