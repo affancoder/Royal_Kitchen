@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import Navbar from "../components/navbar";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -242,61 +243,9 @@ export default function Services() {
           <View style={styles.bottomSpace} />
         </ScrollView>
 
-        {/* FIXED BOTTOM NAVIGATION - SAME AS HOMESCREEN */}
-        <View style={styles.bottomNav}>
-          <NavItem
-            icon="home"
-            label="Home"
-            onPress={() => router.replace("/pages/homescreen")}
-          />
-
-          <NavItem
-            icon="restaurant"
-            label="Menu"
-            onPress={() => router.push("/pages/menu")}
-          />
-
-          <NavItem
-            icon="calendar"
-            label="Booking"
-            onPress={() => router.push("/pages/booking")}
-          />
-
-          <NavItem
-            icon="briefcase"
-            label="Services"
-            active
-            onPress={() => router.replace("/pages/services")}
-          />
-
-          <NavItem
-            icon="person"
-            label="Profile"
-            onPress={() => router.push("/pages/profile")}
-          />
-        </View>
+        <Navbar active="services" />
       </View>
     </SafeAreaView>
-  );
-}
-
-function NavItem({ icon, label, active, onPress }) {
-  return (
-    <TouchableOpacity
-      style={styles.navItem}
-      onPress={onPress}
-      activeOpacity={0.7}
-    >
-      <Ionicons
-        name={icon}
-        size={21}
-        color={GOLD}
-      />
-
-      <Text style={[styles.navLabel, active && styles.activeNavLabel]}>
-        {label}
-      </Text>
-    </TouchableOpacity>
   );
 }
 
@@ -318,7 +267,7 @@ const styles = StyleSheet.create({
 
   // Hero
   hero: {
-    height: 225,
+    height: 200,
     justifyContent: "center",
   },
 
@@ -338,7 +287,6 @@ const styles = StyleSheet.create({
     color: GOLD,
     fontSize: 8,
     letterSpacing: 1.5,
-    marginBottom: 10,
   },
 
   heroTitle: {
@@ -347,7 +295,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Georgia",
     textAlign: "center",
-    lineHeight: 30,
   },
 
   gold: {
@@ -359,7 +306,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     lineHeight: 16,
-    marginTop: 10,
     maxWidth: 290,
   },
 

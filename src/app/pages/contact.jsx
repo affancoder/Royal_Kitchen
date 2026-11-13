@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useRouter } from "expo-router";import Navbar from "../components/navbar";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -77,7 +77,7 @@ export default function ContactScreen() {
 
           {/* Page Heading */}
           <View style={styles.heading}>
-            <Text style={styles.smallTitle}>ROYAL KITCHEN</Text>
+            <Text style={styles.smallTitle}>THE ROYAL KITCHEN & CATERER</Text>
             <Text style={styles.title}>Contact Us</Text>
             <View style={styles.goldLine} />
             <Text style={styles.subtitle}>
@@ -320,38 +320,7 @@ export default function ContactScreen() {
 
         </ScrollView>
 
-        {/* Fixed Bottom Navigation */}
-        <View style={styles.bottomNav}>
-          <NavItem
-            icon="home"
-            label="Home"
-            onPress={() => router.replace("/pages/homescreen")}
-          />
-
-          <NavItem
-            icon="restaurant"
-            label="Menu"
-            onPress={() => router.push("/pages/menu")}
-          />
-
-          <NavItem
-            icon="calendar"
-            label="Booking"
-            onPress={() => router.push("/pages/booking")}
-          />
-
-          <NavItem
-            icon="briefcase"
-            label="Services"
-            onPress={() => router.push("/pages/services")}
-          />
-
-          <NavItem
-            icon="person"
-            label="Profile"
-            onPress={() => router.push("/pages/profile")}
-          />
-        </View>
+        <Navbar />
 
       </View>
     </SafeAreaView>
@@ -395,23 +364,22 @@ const styles = StyleSheet.create({
 
   smallTitle: {
     color: GOLD,
-    fontSize: 10,
-    letterSpacing: 3,
+    fontSize: 14,
     fontWeight: "bold",
   },
 
   title: {
     color: "#FFFFFF",
-    fontSize: 29,
+    fontSize: 30,
     fontWeight: "bold",
-    marginTop: 8,
+    marginTop: 2,
   },
 
   goldLine: {
     width: 48,
     height: 2,
     backgroundColor: GOLD,
-    marginTop: 12,
+    marginTop: 6,
   },
 
   subtitle: {

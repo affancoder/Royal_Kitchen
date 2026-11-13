@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import Navbar from "../components/navbar";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -267,34 +268,7 @@ export default function Booking() {
         </ScrollView>
 
         {/* Fixed Bottom Navigation */}
-        <View style={styles.bottomNav}>
-          <NavItem
-            icon="home"
-            label="Home"
-            onPress={() => router.replace("/pages/homescreen")}
-          />
-          <NavItem
-            icon="restaurant"
-            label="Menu"
-            onPress={() => router.push("/pages/menu")}
-          />
-          <NavItem
-            icon="calendar"
-            label="Booking"
-            active
-            onPress={() => router.replace("/pages/booking")}
-          />
-          <NavItem
-            icon="briefcase"
-            label="Services"
-            onPress={() => router.push("/pages/services")}
-          />
-          <NavItem
-            icon="person"
-            label="Profile"
-            onPress={() => router.push("/pages/profile")}
-          />
-        </View>
+        <Navbar active="booking" />
       </View>
     </SafeAreaView>
   );

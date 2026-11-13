@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { router } from "expo-router";
+import Navbar from "../components/navbar";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -303,7 +304,7 @@ export default function HomeScreen() {
         </ScrollView>
 
         {/* FIXED BOTTOM NAVIGATION */}
-        <View style={styles.bottomNav}>
+        {/* <View style={styles.bottomNav}>
           <NavItem
             icon="home"
             label="Home"
@@ -334,7 +335,10 @@ export default function HomeScreen() {
             label="Profile"
             onPress={() => router.push("/pages/profile")}
           />
-        </View>
+        </View> */}
+
+        <Navbar active="home" />
+
       </View>
     </SafeAreaView>
   );
@@ -363,49 +367,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BLACK,
+    marginTop: StatusBar.currentHeight || 0,
   },
   scrollContent: {
     paddingBottom: 12,
   },
-
-  // Header
-  header: {
-    height: 25,
-    paddingHorizontal: 13,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: BLACK,
-  },
-  logo: {
-    width: 65,
-    alignItems: "center",
-  },
-  logoText: {
-    color: GOLD,
-    fontSize: 7,
-    fontWeight: "bold",
-    marginTop: 3,
-  },
-  reserveHeader: {
-    backgroundColor: GOLD,
-    borderRadius: 20,
-    paddingHorizontal: 17,
-    paddingVertical: 7,
-  },
-  reserveHeaderText: {
-    color: BLACK,
-    fontSize: 10,
-    fontWeight: "bold",
-  },
-  menuIcon: {
-    width: 30,
-    alignItems: "flex-end",
-  },
-
   // Hero
   hero: {
-    height: 225,
+    height: 200,
     justifyContent: "center",
   },
   heroImage: {
@@ -420,9 +389,9 @@ const styles = StyleSheet.create({
   },
   eyebrow: {
     color: GOLD,
-    fontSize: 8,
+    fontSize:10,
     letterSpacing: 1.5,
-    marginBottom: 10,
+    fontWeight: "bold",
   },
   heroTitle: {
     color: "#FFFFFF",
@@ -440,14 +409,14 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     lineHeight: 16,
-    marginTop: 10,
-    maxWidth: 290,
+    marginTop: 2,
+    maxWidth: 240,
   },
   goldButton: {
     backgroundColor: GOLD,
     borderRadius: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 9,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
     marginTop: 13,
   },
   goldButtonText: {
@@ -468,7 +437,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingHorizontal: 10,
     paddingVertical: 4,
-    alignSelf: "flex-start",
+    alignSelf: "center",
     marginBottom: 10,
   },
   tagText: {
@@ -480,9 +449,11 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontFamily: "Georgia",
     fontWeight: "bold",
-    fontSize: 23,
+    fontSize: 28,
     lineHeight: 29,
     marginBottom: 12,
+    alignSelf: "center",
+    textAlign: "center",
   },
   paragraph: {
     color: "#BDBDBD",
@@ -496,7 +467,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     paddingHorizontal: 14,
     paddingVertical: 7,
-    alignSelf: "flex-start",
+    alignSelf: "center",
     marginTop: 5,
     marginBottom: 15,
   },

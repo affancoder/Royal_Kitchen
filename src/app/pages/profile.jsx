@@ -11,6 +11,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import Navbar from "../components/navbar";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -40,6 +41,18 @@ export default function ProfileScreen() {
       action: "history",
     },
     {
+      title: "Contact",
+      icon: "call",
+      type: "ion",
+      action: "contact",
+    },
+    {
+      title: "About Us",
+      icon: "information-circle",
+      type: "ion",
+      action: "about",
+    },
+    {
       title: "Refer a Friend",
       icon: "person",
       type: "ion",
@@ -50,12 +63,6 @@ export default function ProfileScreen() {
       icon: "file-document-outline",
       type: "material",
       action: "terms",
-    },
-    {
-      title: "Contact",
-      icon: "call",
-      type: "ion",
-      action: "contact",
     },
     {
       title: "Settings",
@@ -70,21 +77,25 @@ export default function ProfileScreen() {
       case "booking":
         router.push("/pages/booking");
         break;
+      
+      case "about":
+        router.push("/pages/about");
+        break;
 
       case "reservation":
-        Alert.alert("Manage Reservation", "Coming soon.");
+        router.push("/pages/managereservation");
         break;
 
       case "history":
-        Alert.alert("Booking History", "Coming soon.");
+        router.push("/pages/bookinghistory");
         break;
 
       case "refer":
-        Alert.alert("Refer a Friend", "Coming soon.");
+        router.push("/pages/referringfriend");
         break;
 
       case "terms":
-        Alert.alert("Terms & Policy", "Coming soon.");
+        router.push("/pages/terms");
         break;
 
       case "contact":
@@ -222,63 +233,7 @@ export default function ProfileScreen() {
           </View>
 
         </ScrollView>
-
-        {/* Bottom Navigation */}
-        <View style={styles.bottomNav}>
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => navigateTo("/pages/homescreen")}
-          >
-            <Ionicons name="home" size={21} color={GOLD} />
-            <Text style={styles.navText}>Home</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => navigateTo("/pages/menu")}
-          >
-            <MaterialCommunityIcons
-              name="food"
-              size={22}
-              color={GOLD}
-            />
-            <Text style={styles.navText}>Menu</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => navigateTo("/pages/booking")}
-          >
-            <Ionicons
-              name="calendar"
-              size={21}
-              color={GOLD}
-            />
-            <Text style={styles.navText}>Booking</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.navItem}
-            onPress={() => navigateTo("/pages/services")}
-          >
-            <Ionicons
-              name="briefcase"
-              size={21}
-              color={GOLD}
-            />
-            <Text style={styles.navText}>Services</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.navItem}>
-            <Ionicons
-              name="person"
-              size={21}
-              color={GOLD}
-            />
-            <Text style={styles.navText}>Profile</Text>
-          </TouchableOpacity>
-        </View>
-
+        <Navbar active="profile" />
       </View>
     </SafeAreaView>
   );
