@@ -62,7 +62,7 @@ export default function LoginScreen() {
 
             {/* Heading */}
             <Text style={styles.heading}>
-              The Royal Kitchen{"\n"}& Caterer
+              The Royal Kitchen & Caterer
             </Text>
 
             {/* Login Form */}

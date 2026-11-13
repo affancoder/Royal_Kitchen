@@ -64,7 +64,7 @@ export default function SignupScreen() {
 
             {/* App Heading */}
             <Text style={styles.heading}>
-              The Royal Kitchen{"\n"}& Caterer
+              The Royal Kitchen & Caterer
             </Text>
 
             {/* Signup Form */}
