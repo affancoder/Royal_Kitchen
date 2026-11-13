@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   View,
@@ -47,12 +46,18 @@ export default function Booking() {
 
   const handleBooking = () => {
     if (!name.trim() || !phone.trim() || !date.trim()) {
-      Alert.alert("Missing Details", "Please enter your name, phone number and booking date.");
+      Alert.alert(
+        "Missing Details",
+        "Please enter your name, phone number and booking date.",
+      );
       return;
     }
 
     if (!/^[0-9]{10}$/.test(phone.trim())) {
-      Alert.alert("Invalid Phone", "Please enter a valid 10-digit phone number.");
+      Alert.alert(
+        "Invalid Phone",
+        "Please enter a valid 10-digit phone number.",
+      );
       return;
     }
 
@@ -70,7 +75,7 @@ export default function Booking() {
             setRequests("");
           },
         },
-      ]
+      ],
     );
   };
 
@@ -85,7 +90,7 @@ export default function Booking() {
         >
           {/* Heading */}
           <View style={styles.heading}>
-            <Text style={styles.smallTitle}>ROYAL KITCHEN</Text>
+            <Text style={styles.smallTitle}>THE ROYAL KITCHEN & CATERER</Text>
             <Text style={styles.title}>Table Reservation</Text>
             <View style={styles.goldLine} />
             <Text style={styles.subtitle}>
@@ -98,8 +103,7 @@ export default function Booking() {
             <Ionicons name="calendar-outline" size={34} color={GOLD} />
             <Text style={styles.bannerTitle}>A Royal Dining Experience</Text>
             <Text style={styles.bannerDescription}>
-              Celebrate special moments with exceptional food and
-              hospitality.
+              Celebrate special moments with exceptional food and hospitality.
             </Text>
           </View>
 
@@ -247,10 +251,6 @@ export default function Booking() {
               <Text style={styles.submitText}>Confirm Reservation</Text>
               <Ionicons name="arrow-forward" size={18} color={BLACK} />
             </TouchableOpacity>
-
-            <Text style={styles.note}>
-              * This is a frontend demo. No actual reservation is created.
-            </Text>
           </View>
 
           {/* Contact Information */}
@@ -260,9 +260,7 @@ export default function Booking() {
             <Text style={styles.contactDescription}>
               Contact our team for help with your reservation.
             </Text>
-            <TouchableOpacity
-              onPress={() => router.push("/pages/contact")}
-            >
+            <TouchableOpacity onPress={() => router.push("/pages/contact")}>
               <Text style={styles.contactLink}>Contact Us</Text>
             </TouchableOpacity>
           </View>
@@ -321,6 +319,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BLACK,
+    marginTop: StatusBar.currentHeight || 0,
   },
   scrollContent: {
     paddingBottom: 25,
@@ -333,22 +332,20 @@ const styles = StyleSheet.create({
   },
   smallTitle: {
     color: GOLD,
-    fontSize: 10,
-    letterSpacing: 3,
+    fontSize: 14,
     fontWeight: "700",
   },
   title: {
     color: "#FFFFFF",
-    fontSize: 27,
+    fontSize: 32,
     fontWeight: "bold",
-    marginTop: 8,
     textAlign: "center",
   },
   goldLine: {
-    width: 48,
+    width: 58,
     height: 2,
     backgroundColor: GOLD,
-    marginTop: 12,
+    marginTop: 6,
   },
   subtitle: {
     color: "#AAAAAA",
@@ -534,13 +531,6 @@ const styles = StyleSheet.create({
     color: BLACK,
     fontSize: 13,
     fontWeight: "bold",
-  },
-  note: {
-    color: "#777777",
-    fontSize: 9,
-    textAlign: "center",
-    marginTop: 12,
-    lineHeight: 15,
   },
   contactCard: {
     marginHorizontal: 18,

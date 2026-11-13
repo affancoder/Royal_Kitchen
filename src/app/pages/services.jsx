@@ -309,6 +309,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BLACK,
+    marginTop: StatusBar.currentHeight || 0,
   },
 
   scrollContent: {
