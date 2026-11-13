@@ -95,7 +95,7 @@ export default function ProfileScreen() {
         break;
 
       case "terms":
-        router.push("/pages/terms");
+        router.push("/pages/termsandpolicy");
         break;
 
       case "contact":
