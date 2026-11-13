@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   View,
@@ -8,7 +9,6 @@ import {
   ImageBackground,
   TouchableOpacity,
   StatusBar,
-  SafeAreaView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -27,34 +27,34 @@ const images = {
 
 const coreValues = [
   {
-    icon: "leaf-outline",
+    icon: "restaurant-outline",
     title: "Quality",
     description:
-      "We believe in using carefully selected ingredients and maintaining exceptional standards in every dish.",
+      "We focus on delivering a satisfying dining experience through carefully prepared food and attention to detail.",
   },
   {
     icon: "heart-outline",
-    title: "Passion",
+    title: "Hospitality",
     description:
-      "Our love for food and creativity inspires everything we prepare and every experience we create.",
+      "We believe every guest deserves friendly service and a welcoming restaurant experience.",
+  },
+  {
+    icon: "calendar-outline",
+    title: "Convenience",
+    description:
+      "Our app makes it easier to explore the menu, book tables and manage reservations.",
   },
   {
     icon: "people-outline",
-    title: "Hospitality",
+    title: "Customer Care",
     description:
-      "Every guest deserves warm, thoughtful and personalized service.",
-  },
-  {
-    icon: "shield-checkmark-outline",
-    title: "Trust",
-    description:
-      "We build lasting relationships through consistency, care and commitment to excellence.",
+      "We value our guests and aim to make every interaction helpful, comfortable and memorable.",
   },
 ];
 
 export default function AboutScreen() {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor={BLACK} />
 
       <View style={styles.container}>
@@ -62,7 +62,6 @@ export default function AboutScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-
           {/* SECTION 1 - HERO */}
           <ImageBackground
             source={{ uri: images.hero }}
@@ -70,48 +69,50 @@ export default function AboutScreen() {
             imageStyle={styles.heroImage}
           >
             <View style={styles.heroOverlay}>
-              <Text style={styles.eyebrow}>DISCOVER OUR STORY</Text>
+              <Text style={styles.eyebrow}>WELCOME TO ROYAL KITCHEN</Text>
 
               <Text style={styles.heroTitle}>
-                CRAFTING{"\n"}
-                <Text style={styles.gold}>CULINARY ROYALTY</Text>
+                EXPERIENCE{"\n"}
+                <Text style={styles.gold}>ROYAL DINING</Text>
               </Text>
 
               <View style={styles.goldLine} />
 
               <Text style={styles.heroDescription}>
-                A journey of exceptional flavours, timeless elegance
-                and unforgettable hospitality.
+                Discover delicious food, warm hospitality and
+                a dining experience worth remembering.
               </Text>
 
               <TouchableOpacity
                 style={styles.goldButton}
-                onPress={() => router.push("/pages/booking")}
+                onPress={() => router.push("/pages/menu")}
               >
-                <Text style={styles.goldButtonText}>BOOK A TABLE</Text>
+                <Text style={styles.goldButtonText}>EXPLORE OUR MENU</Text>
               </TouchableOpacity>
             </View>
           </ImageBackground>
 
           {/* SECTION 2 - OUR STORY */}
           <View style={styles.storySection}>
-            <Text style={styles.smallHeading}>OUR STORY</Text>
+            <Text style={styles.smallHeading}>ABOUT ROYAL KITCHEN</Text>
 
             <Text style={styles.sectionTitle}>
-              A Tradition of{"\n"}
-              <Text style={styles.gold}>Culinary Excellence</Text>
+              A Place for{"\n"}
+              <Text style={styles.gold}>Great Dining</Text>
             </Text>
 
             <Text style={styles.paragraph}>
-              Since 2012, Royal Kitchen has been dedicated to creating
-              memorable dining experiences through exceptional food,
-              thoughtful service and a passion for culinary artistry.
+              Royal Kitchen brings together a passion for great
+              food, comfortable dining and warm hospitality.
+              Our goal is to create a welcoming place where
+              guests can enjoy memorable moments with family
+              and friends.
             </Text>
 
             <Text style={styles.paragraph}>
-              What makes us special is our commitment to bringing
-              together quality ingredients, creative presentation
-              and warm hospitality in every experience.
+              Through our mobile app, guests can explore the
+              menu, reserve tables, manage their bookings and
+              discover restaurant services with greater convenience.
             </Text>
 
             <Image
@@ -121,9 +122,9 @@ export default function AboutScreen() {
             />
 
             <View style={styles.sinceBox}>
-              <Text style={styles.sinceNumber}>2012</Text>
+              <Text style={styles.sinceNumber}>ROYAL</Text>
               <Text style={styles.sinceText}>
-                OUR JOURNEY OF EXCELLENCE
+                FOOD • HOSPITALITY • EXPERIENCE
               </Text>
             </View>
           </View>
@@ -145,9 +146,9 @@ export default function AboutScreen() {
               <Text style={styles.cardTitle}>OUR MISSION</Text>
 
               <Text style={styles.cardDescription}>
-                To deliver exceptional dining experiences through
-                outstanding cuisine, genuine hospitality and
-                attention to every detail.
+                To make every dining experience enjoyable through
+                quality food, welcoming hospitality and convenient
+                restaurant services.
               </Text>
             </View>
 
@@ -159,14 +160,14 @@ export default function AboutScreen() {
               <Text style={styles.cardTitle}>OUR VISION</Text>
 
               <Text style={styles.cardDescription}>
-                To become a destination for memorable culinary
-                experiences, where every guest discovers the true
-                meaning of royal dining.
+                To bring together great dining, simple reservations
+                and thoughtful service in one convenient experience
+                for every guest.
               </Text>
             </View>
           </View>
 
-          {/* SECTION 4 - ART OF FINE DINING */}
+          {/* SECTION 4 - DINING EXPERIENCE */}
           <View style={styles.diningSection}>
             <ImageBackground
               source={{ uri: images.dining }}
@@ -175,17 +176,17 @@ export default function AboutScreen() {
             >
               <View style={styles.diningOverlay}>
                 <Text style={styles.smallHeading}>
-                  OUR PHILOSOPHY
+                  OUR DINING EXPERIENCE
                 </Text>
 
                 <Text style={styles.diningTitle}>
-                  THE ART OF{"\n"}
-                  <Text style={styles.gold}>FINE DINING</Text>
+                  MORE THAN{"\n"}
+                  <Text style={styles.gold}>JUST A MEAL</Text>
                 </Text>
 
                 <Text style={styles.diningDescription}>
-                  More than just a meal. It is a celebration of
-                  flavour, presentation and hospitality.
+                  Discover delicious choices, inviting spaces
+                  and thoughtful hospitality at Royal Kitchen.
                 </Text>
               </View>
             </ImageBackground>
@@ -198,33 +199,57 @@ export default function AboutScreen() {
               />
 
               <Text style={styles.subTitle}>
-                Every Detail Matters
+                Everything in One Place
               </Text>
 
               <Text style={styles.paragraph}>
-                From the first ingredient to the final presentation,
-                our approach to fine dining is guided by creativity,
-                dedication and attention to detail.
+                Royal Kitchen brings essential restaurant
+                experiences together. Browse our menu, book
+                your table, manage reservations and stay
+                connected with our services.
               </Text>
 
               <View style={styles.philosophyPoint}>
-                <Ionicons name="checkmark-circle" size={18} color={GOLD} />
+                <Ionicons
+                  name="checkmark-circle"
+                  size={18}
+                  color={GOLD}
+                />
                 <Text style={styles.pointText}>
-                  Carefully selected ingredients
+                  Explore our food menu
                 </Text>
               </View>
 
               <View style={styles.philosophyPoint}>
-                <Ionicons name="checkmark-circle" size={18} color={GOLD} />
+                <Ionicons
+                  name="checkmark-circle"
+                  size={18}
+                  color={GOLD}
+                />
                 <Text style={styles.pointText}>
-                  Thoughtfully prepared cuisine
+                  Book and manage table reservations
                 </Text>
               </View>
 
               <View style={styles.philosophyPoint}>
-                <Ionicons name="checkmark-circle" size={18} color={GOLD} />
+                <Ionicons
+                  name="checkmark-circle"
+                  size={18}
+                  color={GOLD}
+                />
                 <Text style={styles.pointText}>
-                  Elegant presentation and service
+                  Access restaurant services and support
+                </Text>
+              </View>
+
+              <View style={styles.philosophyPoint}>
+                <Ionicons
+                  name="checkmark-circle"
+                  size={18}
+                  color={GOLD}
+                />
+                <Text style={styles.pointText}>
+                  Enjoy rewards and special experiences
                 </Text>
               </View>
             </View>
@@ -240,8 +265,8 @@ export default function AboutScreen() {
             </Text>
 
             <Text style={styles.centerParagraph}>
-              The principles that guide our passion and define
-              every Royal Kitchen experience.
+              The principles that guide our approach to food,
+              hospitality and every guest experience.
             </Text>
 
             <View style={styles.valuesGrid}>
@@ -273,7 +298,7 @@ export default function AboutScreen() {
           >
             <View style={styles.closingOverlay}>
               <Text style={styles.smallHeading}>
-                EXPERIENCE ROYAL DINING
+                YOUR ROYAL EXPERIENCE
               </Text>
 
               <Text style={styles.closingTitle}>
@@ -282,7 +307,7 @@ export default function AboutScreen() {
               </Text>
 
               <Text style={styles.closingDescription}>
-                Make your next dining experience truly unforgettable.
+                Explore our menu and plan your next dining experience.
               </Text>
 
               <TouchableOpacity
@@ -302,13 +327,12 @@ export default function AboutScreen() {
           </ImageBackground>
 
           <View style={styles.bottomSpace} />
-
         </ScrollView>
 
         {/* SHARED BOTTOM NAVIGATION */}
         <Navbar />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -354,6 +378,8 @@ const styles = StyleSheet.create({
     color: GOLD,
     fontSize: 10,
     fontWeight: "bold",
+    letterSpacing: 1.5,
+    marginBottom: 7,
   },
 
   heroTitle: {
@@ -368,29 +394,29 @@ const styles = StyleSheet.create({
     width: 55,
     height: 2,
     backgroundColor: GOLD,
-    marginTop: 2,
-    marginBottom: 2,
+    marginTop: 10,
+    marginBottom: 10,
   },
 
   heroDescription: {
     color: "#DDDDDD",
-    fontSize: 10,
+    fontSize: 11,
     textAlign: "center",
-    lineHeight: 14,
+    lineHeight: 17,
     maxWidth: 290,
   },
 
   goldButton: {
     backgroundColor: GOLD,
     borderRadius: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 5,
-    marginTop: 12,
+    paddingHorizontal: 19,
+    paddingVertical: 9,
+    marginTop: 15,
   },
 
   goldButtonText: {
     color: BLACK,
-    fontSize: 9,
+    fontSize: 10,
     fontWeight: "bold",
     letterSpacing: 0.7,
   },
@@ -416,9 +442,9 @@ const styles = StyleSheet.create({
 
   paragraph: {
     color: "#BBBBBB",
-    fontSize: 10,
-    lineHeight: 18,
-    marginBottom: 10,
+    fontSize: 11,
+    lineHeight: 19,
+    marginBottom: 12,
   },
 
   centerParagraph: {
@@ -511,7 +537,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  // FINE DINING
+  // DINING EXPERIENCE
   diningSection: {
     paddingTop: 8,
     paddingBottom: 22,
@@ -577,13 +603,14 @@ const styles = StyleSheet.create({
   philosophyPoint: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 9,
+    marginTop: 10,
     gap: 9,
   },
 
   pointText: {
     color: "#CCCCCC",
     fontSize: 10,
+    flex: 1,
   },
 
   // CORE VALUES
@@ -626,7 +653,7 @@ const styles = StyleSheet.create({
 
   // CLOSING BANNER
   closingBanner: {
-    height: 235,
+    height: 245,
     justifyContent: "center",
   },
 
@@ -663,7 +690,7 @@ const styles = StyleSheet.create({
     borderColor: GOLD,
     borderRadius: 20,
     paddingHorizontal: 20,
-    paddingVertical: 8,
+    paddingVertical: 9,
     marginTop: 10,
   },
 

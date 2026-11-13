@@ -303,40 +303,7 @@ export default function HomeScreen() {
           <View style={styles.bottomSpace} />
         </ScrollView>
 
-        {/* FIXED BOTTOM NAVIGATION */}
-        {/* <View style={styles.bottomNav}>
-          <NavItem
-            icon="home"
-            label="Home"
-            active
-            onPress={() => router.replace("/pages/homescreen")}
-          />
-
-          <NavItem
-            icon="restaurant"
-            label="Menu"
-            onPress={() => router.push("/pages/menu")}
-          />
-
-          <NavItem
-            icon="calendar"
-            label="Booking"
-            onPress={() => {}}
-          />
-
-          <NavItem
-            icon="briefcase"
-            label="Services"
-            onPress={() => router.push("/pages/services")}
-          />
-
-          <NavItem
-            icon="person"
-            label="Profile"
-            onPress={() => router.push("/pages/profile")}
-          />
-        </View> */}
-
+        {/* BOTTOM NAVIGATION */}
         <Navbar active="home" />
 
       </View>

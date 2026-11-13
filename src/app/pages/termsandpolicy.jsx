@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     color: GOLD,
-    fontSize: 19,
+    fontSize: 20,
     fontFamily: "Georgia",
     fontWeight: "bold",
   },
@@ -267,15 +267,14 @@ const styles = StyleSheet.create({
   heroTitle: {
     color: GOLD,
     fontFamily: "Georgia",
-    fontSize: 23,
+    fontSize: 24,
     fontWeight: "bold",
   },
   heroDescription: {
     color: "#AAAAAA",
-    fontSize: 12,
-    lineHeight: 20,
+    fontSize: 13,
     textAlign: "center",
-    marginTop: 9,
+    marginTop: 4,
   },
   tabContainer: {
     flexDirection: "row",
@@ -295,7 +294,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     color: "#AAAAAA",
-    fontSize: 11,
+    fontSize: 14,
     fontWeight: "600",
   },
   activeTabText: {
@@ -308,14 +307,13 @@ const styles = StyleSheet.create({
   },
   sectionHeading: {
     color: GOLD,
-    fontSize: 19,
+    fontSize: 20,
     fontFamily: "Georgia",
     fontWeight: "bold",
   },
   updatedText: {
     color: "#888888",
     fontSize: 11,
-    marginTop: 7,
     marginBottom: 13,
   },
   policyCard: {
@@ -333,14 +331,14 @@ const styles = StyleSheet.create({
   },
   policyTitle: {
     color: "#FFFFFF",
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: "bold",
     flex: 1,
     marginRight: 10,
   },
   policyContent: {
     color: "#AAAAAA",
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: 20,
     marginTop: 12,
   },
@@ -356,16 +354,16 @@ const styles = StyleSheet.create({
   },
   footerTitle: {
     color: GOLD,
-    fontSize: 17,
+    fontSize: 20,
     fontFamily: "Georgia",
     fontWeight: "bold",
     marginTop: 12,
   },
   footerText: {
     color: "#AAAAAA",
-    fontSize: 11,
+    fontSize: 14,
     lineHeight: 18,
     textAlign: "center",
-    marginTop: 8,
+    marginTop: 4,
   },
 });

@@ -103,7 +103,7 @@ export default function ProfileScreen() {
         break;
 
       case "settings":
-        Alert.alert("Settings", "Coming soon.");
+        router.push("/pages/settings");
         break;
 
       default:

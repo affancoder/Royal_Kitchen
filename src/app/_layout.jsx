@@ -20,7 +20,7 @@ export default function RootLayout() {
 
       {/* Application Pages */}
       <Stack.Screen name="pages/homescreen" />
-      <Stack.Screen name="pages/about" />
+      <Stack.Screen name="pages/about"/>
       <Stack.Screen name="pages/services" />
       <Stack.Screen name="pages/menu" />
       <Stack.Screen name="pages/contact" />
