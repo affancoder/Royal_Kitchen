@@ -106,6 +106,12 @@ export default function HomeScreen() {
               style={styles.notificationButton}
               activeOpacity={0.7}
             >
+              <Ionicons name="location-outline" size={23} color={GOLD} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.notificationButton}
+              activeOpacity={0.7}
+            >
               <Ionicons name="notifications-outline" size={23} color={GOLD} />
             </TouchableOpacity>
           </View>
@@ -121,9 +127,8 @@ export default function HomeScreen() {
               <Text style={styles.heroEyebrow}>EXCEPTIONAL DINING</Text>
 
               <Text style={styles.heroTitle}>
-                Indulge in a{"\n"}
+                Indulge in {"\n"}
                 <Text style={styles.gold}>Royal Dining</Text>
-                {"\n"}Experience
               </Text>
 
               <Text style={styles.heroDescription}>
@@ -136,8 +141,8 @@ export default function HomeScreen() {
                 activeOpacity={0.8}
                 onPress={() => router.push("/pages/menu")}
               >
-                <Text style={styles.goldButtonText}>Explore Our Menu</Text>
-                <Ionicons name="arrow-forward" size={15} color={BLACK} />
+                <Text style={styles.goldButtonText}>Explore Menu</Text>
+                <Ionicons name="arrow-forward" size={12} color={BLACK} />
               </TouchableOpacity>
             </View>
           </ImageBackground>
@@ -518,7 +523,7 @@ const styles = StyleSheet.create({
 
   heroDescription: {
     color: "#fff",
-    fontSize: 10,
+    fontSize: 12,
     maxWidth: 240,
     // Text shadow
     textShadowColor: "rgba(0, 0, 0, 0.85)",
@@ -529,8 +534,9 @@ const styles = StyleSheet.create({
   goldButton: {
     backgroundColor: GOLD,
     borderRadius: 22,
-    paddingHorizontal: 4,
-    marginTop: 3,
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    marginTop: 8,
     flexDirection: "row",
     alignItems: "center",
     gap: 7,
@@ -538,7 +544,7 @@ const styles = StyleSheet.create({
 
   goldButtonText: {
     color: BLACK,
-    fontSize: 8,
+    fontSize: 10,
     fontWeight: "bold",
   },
 
