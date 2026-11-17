@@ -13,6 +13,10 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import Navbar from "../components/navbar";
+import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
+import paneertikka from "../../../assets/images/paneer-tikka.jpg";
+import butterChicken from "../../../assets/images/butterChicken.jpg";
+import VegMomo from "../../../assets/images/veg-momo.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -118,8 +122,7 @@ const chefSpecials = [
     name: "Paneer Tikka",
     description: "Smoky grilled paneer with Indian spices",
     price: "₹249",
-    image:
-      "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600",
+    image: paneertikka,
     mode: "veg",
   },
   {
@@ -127,18 +130,51 @@ const chefSpecials = [
     name: "Chicken Biryani",
     description: "Aromatic basmati rice with tender chicken",
     price: "₹299",
-    image:
-      "https://images.unsplash.com/photo-1563379091339-03246963d96c?w=600",
+    image: chickenbiryani,
     mode: "non-veg",
   },
   {
     id: "3",
+    name: "Veg Momo",
+    description: "Delicious vegetarian dumplings",
+    price: "₹199",
+    image: VegMomo,
+    mode: "veg",
+  },
+  {
+    id: "4",
     name: "Butter Chicken",
     description: "Creamy tomato gravy with juicy chicken",
     price: "₹279",
-    image:
-      "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600",
+    image: butterChicken,
     mode: "non-veg",
+  },
+];
+
+const excellenceFeatures2 = [
+  {
+    icon: "restaurant-outline",
+    title: "Exceptional Ingredients",
+    description: "Precious Ingredients for remarkable flavours.",
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=700",
+  },
+  {
+    icon: "people-outline",
+    title: "Expert Culinary Team",
+    description: "Creative chefs bringing passion to every plate.",
+    image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700",
+  },
+  {
+    icon: "star-outline",
+    title: "Premium Hospitality",
+    description: "Personalized service for every guest.",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700",
+  },
+  {
+    icon: "heart-outline",
+    title: "Unforgettable Experiences",
+    description: "Beautifully moments for every occasion.",
+    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700",
   },
 ];
 
@@ -381,140 +417,107 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* SECTION 4 - GRAND EVENTS */}
-
-          <View style={styles.eventsSection}>
-            <Text style={styles.smallGoldHeading}>UNRIVALLED HOSPITALITY</Text>
-
-            <Text style={styles.eventsTitle}>
-              Tailored Culinary Royalty{"\n"}
-              For Your Grand Events
-            </Text>
-
-            <Text style={styles.paragraphCenter}>
-              Exceptional culinary services designed for your special occasions
-              and celebrations.
-            </Text>
-
-            <View style={styles.eventCards}>
-              {eventServices.map((item, index) => (
-                <View style={styles.eventCard} key={index}>
-                  <Ionicons name={item.icon} size={21} color={GOLD} />
-
-                  <Text style={styles.eventCardTitle}>{item.title}</Text>
-
-                  <Text style={styles.eventCardDescription}>
-                    {item.description}
-                  </Text>
-
-                  <TouchableOpacity
-                    style={styles.miniButton}
-                    onPress={() => router.push("/pages/services")}
-                  >
-                    <Text style={styles.miniButtonText}>{item.button}</Text>
-                  </TouchableOpacity>
-                </View>
-              ))}
-            </View>
-          </View>
-
           {/* SECTION - CHEF'S SPECIALS */}
-<View style={styles.specialSection}>
-  <View style={styles.categoryHeader}>
-    <View>
-      <Text style={styles.categoryTitle}>Chef's Specials</Text>
-      <Text style={styles.categorySubtitle}>
-        Handpicked favourites from our kitchen
-      </Text>
-    </View>
+          <View style={styles.specialSection}>
+            <View style={styles.categoryHeader}>
+              <View>
+                <Text style={styles.categoryTitle}>Chef's Specials</Text>
+                <Text style={styles.categorySubtitle}>
+                  Handpicked favourites from our kitchen
+                </Text>
+              </View>
 
-    <TouchableOpacity
-      style={styles.viewAllButton}
-      onPress={() => router.push("/pages/menu")}
-    >
-      <Text style={styles.viewAllText}>View All</Text>
-      <Ionicons name="arrow-forward" size={13} color={GOLD} />
-    </TouchableOpacity>
-  </View>
-
-  <ScrollView
-    horizontal
-    showsHorizontalScrollIndicator={false}
-    contentContainerStyle={styles.specialScroll}
-  >
-    {chefSpecials.map((item) => (
-      <TouchableOpacity
-        key={item.id}
-        activeOpacity={0.85}
-        style={styles.specialCard}
-        onPress={() =>
-          router.push({
-            pathname: "/pages/menu",
-            params: {
-              mode: item.mode,
-              category: item.name,
-            },
-          })
-        }
-      >
-        <View style={styles.specialImageContainer}>
-          <Image
-            source={{ uri: item.image }}
-            style={styles.specialImage}
-            resizeMode="cover"
-          />
-
-          <View
-            style={[
-              styles.specialFoodIndicator,
-              {
-                borderColor:
-                  item.mode === "veg" ? "#35C759" : "#F04444",
-              },
-            ]}
-          >
-            <View
-              style={[
-                styles.foodTypeDot,
-                {
-                  backgroundColor:
-                    item.mode === "veg" ? "#35C759" : "#F04444",
-                },
-              ]}
-            />
-          </View>
-
-          <View style={styles.specialTag}>
-            <Text style={styles.specialTagText}>CHEF'S PICK</Text>
-          </View>
-        </View>
-
-        <View style={styles.specialInfo}>
-          <Text style={styles.specialName} numberOfLines={1}>
-            {item.name}
-          </Text>
-
-          <Text style={styles.specialDescription} numberOfLines={2}>
-            {item.description}
-          </Text>
-
-          <View style={styles.specialBottom}>
-            <Text style={styles.specialPrice}>{item.price}</Text>
-
-            <View style={styles.addButton}>
-              <Ionicons name="add" size={18} color={BLACK} />
+              <TouchableOpacity
+                style={styles.viewAllButton}
+                onPress={() => router.push("/pages/menu")}
+              >
+                <Text style={styles.viewAllText}>View All</Text>
+                <Ionicons name="arrow-forward" size={13} color={GOLD} />
+              </TouchableOpacity>
             </View>
-          </View>
-        </View>
-      </TouchableOpacity>
-    ))}
-  </ScrollView>
-</View>
 
-          {/* SECTION 6 - CULINARY EXCELLENCE */}
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.specialScroll}
+            >
+              {chefSpecials.map((item) => (
+                <TouchableOpacity
+                  key={item.id}
+                  activeOpacity={0.85}
+                  style={styles.specialCard}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/pages/menu",
+                      params: {
+                        mode: item.mode,
+                        category: item.name,
+                      },
+                    })
+                  }
+                >
+                  <View style={styles.specialImageContainer}>
+                    <Image
+                      source={
+                        typeof item.image === "string"
+                          ? { uri: item.image }
+                          : item.image
+                      }
+                      style={styles.specialImage}
+                      resizeMode="cover"
+                    />
+
+                    <View
+                      style={[
+                        styles.specialFoodIndicator,
+                        {
+                          borderColor:
+                            item.mode === "veg" ? "#35C759" : "#F04444",
+                        },
+                      ]}
+                    >
+                      <View
+                        style={[
+                          styles.foodTypeDot,
+                          {
+                            backgroundColor:
+                              item.mode === "veg" ? "#35C759" : "#F04444",
+                          },
+                        ]}
+                      />
+                    </View>
+
+                    <View style={styles.specialTag}>
+                      <Text style={styles.specialTagText}>CHEF'S PICK</Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.specialInfo}>
+                    <Text style={styles.specialName} numberOfLines={1}>
+                      {item.name}
+                    </Text>
+
+                    <Text style={styles.specialDescription} numberOfLines={2}>
+                      {item.description}
+                    </Text>
+
+                    <View style={styles.specialBottom}>
+                      <Text style={styles.specialPrice}>{item.price}</Text>
+
+                      <View style={styles.addButton}>
+                        <Ionicons name="add" size={18} color={BLACK} />
+                      </View>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+
+          {/* SECTION - CULINARY EXCELLENCE */}
 
           <View style={styles.excellenceSection}>
-            <Text style={styles.smallGoldHeading}>OUR COMMITMENT</Text>
+            <Text style={styles.excellenceEyebrow}>THE ROYAL EXPERIENCE</Text>
 
             <Text style={styles.excellenceTitle}>
               A Legacy of Royal Dining &{"\n"}
@@ -527,16 +530,32 @@ export default function HomeScreen() {
             </Text>
 
             <View style={styles.excellenceGrid}>
-              {excellenceFeatures.map((item, index) => (
-                <View style={styles.excellenceCard} key={index}>
-                  <Ionicons name={item.icon} size={22} color={GOLD} />
+              {excellenceFeatures2.map((item, index) => (
+                <ImageBackground
+                  key={item.title}
+                  source={{ uri: item.image }}
+                  style={styles.excellenceCard}
+                  imageStyle={styles.excellenceCardImage}
+                  resizeMode="cover"
+                >
+                  <View style={styles.excellenceOverlay}>
+                    <View style={styles.excellenceIconContainer}>
+                      <Ionicons name={item.icon} size={23} color={GOLD} />
+                    </View>
 
-                  <Text style={styles.excellenceCardTitle}>{item.title}</Text>
+                    <View style={styles.excellenceCardContent}>
+                      <Text style={styles.excellenceCardTitle}>
+                        {item.title}
+                      </Text>
 
-                  <Text style={styles.excellenceCardDescription}>
-                    {item.description}
-                  </Text>
-                </View>
+                      <Text style={styles.excellenceCardDescription}>
+                        {item.description}
+                      </Text>
+                    </View>
+
+                    <View style={styles.excellenceCardLine} />
+                  </View>
+                </ImageBackground>
               ))}
             </View>
           </View>
@@ -900,241 +919,211 @@ const styles = StyleSheet.create({
   },
 
   // CHEF'S SPECIALS
-specialSection: {
-  paddingTop: 15,
-  paddingBottom: 25,
-},
-
-specialScroll: {
-  paddingHorizontal: 16,
-  gap: 14,
-},
-
-specialCard: {
-  width: 205,
-  backgroundColor: CARD,
-  borderRadius: 13,
-  overflow: "hidden",
-  borderWidth: 1,
-  borderColor: "#292929",
-},
-
-specialImageContainer: {
-  width: "100%",
-  height: 135,
-  position: "relative",
-},
-
-specialImage: {
-  width: "100%",
-  height: "100%",
-},
-
-specialFoodIndicator: {
-  position: "absolute",
-  top: 10,
-  right: 10,
-  width: 18,
-  height: 18,
-  borderRadius: 4,
-  backgroundColor: BLACK,
-  borderWidth: 1.5,
-  alignItems: "center",
-  justifyContent: "center",
-},
-
-specialTag: {
-  position: "absolute",
-  bottom: 9,
-  left: 9,
-  backgroundColor: GOLD,
-  paddingHorizontal: 8,
-  paddingVertical: 5,
-  borderRadius: 4,
-},
-
-specialTagText: {
-  color: BLACK,
-  fontSize: 8,
-  fontWeight: "bold",
-  letterSpacing: 0.5,
-},
-
-specialInfo: {
-  padding: 12,
-},
-
-specialName: {
-  color: "#FFFFFF",
-  fontSize: 14,
-  fontWeight: "bold",
-},
-
-specialDescription: {
-  color: "#999999",
-  fontSize: 10,
-  lineHeight: 15,
-  marginTop: 5,
-  minHeight: 30,
-},
-
-specialBottom: {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginTop: 12,
-},
-
-specialPrice: {
-  color: GOLD,
-  fontSize: 15,
-  fontWeight: "bold",
-},
-
-addButton: {
-  width: 29,
-  height: 29,
-  borderRadius: 7,
-  backgroundColor: GOLD,
-  alignItems: "center",
-  justifyContent: "center",
-},
- 
-
-  // EVENTS
-
-  eventsSection: {
-    paddingHorizontal: 13,
+  specialSection: {
     paddingTop: 15,
     paddingBottom: 25,
   },
 
-  smallGoldHeading: {
-    color: GOLD,
-    fontSize: 8,
-    letterSpacing: 1.2,
-    textAlign: "center",
-    marginBottom: 8,
+  specialScroll: {
+    paddingHorizontal: 16,
+    gap: 14,
   },
 
-  eventsTitle: {
-    color: "#FFFFFF",
-    fontSize: 19,
-    fontWeight: "bold",
-    fontFamily: "Georgia",
-    textAlign: "center",
-    lineHeight: 25,
-  },
-
-  paragraphCenter: {
-    color: "#AAAAAA",
-    fontSize: 9,
-    textAlign: "center",
-    lineHeight: 15,
-    marginTop: 9,
-    marginBottom: 15,
-    paddingHorizontal: 8,
-  },
-
-  eventCards: {
-    flexDirection: "row",
-    gap: 7,
-  },
-
-  eventCard: {
-    flex: 1,
-    minHeight: 165,
+  specialCard: {
+    width: 200,
     backgroundColor: CARD,
+    borderRadius: 13,
+    overflow: "hidden",
     borderWidth: 1,
-    borderColor: "#554700",
-    borderRadius: 7,
-    padding: 8,
+    borderColor: "#292929",
   },
 
-  eventCardTitle: {
-    color: GOLD,
-    fontSize: 9,
-    fontWeight: "bold",
-    lineHeight: 13,
-    marginTop: 8,
-    minHeight: 37,
+  specialImageContainer: {
+    width: "100%",
+    height: 105,
+    position: "relative",
   },
 
-  eventCardDescription: {
-    color: "#AAAAAA",
-    fontSize: 7,
-    lineHeight: 11,
-    marginTop: 5,
-    flex: 1,
+  specialImage: {
+    width: "100%",
+    height: "100%",
   },
 
-  miniButton: {
-    borderWidth: 1,
-    borderColor: GOLD,
-    borderRadius: 15,
-    paddingVertical: 6,
-    paddingHorizontal: 3,
+  specialFoodIndicator: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    width: 18,
+    height: 18,
+    borderRadius: 4,
+    backgroundColor: BLACK,
+    borderWidth: 1.5,
     alignItems: "center",
-    marginTop: 9,
+    justifyContent: "center",
   },
 
-  miniButtonText: {
+  specialTag: {
+    position: "absolute",
+    bottom: 9,
+    left: 9,
+    backgroundColor: GOLD,
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    borderRadius: 4,
+  },
+
+  specialTagText: {
+    color: BLACK,
+    fontSize: 10,
+    fontWeight: "bold",
+    letterSpacing: 0.5,
+  },
+
+  specialInfo: {
+    padding: 12,
+  },
+
+  specialName: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+
+  specialDescription: {
+    color: "#999999",
+    fontSize: 13,
+    lineHeight: 15,
+    marginTop: 5,
+    minHeight: 30,
+  },
+
+  specialBottom: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 12,
+  },
+
+  specialPrice: {
     color: GOLD,
-    fontSize: 7,
-    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "bold",
   },
 
-  
+  addButton: {
+    width: 29,
+    height: 29,
+    borderRadius: 7,
+    backgroundColor: GOLD,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-  // EXCELLENCE
+  // CULINARY EXCELLENCE
 
   excellenceSection: {
-    paddingHorizontal: 15,
-    paddingTop: 15,
-    paddingBottom: 20,
+    paddingHorizontal: 16,
+    paddingTop: 25,
+    paddingBottom: 25,
+  },
+
+  excellenceEyebrow: {
+    color: GOLD,
+    fontSize: 12,
+    fontWeight: "bold",
+    letterSpacing: 2.5,
+    textAlign: "center",
+    marginBottom: 9,
   },
 
   excellenceTitle: {
     color: "#FFFFFF",
-    fontSize: 19,
+    fontSize: 21,
     fontFamily: "Georgia",
     fontWeight: "bold",
     textAlign: "center",
-    lineHeight: 26,
+    lineHeight: 29,
+  },
+
+  paragraphCenter: {
+    color: "#AAAAAA",
+    fontSize: 11,
+    textAlign: "center",
+    lineHeight: 18,
+    marginTop: 10,
+    marginBottom: 20,
+    paddingHorizontal: 8,
   },
 
   excellenceGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    gap: 9,
+    rowGap: 12,
   },
 
   excellenceCard: {
-    width: "48%",
-    minHeight: 125,
+    width: "48.5%",
+    height: 190,
+    borderRadius: 13,
+    overflow: "hidden",
     backgroundColor: CARD,
     borderWidth: 1,
     borderColor: "#554700",
-    borderRadius: 7,
-    padding: 10,
+  },
+
+  excellenceCardImage: {
+    borderRadius: 12,
+    resizeMode: "contain",
+    width: "100%",
+    height: "100%",
+  },
+
+  excellenceOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.62)",
+    padding: 12,
+    justifyContent: "space-between",
+  },
+
+  excellenceIconContainer: {
+    width: 39,
+    height: 39,
+    borderRadius: 20,
+    backgroundColor: "rgba(212,175,0,0.18)",
+    borderWidth: 1,
+    borderColor: GOLD,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  excellenceCardContent: {
+    marginTop: "auto",
   },
 
   excellenceCardTitle: {
     color: GOLD,
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: "bold",
-    marginTop: 8,
-    marginBottom: 5,
+    lineHeight: 18,
+    marginBottom: 6,
   },
 
   excellenceCardDescription: {
-    color: "#AAAAAA",
-    fontSize: 8,
-    lineHeight: 13,
+    color: "#FFFFFF",
+    fontSize: 12,
+    lineHeight: 18,
+  },
+
+  excellenceCardLine: {
+    width: 65,
+    height: 2,
+    backgroundColor: GOLD,
+    marginTop: 10,
   },
 
   bottomSpace: {
     height: 10,
   },
+  
 });

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   View,
@@ -13,6 +12,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import Navbar from "../components/navbar";
+import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -26,8 +26,7 @@ const menuItems = [
     category: "Starters",
     price: "₹349",
     description: "Marinated cottage cheese grilled to perfection",
-    image:
-      "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800",
+    image: paneertikka,
   },
   {
     name: "Tandoori Chicken",
