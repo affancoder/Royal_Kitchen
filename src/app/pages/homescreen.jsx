@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   View,
@@ -36,8 +35,7 @@ const eventServices = [
   {
     icon: "calendar-outline",
     title: "Grand Wedding & Event Catering",
-    description:
-      "Make every celebration memorable with our premium catering.",
+    description: "Make every celebration memorable with our premium catering.",
     button: "Plan Your Event",
   },
   {
@@ -65,8 +63,7 @@ const excellenceFeatures = [
   {
     icon: "star-outline",
     title: "Premium Hospitality",
-    description:
-      "Personalized service that makes every guest feel special.",
+    description: "Personalized service that makes every guest feel special.",
   },
   {
     icon: "heart-outline",
@@ -97,26 +94,19 @@ export default function HomeScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-
           {/* HEADER */}
 
           <View style={styles.header}>
             <View>
               <Text style={styles.brandName}>The ROYAL KITCHEN & CATERER</Text>
-              <Text style={styles.brandTagline}>
-                DINE LIKE ROYALTY
-              </Text>
+              <Text style={styles.brandTagline}>DINE LIKE ROYALTY</Text>
             </View>
 
             <TouchableOpacity
               style={styles.notificationButton}
               activeOpacity={0.7}
             >
-              <Ionicons
-                name="notifications-outline"
-                size={23}
-                color={GOLD}
-              />
+              <Ionicons name="notifications-outline" size={23} color={GOLD} />
             </TouchableOpacity>
           </View>
 
@@ -128,21 +118,17 @@ export default function HomeScreen() {
             imageStyle={styles.heroImage}
           >
             <View style={styles.heroOverlay}>
-              <Text style={styles.heroEyebrow}>
-                EXCEPTIONAL DINING
-              </Text>
+              <Text style={styles.heroEyebrow}>EXCEPTIONAL DINING</Text>
 
               <Text style={styles.heroTitle}>
                 Indulge in a{"\n"}
-                <Text style={styles.gold}>
-                  Royal Dining
-                </Text>
+                <Text style={styles.gold}>Royal Dining</Text>
                 {"\n"}Experience
               </Text>
 
               <Text style={styles.heroDescription}>
-                Discover extraordinary flavours, delicious creations
-                and unforgettable dining experiences.
+                Discover our flavours, delicious &
+                dining experiences.
               </Text>
 
               <TouchableOpacity
@@ -150,14 +136,8 @@ export default function HomeScreen() {
                 activeOpacity={0.8}
                 onPress={() => router.push("/pages/menu")}
               >
-                <Text style={styles.goldButtonText}>
-                  Explore Our Menu
-                </Text>
-                <Ionicons
-                  name="arrow-forward"
-                  size={15}
-                  color={BLACK}
-                />
+                <Text style={styles.goldButtonText}>Explore Our Menu</Text>
+                <Ionicons name="arrow-forward" size={15} color={BLACK} />
               </TouchableOpacity>
             </View>
           </ImageBackground>
@@ -174,7 +154,6 @@ export default function HomeScreen() {
             </Text>
 
             <View style={styles.preferenceContainer}>
-
               {/* VEG BUTTON */}
 
               <TouchableOpacity
@@ -189,9 +168,7 @@ export default function HomeScreen() {
                   <View style={styles.vegDot} />
                 </View>
 
-                <Text style={styles.preferenceButtonText}>
-                  Pure Veg
-                </Text>
+                <Text style={styles.preferenceButtonText}>Pure Veg</Text>
 
                 {foodMode === "veg" && (
                   <Ionicons
@@ -217,9 +194,7 @@ export default function HomeScreen() {
                   <View style={styles.nonVegDot} />
                 </View>
 
-                <Text style={styles.preferenceButtonText}>
-                  Non-Veg
-                </Text>
+                <Text style={styles.preferenceButtonText}>Non-Veg</Text>
 
                 {foodMode === "non-veg" && (
                   <Ionicons
@@ -230,7 +205,6 @@ export default function HomeScreen() {
                   />
                 )}
               </TouchableOpacity>
-
             </View>
 
             {/* CONTINUE BUTTON */}
@@ -250,13 +224,8 @@ export default function HomeScreen() {
                   : "Select Your Food Preference"}
               </Text>
 
-              <Ionicons
-                name="arrow-forward"
-                size={16}
-                color={BLACK}
-              />
+              <Ionicons name="arrow-forward" size={16} color={BLACK} />
             </TouchableOpacity>
-
           </View>
 
           {/* SECTION 3 - OUR STORY */}
@@ -268,30 +237,26 @@ export default function HomeScreen() {
 
             <Text style={styles.sectionTitle}>
               Crafting Culinary{"\n"}
-              <Text style={styles.gold}>
-                Royalty Since 2012
-              </Text>
+              <Text style={styles.gold}>Royalty Since 2012</Text>
             </Text>
 
             <Text style={styles.paragraph}>
-              At Royal Kitchen, we believe every meal deserves a royal
-              touch. Our passion for exceptional food and hospitality
-              brings together carefully selected ingredients,
-              experienced chefs and unforgettable dining experiences.
+              At Royal Kitchen, we believe every meal deserves a royal touch.
+              Our passion for exceptional food and hospitality brings together
+              carefully selected ingredients, experienced chefs and
+              unforgettable dining experiences.
             </Text>
 
             <Text style={styles.paragraph}>
-              From intimate dining to grand celebrations, we deliver
-              excellence in every detail.
+              From intimate dining to grand celebrations, we deliver excellence
+              in every detail.
             </Text>
 
             <TouchableOpacity
               style={styles.outlineButton}
               onPress={() => router.push("/pages/about")}
             >
-              <Text style={styles.outlineButtonText}>
-                Discover Our Story
-              </Text>
+              <Text style={styles.outlineButtonText}>Discover Our Story</Text>
               <Ionicons name="arrow-forward" size={13} color={GOLD} />
             </TouchableOpacity>
 
@@ -305,9 +270,7 @@ export default function HomeScreen() {
           {/* SECTION 4 - GRAND EVENTS */}
 
           <View style={styles.eventsSection}>
-            <Text style={styles.smallGoldHeading}>
-              UNRIVALLED HOSPITALITY
-            </Text>
+            <Text style={styles.smallGoldHeading}>UNRIVALLED HOSPITALITY</Text>
 
             <Text style={styles.eventsTitle}>
               Tailored Culinary Royalty{"\n"}
@@ -315,22 +278,16 @@ export default function HomeScreen() {
             </Text>
 
             <Text style={styles.paragraphCenter}>
-              Exceptional culinary services designed for your special
-              occasions and celebrations.
+              Exceptional culinary services designed for your special occasions
+              and celebrations.
             </Text>
 
             <View style={styles.eventCards}>
               {eventServices.map((item, index) => (
                 <View style={styles.eventCard} key={index}>
-                  <Ionicons
-                    name={item.icon}
-                    size={21}
-                    color={GOLD}
-                  />
+                  <Ionicons name={item.icon} size={21} color={GOLD} />
 
-                  <Text style={styles.eventCardTitle}>
-                    {item.title}
-                  </Text>
+                  <Text style={styles.eventCardTitle}>{item.title}</Text>
 
                   <Text style={styles.eventCardDescription}>
                     {item.description}
@@ -340,9 +297,7 @@ export default function HomeScreen() {
                     style={styles.miniButton}
                     onPress={() => router.push("/pages/services")}
                   >
-                    <Text style={styles.miniButtonText}>
-                      {item.button}
-                    </Text>
+                    <Text style={styles.miniButtonText}>{item.button}</Text>
                   </TouchableOpacity>
                 </View>
               ))}
@@ -364,14 +319,12 @@ export default function HomeScreen() {
 
                 <Text style={styles.plateTitle}>
                   Crafting Culinary{"\n"}
-                  <Text style={styles.gold}>
-                    Royalty On Every Plate
-                  </Text>
+                  <Text style={styles.gold}>Royalty On Every Plate</Text>
                 </Text>
 
                 <Text style={styles.plateDescription}>
-                  Every dish tells a story of passion, creativity
-                  and culinary excellence.
+                  Every dish tells a story of passion, creativity and culinary
+                  excellence.
                 </Text>
 
                 <TouchableOpacity
@@ -381,11 +334,7 @@ export default function HomeScreen() {
                   <Text style={styles.goldButtonText}>
                     Discover Our Creations
                   </Text>
-                  <Ionicons
-                    name="arrow-forward"
-                    size={14}
-                    color={BLACK}
-                  />
+                  <Ionicons name="arrow-forward" size={14} color={BLACK} />
                 </TouchableOpacity>
               </View>
             </ImageBackground>
@@ -403,9 +352,9 @@ export default function HomeScreen() {
                 </Text>
 
                 <Text style={styles.paragraph}>
-                  Our culinary team combines traditional inspiration
-                  with modern techniques to create extraordinary
-                  flavours and memorable dishes.
+                  Our culinary team combines traditional inspiration with modern
+                  techniques to create extraordinary flavours and memorable
+                  dishes.
                 </Text>
 
                 <TouchableOpacity
@@ -415,11 +364,7 @@ export default function HomeScreen() {
                   <Text style={styles.outlineButtonText}>
                     Meet Our Culinary Team
                   </Text>
-                  <Ionicons
-                    name="arrow-forward"
-                    size={13}
-                    color={GOLD}
-                  />
+                  <Ionicons name="arrow-forward" size={13} color={GOLD} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -428,34 +373,24 @@ export default function HomeScreen() {
           {/* SECTION 6 - CULINARY EXCELLENCE */}
 
           <View style={styles.excellenceSection}>
-            <Text style={styles.smallGoldHeading}>
-              OUR COMMITMENT
-            </Text>
+            <Text style={styles.smallGoldHeading}>OUR COMMITMENT</Text>
 
             <Text style={styles.excellenceTitle}>
               A Legacy of Royal Dining &{"\n"}
-              <Text style={styles.gold}>
-                Culinary Excellence
-              </Text>
+              <Text style={styles.gold}>Culinary Excellence</Text>
             </Text>
 
             <Text style={styles.paragraphCenter}>
-              Our values define every experience we create, from the
-              first ingredient to the final presentation.
+              Our values define every experience we create, from the first
+              ingredient to the final presentation.
             </Text>
 
             <View style={styles.excellenceGrid}>
               {excellenceFeatures.map((item, index) => (
                 <View style={styles.excellenceCard} key={index}>
-                  <Ionicons
-                    name={item.icon}
-                    size={22}
-                    color={GOLD}
-                  />
+                  <Ionicons name={item.icon} size={22} color={GOLD} />
 
-                  <Text style={styles.excellenceCardTitle}>
-                    {item.title}
-                  </Text>
+                  <Text style={styles.excellenceCardTitle}>{item.title}</Text>
 
                   <Text style={styles.excellenceCardDescription}>
                     {item.description}
@@ -466,20 +401,17 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.bottomSpace} />
-
         </ScrollView>
 
         {/* BOTTOM NAVIGATION */}
 
         <Navbar active="home" />
-
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-
   safeArea: {
     flex: 1,
     backgroundColor: BLACK,
@@ -535,12 +467,14 @@ const styles = StyleSheet.create({
   // HERO BANNER
 
   heroBanner: {
-    height: 245,
+    height: 150,
     marginHorizontal: 12,
     marginTop: 12,
     borderRadius: 12,
     overflow: "hidden",
     justifyContent: "center",
+    borderColor: "#cca402",
+    borderWidth: 1.2,
   },
 
   heroImage: {
@@ -557,18 +491,25 @@ const styles = StyleSheet.create({
 
   heroEyebrow: {
     color: GOLD,
-    fontSize: 9,
+    fontSize: 10,
     fontWeight: "bold",
-    letterSpacing: 1.5,
-    marginBottom: 10,
+    letterSpacing: 1.3,
+    // Text shadow
+    textShadowColor: "rgba(0, 0, 0, 0.85)",
+    textShadowOffset: { width: 1, height: 2 },
+    textShadowRadius: 5,
   },
 
   heroTitle: {
     color: "#FFFFFF",
-    fontSize: 27,
+    fontSize: 24,
     fontFamily: "Georgia",
     fontWeight: "bold",
-    lineHeight: 34,
+
+    // Text shadow
+    textShadowColor: "rgba(0, 0, 0, 0.85)",
+    textShadowOffset: { width: 1, height: 2 },
+    textShadowRadius: 5,
   },
 
   gold: {
@@ -576,19 +517,20 @@ const styles = StyleSheet.create({
   },
 
   heroDescription: {
-    color: "#E0E0E0",
+    color: "#fff",
     fontSize: 10,
-    lineHeight: 16,
-    marginTop: 8,
     maxWidth: 240,
+    // Text shadow
+    textShadowColor: "rgba(0, 0, 0, 0.85)",
+    textShadowOffset: { width: 1, height: 2 },
+    textShadowRadius: 5,
   },
 
   goldButton: {
     backgroundColor: GOLD,
     borderRadius: 22,
-    paddingHorizontal: 15,
-    paddingVertical: 9,
-    marginTop: 13,
+    paddingHorizontal: 4,
+    marginTop: 3,
     flexDirection: "row",
     alignItems: "center",
     gap: 7,
@@ -596,7 +538,7 @@ const styles = StyleSheet.create({
 
   goldButtonText: {
     color: BLACK,
-    fontSize: 10,
+    fontSize: 8,
     fontWeight: "bold",
   },
 
@@ -986,5 +928,4 @@ const styles = StyleSheet.create({
   bottomSpace: {
     height: 10,
   },
-
 });
