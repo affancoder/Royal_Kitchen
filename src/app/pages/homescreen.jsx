@@ -11,6 +11,7 @@ import {
   SafeAreaView,
   TextInput,
 } from "react-native";
+
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import Navbar from "../components/navbar";
@@ -157,7 +158,7 @@ const chefSpecials = [
     description: "Smoky grilled paneer with Indian spices",
     price: "₹369",
     image: paneertikka,
-    mode: "veg",
+    mode: "non-veg",
   },
   {
     id: "2",
@@ -1060,7 +1061,8 @@ const styles = StyleSheet.create({
 
   categoryName: {
     color: "#FFFFFF",
-    fontSize: 10,
+    fontSize: 14,
+    width:100,
     fontWeight: "600",
     textAlign: "center",
     marginTop: 9,
