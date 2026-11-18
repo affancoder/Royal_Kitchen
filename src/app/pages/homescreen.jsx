@@ -379,7 +379,7 @@ export default function HomeScreen() {
             </View>
           </ImageBackground>
 
-          {/* SECTION 2 - EXPLORE FOOD CATEGORIES */}
+          {/* SECTION 2 - EXPLORE OUR MENU */}
 
           <View style={styles.foodCategorySection}>
             <View style={styles.categoryHeader}>
@@ -426,7 +426,7 @@ export default function HomeScreen() {
                       resizeMode="cover"
                     />
 
-                    <View
+                    {/* <View
                       style={[
                         styles.foodTypeIndicator,
                         {
@@ -444,7 +444,7 @@ export default function HomeScreen() {
                           },
                         ]}
                       />
-                    </View>
+                    </View> */}
                   </View>
 
                   <Text style={styles.categoryName} numberOfLines={1}>
