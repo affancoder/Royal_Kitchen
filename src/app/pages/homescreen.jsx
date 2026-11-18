@@ -168,68 +168,68 @@ const chefSpecials = [
     mode: "veg",
   },
   {
-    id:"6",
-    name:"Chocolate Cake",
-    description:"Delicious chocolate cake with creamy frosting",
-    price:"₹89",
-    image:chocolateCake,
-    mode:"non-veg",
+    id: "6",
+    name: "Chocolate Cake",
+    description: "Delicious chocolate cake with creamy frosting",
+    price: "₹89",
+    image: chocolateCake,
+    mode: "non-veg",
   },
   {
-    id:"7",
-    name:"Ice Cream Combo",
-    description:"Creamy vanilla ice cream with chocolate sauce",
-    price:"₹179",
-    image:IceCream,
-    mode:"veg",
+    id: "7",
+    name: "Ice Cream Combo",
+    description: "Creamy vanilla ice cream with chocolate sauce",
+    price: "₹179",
+    image: IceCream,
+    mode: "veg",
   },
   {
-    id:"8",
-    name:"Cheese Pizza",
-    description:"Delicious pizza with creamy cheese & toppings",
-    price:"₹189",
+    id: "8",
+    name: "Cheese Pizza",
+    description: "Delicious pizza with creamy cheese & toppings",
+    price: "₹189",
     image: pizza,
-    mode:"veg",
+    mode: "veg",
   },
   {
-    id:"9",
-    name:"Kashmiri Rogan",
-    description:"Delicious Rogan with creamy cheese & mutton",
-    price:"₹589",
+    id: "9",
+    name: "Kashmiri Rogan",
+    description: "Delicious Rogan with creamy cheese & mutton",
+    price: "₹589",
     image: kashmiriRogan,
-    mode:"non-veg",
+    mode: "non-veg",
   },
   {
-    id:"10",
-    name:"Creame Toast",
-    description:"Delicious cream toast with butter and jam",
-    price:"₹129",
-    image:CreameToast,
-    mode:"veg",
+    id: "10",
+    name: "Creame Toast",
+    description: "Delicious cream toast with butter and jam",
+    price: "₹129",
+    image: CreameToast,
+    mode: "veg",
   },
   {
-    id:"11",
-    name:"Lunch Combo",
-    description:"Delicious Rice, Dal, Roti, Salad, & Dessert",
-    price:"₹739",
+    id: "11",
+    name: "Lunch Combo",
+    description: "Delicious Rice, Dal, Roti, Salad, & Dessert",
+    price: "₹739",
     image: lunchCombo,
-    mode:"veg",
+    mode: "veg",
   },
   {
-    id:"12",
-    name:"Veg Thali",
-    description:"Delicious vegetarian thali with roti, dal, and dessert",
-    price:"₹829",
+    id: "12",
+    name: "Veg Thali",
+    description: "Delicious vegetarian thali with roti, dal, and dessert",
+    price: "₹829",
     image: VegThali,
-    mode:"veg",
+    mode: "veg",
   },
   {
-    id:"13",
-    name:"Samosa",
-    description:"Crispy fried pastry with spiced potatoes",
-    price:"₹186",
+    id: "13",
+    name: "Samosa",
+    description: "Crispy fried pastry with spiced potatoes",
+    price: "₹186",
     image: samosa,
-    mode:"veg",
+    mode: "veg",
   },
 ];
 
@@ -265,11 +265,11 @@ export default function HomeScreen() {
 
   // Filter food according to Veg Mode
   const visibleCategories = foodCategories.filter(
-    (item) => !vegMode || item.mode === "veg"
+    (item) => !vegMode || item.mode === "veg",
   );
 
   const visibleSpecials = chefSpecials.filter(
-    (item) => !vegMode || item.mode === "veg"
+    (item) => !vegMode || item.mode === "veg",
   );
 
   return (
@@ -284,22 +284,16 @@ export default function HomeScreen() {
           {/* HEADER */}
 
           <View style={styles.header}>
-
             {/* Logo */}
             <View style={styles.logoContainer}>
-              <Image source={logo}
-              style={styles.logo}
-              resizeMode="contain" />
+              <Image source={logo} style={styles.logo} resizeMode="contain" />
             </View>
 
             <View style={styles.nearby}>
               {/* VEG MODE TOGGLE */}
 
               <TouchableOpacity
-                style={[
-                  styles.vegModeButton,
-                  vegMode && styles.vegModeActive,
-                ]}
+                style={[styles.vegModeButton, vegMode && styles.vegModeActive]}
                 activeOpacity={0.8}
                 onPress={() => setVegMode((prev) => !prev)}
               >
@@ -317,10 +311,7 @@ export default function HomeScreen() {
                 </Text>
 
                 <View
-                  style={[
-                    styles.vegSwitch,
-                    vegMode && styles.vegSwitchActive,
-                  ]}
+                  style={[styles.vegSwitch, vegMode && styles.vegSwitchActive]}
                 >
                   <View
                     style={[
@@ -330,14 +321,6 @@ export default function HomeScreen() {
                   />
                 </View>
               </TouchableOpacity>
-
-              {/* <TouchableOpacity
-                style={styles.notificationButton}
-                activeOpacity={0.7}
-                onPress={() => router.push("/pages/location")}
-              >
-                <Ionicons name="location-outline" size={23} color={GOLD} />
-              </TouchableOpacity> */}
 
               <TouchableOpacity
                 style={styles.notificationButton}
@@ -425,26 +408,6 @@ export default function HomeScreen() {
                       style={styles.categoryImage}
                       resizeMode="cover"
                     />
-
-                    {/* <View
-                      style={[
-                        styles.foodTypeIndicator,
-                        {
-                          borderColor:
-                            item.mode === "veg" ? "#35C759" : "#F04444",
-                        },
-                      ]}
-                    >
-                      <View
-                        style={[
-                          styles.foodTypeDot,
-                          {
-                            backgroundColor:
-                              item.mode === "veg" ? "#35C759" : "#F04444",
-                          },
-                        ]}
-                      />
-                    </View> */}
                   </View>
 
                   <Text style={styles.categoryName} numberOfLines={1}>
@@ -460,9 +423,7 @@ export default function HomeScreen() {
           <View style={styles.specialSection}>
             <View style={styles.categoryHeader}>
               <View>
-                <Text style={styles.categoryTitle}>
-                  Chef's Recomendations
-                </Text>
+                <Text style={styles.categoryTitle}>Chef's Recomendations</Text>
                 <Text style={styles.categorySubtitle}>
                   Handpicked recomended from our kitchen
                 </Text>
@@ -508,7 +469,9 @@ export default function HomeScreen() {
                       resizeMode="cover"
                     />
 
-                    <View
+                    {/* Chef special veg or non-veg indicator */}
+                    
+                    {/* <View
                       style={[
                         styles.specialFoodIndicator,
                         {
@@ -526,7 +489,7 @@ export default function HomeScreen() {
                           },
                         ]}
                       />
-                    </View>
+                    </View> */}
 
                     <View style={styles.specialTag}>
                       <Text style={styles.specialTagText}>CHEF'S PICK</Text>
@@ -642,14 +605,14 @@ const styles = StyleSheet.create({
 
   // logo
 
-  logoContainer:{
+  logoContainer: {
     width: 46,
     height: 46,
   },
 
-  logo:{
+  logo: {
     width: "100%",
-    height:"100%",
+    height: "100%",
   },
 
   nearby: {
