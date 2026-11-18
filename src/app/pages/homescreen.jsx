@@ -24,6 +24,9 @@ import IceCream from "../../../assets/images/iceCream.jpg";
 import pizza from "../../../assets/images/pizza.jpg";
 import CreameToast from "../../../assets/images/creameToast.jpg";
 import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
+import lunchCombo from "../../../assets/images/lunchCombo.jpg";
+import VegThali from "../../../assets/images/vegThali.jpg";
+import samosa from "../../../assets/images/samosa.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -203,7 +206,31 @@ const chefSpecials = [
     price:"₹129",
     image:CreameToast,
     mode:"veg",
-  }
+  },
+  {
+    id:"11",
+    name:"Lunch Combo",
+    description:"Delicious Rice, Dal, Roti, Salad, & Dessert",
+    price:"₹739",
+    image: lunchCombo,
+    mode:"veg",
+  },
+  {
+    id:"12",
+    name:"Veg Thali",
+    description:"Delicious vegetarian thali with roti, dal, and dessert",
+    price:"₹829",
+    image: VegThali,
+    mode:"veg",
+  },
+  {
+    id:"13",
+    name:"Samosa",
+    description:"Crispy fried pastry with spiced potatoes",
+    price:"₹186",
+    image: samosa,
+    mode:"veg",
+  },
 ];
 
 const excellenceFeatures2 = [
