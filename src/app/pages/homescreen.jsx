@@ -1014,7 +1014,7 @@ const styles = StyleSheet.create({
 
   categoryScroll: {
     paddingHorizontal: 16,
-    gap: 19,
+    gap: 5,
   },
 
   categoryItem: {
