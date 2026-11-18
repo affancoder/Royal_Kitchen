@@ -594,7 +594,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 5,
-    height: 34,
+    height: 36,
     paddingHorizontal: 7,
     borderRadius: 18,
     borderWidth: 1,
@@ -625,7 +625,7 @@ const styles = StyleSheet.create({
 
   vegModeText: {
     color: "#AAAAAA",
-    fontSize: 9,
+    fontSize: 12,
     fontWeight: "bold",
   },
 
