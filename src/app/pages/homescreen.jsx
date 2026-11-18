@@ -374,7 +374,7 @@ export default function HomeScreen() {
             </ScrollView>
           </View>
 
-          {/* SECTION - CHEF'S SPECIALS */}
+          {/* SECTION - CHEF'S Recomendations */}
 
           <View style={styles.specialSection}>
             <View style={styles.categoryHeader}>
@@ -408,7 +408,7 @@ export default function HomeScreen() {
                   style={styles.specialCard}
                   onPress={() =>
                     router.push({
-                      pathname: "/pages/menu",
+                      pathname: "/auth/login",
                       params: {
                         mode: item.mode,
                         category: item.name,
