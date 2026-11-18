@@ -13,6 +13,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import Navbar from "../components/navbar";
+import logo from "../../../assets/images/icon.png";
 import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
 import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 import butterChicken from "../../../assets/images/butterChicken.jpg";
@@ -179,16 +180,16 @@ const excellenceFeatures2 = [
 ];
 
 export default function HomeScreen() {
-  const [foodMode, setFoodMode] = useState(null);
+  const [vegMode, setVegMode] = useState(false);
 
-  const handleContinue = () => {
-    if (!foodMode) return;
+  // Filter food according to Veg Mode
+  const visibleCategories = foodCategories.filter(
+    (item) => !vegMode || item.mode === "veg"
+  );
 
-    router.push({
-      pathname: "/pages/menu",
-      params: { mode: foodMode },
-    });
-  };
+  const visibleSpecials = chefSpecials.filter(
+    (item) => !vegMode || item.mode === "veg"
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -202,12 +203,53 @@ export default function HomeScreen() {
           {/* HEADER */}
 
           <View style={styles.header}>
-            <View>
-              <Text style={styles.brandName}>The ROYAL KITCHEN & CATERER</Text>
-              <Text style={styles.brandTagline}>DINE LIKE ROYALTY</Text>
+
+            {/* Logo */}
+            <View style={styles.logoContainer}>
+              <Image source={logo}
+              style={styles.logo}
+              resizeMode="contain" />
             </View>
 
             <View style={styles.nearby}>
+              {/* VEG MODE TOGGLE */}
+
+              <TouchableOpacity
+                style={[
+                  styles.vegModeButton,
+                  vegMode && styles.vegModeActive,
+                ]}
+                activeOpacity={0.8}
+                onPress={() => setVegMode((prev) => !prev)}
+              >
+                <View style={styles.vegModeIndicator}>
+                  <View style={styles.vegModeDot} />
+                </View>
+
+                <Text
+                  style={[
+                    styles.vegModeText,
+                    vegMode && styles.vegModeTextActive,
+                  ]}
+                >
+                  VEG
+                </Text>
+
+                <View
+                  style={[
+                    styles.vegSwitch,
+                    vegMode && styles.vegSwitchActive,
+                  ]}
+                >
+                  <View
+                    style={[
+                      styles.vegSwitchThumb,
+                      vegMode && styles.vegSwitchThumbActive,
+                    ]}
+                  />
+                </View>
+              </TouchableOpacity>
+
               <TouchableOpacity
                 style={styles.notificationButton}
                 activeOpacity={0.7}
@@ -215,6 +257,7 @@ export default function HomeScreen() {
               >
                 <Ionicons name="location-outline" size={23} color={GOLD} />
               </TouchableOpacity>
+
               <TouchableOpacity
                 style={styles.notificationButton}
                 activeOpacity={0.7}
@@ -280,7 +323,7 @@ export default function HomeScreen() {
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.categoryScroll}
             >
-              {foodCategories.map((item) => (
+              {visibleCategories.map((item) => (
                 <TouchableOpacity
                   key={item.id}
                   style={styles.categoryItem}
@@ -332,12 +375,15 @@ export default function HomeScreen() {
           </View>
 
           {/* SECTION - CHEF'S SPECIALS */}
+
           <View style={styles.specialSection}>
             <View style={styles.categoryHeader}>
               <View>
-                <Text style={styles.categoryTitle}>Chef's Recomendations</Text>
+                <Text style={styles.categoryTitle}>
+                  Chef's Recomendations
+                </Text>
                 <Text style={styles.categorySubtitle}>
-                  Handpicked recommended from our kitchen
+                  Handpicked recomended from our kitchen
                 </Text>
               </View>
 
@@ -355,7 +401,7 @@ export default function HomeScreen() {
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.specialScroll}
             >
-              {chefSpecials.map((item) => (
+              {visibleSpecials.map((item) => (
                 <TouchableOpacity
                   key={item.id}
                   activeOpacity={0.85}
@@ -513,24 +559,22 @@ const styles = StyleSheet.create({
     borderBottomColor: "#332B00",
   },
 
+  // logo
+
+  logoContainer:{
+    width: 46,
+    height: 46,
+  },
+
+  logo:{
+    width: "100%",
+    height:"100%",
+  },
+
   nearby: {
     flexDirection: "row",
-    gap: 10,
-  },
-
-  brandName: {
-    color: GOLD,
-    fontSize: 12,
-    fontWeight: "bold",
-    fontFamily: "Georgia",
-    letterSpacing: 1,
-  },
-
-  brandTagline: {
-    color: "#AAAAAA",
-    fontSize: 8,
-    letterSpacing: 2,
-    marginTop: 3,
+    alignItems: "center",
+    gap: 8,
   },
 
   notificationButton: {
@@ -541,6 +585,76 @@ const styles = StyleSheet.create({
     borderColor: "#554700",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  // VEG MODE TOGGLE
+
+  vegModeButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 5,
+    height: 34,
+    paddingHorizontal: 7,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: "#554700",
+    backgroundColor: CARD,
+  },
+
+  vegModeActive: {
+    borderColor: "#35C759",
+    backgroundColor: "#0D1A10",
+  },
+
+  vegModeIndicator: {
+    width: 13,
+    height: 13,
+    borderWidth: 1.3,
+    borderColor: "#35C759",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  vegModeDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 5,
+    backgroundColor: "#35C759",
+  },
+
+  vegModeText: {
+    color: "#AAAAAA",
+    fontSize: 9,
+    fontWeight: "bold",
+  },
+
+  vegModeTextActive: {
+    color: "#35C759",
+  },
+
+  vegSwitch: {
+    width: 25,
+    height: 14,
+    borderRadius: 10,
+    backgroundColor: "#555555",
+    justifyContent: "center",
+    padding: 2,
+  },
+
+  vegSwitchActive: {
+    backgroundColor: "#35C759",
+  },
+
+  vegSwitchThumb: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: "#FFFFFF",
+  },
+
+  vegSwitchThumbActive: {
+    alignSelf: "flex-end",
   },
 
   // HERO BANNER
@@ -573,7 +687,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: "bold",
     letterSpacing: 1.3,
-    // Text shadow
     textShadowColor: "rgba(0, 0, 0, 0.85)",
     textShadowOffset: { width: 1, height: 2 },
     textShadowRadius: 5,
@@ -584,8 +697,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "Georgia",
     fontWeight: "bold",
-
-    // Text shadow
     textShadowColor: "rgba(0, 0, 0, 0.85)",
     textShadowOffset: { width: 1, height: 2 },
     textShadowRadius: 5,
@@ -599,7 +710,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 12,
     maxWidth: 240,
-    // Text shadow
     textShadowColor: "rgba(0, 0, 0, 0.85)",
     textShadowOffset: { width: 1, height: 2 },
     textShadowRadius: 5,
@@ -621,8 +731,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: "bold",
   },
-
-  
 
   // FOOD CATEGORIES
 
@@ -718,6 +826,7 @@ const styles = StyleSheet.create({
   },
 
   // CHEF'S SPECIALS
+
   specialSection: {
     paddingTop: 15,
     paddingBottom: 25,
@@ -924,5 +1033,4 @@ const styles = StyleSheet.create({
   bottomSpace: {
     height: 10,
   },
-  
 });

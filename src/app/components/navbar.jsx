@@ -63,7 +63,7 @@ export default function Navbar({ active }) {
 
 const styles = StyleSheet.create({
   bottomNav: {
-    height: 57,
+    height: 52,
     backgroundColor: BLACK,
     borderTopWidth: 1,
     borderTopColor: "#665500",
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   iconBox: {
-    width: 43,
-    height: 29,
+    width: 52,
+    height: 30,
     borderRadius: 18,
     alignItems: "center",
     justifyContent: "center",
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   navLabel: {
     color: GOLD,
-    fontSize: 8,
+    fontSize: 12,
   },
   activeNavLabel: {
     fontWeight: "bold",
