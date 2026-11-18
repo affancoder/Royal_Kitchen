@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   View,
@@ -9,6 +10,7 @@ import {
   TouchableOpacity,
   StatusBar,
   SafeAreaView,
+  TextInput,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -262,14 +264,24 @@ const excellenceFeatures2 = [
 
 export default function HomeScreen() {
   const [vegMode, setVegMode] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter food according to Veg Mode
+  // Search text
+  const searchText = searchQuery.trim().toLowerCase();
+
+  // Filter categories according to Veg Mode and Search
   const visibleCategories = foodCategories.filter(
-    (item) => !vegMode || item.mode === "veg",
+    (item) =>
+      (!vegMode || item.mode === "veg") &&
+      item.name.toLowerCase().includes(searchText),
   );
 
+  // Filter chef specials according to Veg Mode and Search
   const visibleSpecials = chefSpecials.filter(
-    (item) => !vegMode || item.mode === "veg",
+    (item) =>
+      (!vegMode || item.mode === "veg") &&
+      (item.name.toLowerCase().includes(searchText) ||
+        item.description.toLowerCase().includes(searchText)),
   );
 
   return (
@@ -279,12 +291,12 @@ export default function HomeScreen() {
       <View style={styles.container}>
         <ScrollView
           showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
           contentContainerStyle={styles.scrollContent}
         >
           {/* HEADER */}
 
           <View style={styles.header}>
-            {/* Logo */}
             <View style={styles.logoContainer}>
               <Image source={logo} style={styles.logo} resizeMode="contain" />
             </View>
@@ -330,6 +342,31 @@ export default function HomeScreen() {
                 <Ionicons name="notifications-outline" size={23} color={GOLD} />
               </TouchableOpacity>
             </View>
+          </View>
+
+          {/* FOOD SEARCH BAR */}
+
+          <View style={styles.searchContainer}>
+            <Ionicons name="search-outline" size={21} color={GOLD} />
+
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search your favourite food..."
+              placeholderTextColor="#888888"
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              returnKeyType="search"
+              autoCorrect={false}
+            />
+
+            {searchQuery.length > 0 && (
+              <TouchableOpacity
+                onPress={() => setSearchQuery("")}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="close-circle" size={20} color="#999999" />
+              </TouchableOpacity>
+            )}
           </View>
 
           {/* SECTION 1 - HERO BANNER */}
@@ -382,43 +419,49 @@ export default function HomeScreen() {
               </TouchableOpacity>
             </View>
 
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.categoryScroll}
-            >
-              {visibleCategories.map((item) => (
-                <TouchableOpacity
-                  key={item.id}
-                  style={styles.categoryItem}
-                  activeOpacity={0.8}
-                  onPress={() =>
-                    router.push({
-                      pathname: "/pages/menu",
-                      params: {
-                        mode: item.mode,
-                        category: item.name,
-                      },
-                    })
-                  }
-                >
-                  <View style={styles.categoryImageWrapper}>
-                    <Image
-                      source={{ uri: item.image }}
-                      style={styles.categoryImage}
-                      resizeMode="cover"
-                    />
-                  </View>
+            {visibleCategories.length > 0 ? (
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.categoryScroll}
+              >
+                {visibleCategories.map((item) => (
+                  <TouchableOpacity
+                    key={item.id}
+                    style={styles.categoryItem}
+                    activeOpacity={0.8}
+                    onPress={() =>
+                      router.push({
+                        pathname: "/pages/menu",
+                        params: {
+                          mode: item.mode,
+                          category: item.name,
+                        },
+                      })
+                    }
+                  >
+                    <View style={styles.categoryImageWrapper}>
+                      <Image
+                        source={{ uri: item.image }}
+                        style={styles.categoryImage}
+                        resizeMode="cover"
+                      />
+                    </View>
 
-                  <Text style={styles.categoryName} numberOfLines={1}>
-                    {item.name}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
+                    <Text style={styles.categoryName} numberOfLines={1}>
+                      {item.name}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            ) : (
+              <Text style={styles.emptySearchText}>
+                No matching food categories found.
+              </Text>
+            )}
           </View>
 
-          {/* SECTION - CHEF'S Recomendations */}
+          {/* SECTION - CHEF'S RECOMMENDATIONS */}
 
           <View style={styles.specialSection}>
             <View style={styles.categoryHeader}>
@@ -438,84 +481,90 @@ export default function HomeScreen() {
               </TouchableOpacity>
             </View>
 
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.specialScroll}
-            >
-              {visibleSpecials.map((item) => (
-                <TouchableOpacity
-                  key={item.id}
-                  activeOpacity={0.85}
-                  style={styles.specialCard}
-                  onPress={() =>
-                    router.push({
-                      pathname: "/auth/login",
-                      params: {
-                        mode: item.mode,
-                        category: item.name,
-                      },
-                    })
-                  }
-                >
-                  <View style={styles.specialImageContainer}>
-                    <Image
-                      source={
-                        typeof item.image === "string"
-                          ? { uri: item.image }
-                          : item.image
-                      }
-                      style={styles.specialImage}
-                      resizeMode="cover"
-                    />
-
-                    {/* Chef special veg or non-veg indicator */}
-                    
-                    {/* <View
-                      style={[
-                        styles.specialFoodIndicator,
-                        {
-                          borderColor:
-                            item.mode === "veg" ? "#35C759" : "#F04444",
+            {visibleSpecials.length > 0 ? (
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.specialScroll}
+              >
+                {visibleSpecials.map((item) => (
+                  <TouchableOpacity
+                    key={item.id}
+                    activeOpacity={0.85}
+                    style={styles.specialCard}
+                    onPress={() =>
+                      router.push({
+                        pathname: "/auth/login",
+                        params: {
+                          mode: item.mode,
+                          category: item.name,
                         },
-                      ]}
-                    >
-                      <View
+                      })
+                    }
+                  >
+                    <View style={styles.specialImageContainer}>
+                      <Image
+                        source={
+                          typeof item.image === "string"
+                            ? { uri: item.image }
+                            : item.image
+                        }
+                        style={styles.specialImage}
+                        resizeMode="cover"
+                      />
+
+                      {/* Chef special veg or non-veg indicator */}
+
+                      {/* <View
                         style={[
-                          styles.foodTypeDot,
+                          styles.specialFoodIndicator,
                           {
-                            backgroundColor:
+                            borderColor:
                               item.mode === "veg" ? "#35C759" : "#F04444",
                           },
                         ]}
-                      />
-                    </View> */}
+                      >
+                        <View
+                          style={[
+                            styles.foodTypeDot,
+                            {
+                              backgroundColor:
+                                item.mode === "veg" ? "#35C759" : "#F04444",
+                            },
+                          ]}
+                        />
+                      </View> */}
 
-                    <View style={styles.specialTag}>
-                      <Text style={styles.specialTagText}>CHEF'S PICK</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.specialInfo}>
-                    <Text style={styles.specialName} numberOfLines={1}>
-                      {item.name}
-                    </Text>
-
-                    <Text style={styles.specialDescription} numberOfLines={2}>
-                      {item.description}
-                    </Text>
-
-                    <View style={styles.specialBottom}>
-                      <Text style={styles.specialPrice}>{item.price}</Text>
-
-                      <View style={styles.addButton}>
-                        <Ionicons name="add" size={18} color={BLACK} />
+                      <View style={styles.specialTag}>
+                        <Text style={styles.specialTagText}>CHEF'S PICK</Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
+
+                    <View style={styles.specialInfo}>
+                      <Text style={styles.specialName} numberOfLines={1}>
+                        {item.name}
+                      </Text>
+
+                      <Text style={styles.specialDescription} numberOfLines={2}>
+                        {item.description}
+                      </Text>
+
+                      <View style={styles.specialBottom}>
+                        <Text style={styles.specialPrice}>{item.price}</Text>
+
+                        <View style={styles.addButton}>
+                          <Ionicons name="add" size={18} color={BLACK} />
+                        </View>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            ) : (
+              <Text style={styles.emptySearchText}>
+                No matching food items found.
+              </Text>
+            )}
           </View>
 
           {/* SECTION - CULINARY EXCELLENCE */}
@@ -603,7 +652,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#332B00",
   },
 
-  // logo
+  // LOGO
 
   logoContainer: {
     width: 46,
@@ -699,6 +748,38 @@ const styles = StyleSheet.create({
 
   vegSwitchThumbActive: {
     alignSelf: "flex-end",
+  },
+
+  // FOOD SEARCH
+
+  searchContainer: {
+    height: 46,
+    marginHorizontal: 16,
+    marginTop: 12,
+    marginBottom: 2,
+    paddingHorizontal: 13,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#151515",
+    borderWidth: 1,
+    borderColor: "#554700",
+    borderRadius: 10,
+    gap: 10,
+  },
+
+  searchInput: {
+    flex: 1,
+    height: "100%",
+    color: "#FFFFFF",
+    fontSize: 13,
+    paddingVertical: 0,
+  },
+
+  emptySearchText: {
+    color: "#AAAAAA",
+    fontSize: 13,
+    paddingHorizontal: 16,
+    paddingVertical: 15,
   },
 
   // HERO BANNER
