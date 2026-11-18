@@ -179,7 +179,7 @@ export default function Menu() {
 
                     <TouchableOpacity
                       style={styles.orderButton}
-                      onPress={() => router.push("/pages/booking")}
+                      onPress={() => router.push("/auth/login")}
                     >
                       <Text style={styles.orderButtonText}>Order</Text>
                       <Ionicons

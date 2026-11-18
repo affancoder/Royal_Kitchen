@@ -18,6 +18,12 @@ import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
 import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 import butterChicken from "../../../assets/images/butterChicken.jpg";
 import VegMomo from "../../../assets/images/veg-momo.jpg";
+import burger from "../../../assets/images/burger.jpg";
+import chocolateCake from "../../../assets/images/chocolate-lave-cake.jpg";
+import IceCream from "../../../assets/images/iceCream.jpg";
+import pizza from "../../../assets/images/pizza.jpg";
+import CreameToast from "../../../assets/images/creameToast.jpg";
+import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -122,7 +128,7 @@ const chefSpecials = [
     id: "1",
     name: "Paneer Tikka",
     description: "Smoky grilled paneer with Indian spices",
-    price: "₹249",
+    price: "₹369",
     image: paneertikka,
     mode: "veg",
   },
@@ -130,7 +136,7 @@ const chefSpecials = [
     id: "2",
     name: "Chicken Biryani",
     description: "Aromatic basmati rice with tender chicken",
-    price: "₹299",
+    price: "₹499",
     image: chickenbiryani,
     mode: "non-veg",
   },
@@ -138,7 +144,7 @@ const chefSpecials = [
     id: "3",
     name: "Veg Momo",
     description: "Delicious vegetarian dumplings",
-    price: "₹199",
+    price: "₹99",
     image: VegMomo,
     mode: "veg",
   },
@@ -146,10 +152,58 @@ const chefSpecials = [
     id: "4",
     name: "Butter Chicken",
     description: "Creamy tomato gravy with juicy chicken",
-    price: "₹279",
+    price: "₹429",
     image: butterChicken,
     mode: "non-veg",
   },
+  {
+    id: "5",
+    name: "Burger",
+    description: "Creamy tomato gravy with juicy Meyonese",
+    price: "₹129",
+    image: burger,
+    mode: "veg",
+  },
+  {
+    id:"6",
+    name:"Chocolate Cake",
+    description:"Delicious chocolate cake with creamy frosting",
+    price:"₹89",
+    image:chocolateCake,
+    mode:"non-veg",
+  },
+  {
+    id:"7",
+    name:"Ice Cream Combo",
+    description:"Creamy vanilla ice cream with chocolate sauce",
+    price:"₹179",
+    image:IceCream,
+    mode:"veg",
+  },
+  {
+    id:"8",
+    name:"Cheese Pizza",
+    description:"Delicious pizza with creamy cheese & toppings",
+    price:"₹189",
+    image: pizza,
+    mode:"veg",
+  },
+  {
+    id:"9",
+    name:"Kashmiri Rogan",
+    description:"Delicious Rogan with creamy cheese & mutton",
+    price:"₹589",
+    image: kashmiriRogan,
+    mode:"non-veg",
+  },
+  {
+    id:"10",
+    name:"Creame Toast",
+    description:"Delicious cream toast with butter and jam",
+    price:"₹129",
+    image:CreameToast,
+    mode:"veg",
+  }
 ];
 
 const excellenceFeatures2 = [
