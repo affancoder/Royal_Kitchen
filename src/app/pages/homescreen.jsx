@@ -22,6 +22,10 @@ import ChefImage from "../../../assets/images/chef.jpeg";
 import hospitality from "../../../assets/images/hospitality.jpeg";
 import experience from "../../../assets/images/experience.jpeg";
 
+// Food Images Importing
+
+import FishCurry from "../../../assets/images/FishCurry.jpeg";
+import DalMakhni from "../../../assets/images/DalMakhni.jpeg";
 import paneer from "../../../assets/images/paneer.jpeg";
 import vegBiryani from "../../../assets/images/vegBiryani.jpeg";
 import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
@@ -112,26 +116,38 @@ const foodCategories = [
     id: "3",
     name: "Chicken",
     mode: "non-veg",
-    image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=400",
+    image: chickenbiryani,
   },
   {
     id: "4",
     name: "Butter Chicken",
     mode: "non-veg",
-    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400",
+    image: butterChicken,
   },
   {
     id: "5",
     name: "Dal Makhani",
     mode: "veg",
-    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400",
+    image: DalMakhni,
   },
   {
     id: "6",
     name: "Fish Curry",
     mode: "non-veg",
-    image: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400",
+    image: FishCurry,
   },
+  {
+    id:"7",
+    name:"Burger",
+    mode:"veg",
+    image:burger,
+  },
+  {
+    id:"8",
+    name:"Pizza",
+    mode:"veg",
+    image:pizza,
+  }
 ];
 
 const chefSpecials = [
@@ -415,7 +431,6 @@ export default function HomeScreen() {
             imageStyle={styles.heroImage}
           >
             <View style={styles.heroOverlay}>
-              <Text style={styles.heroEyebrow}>EXCEPTIONAL DINING</Text>
 
               <Text style={styles.heroTitle}>
                 Indulge in {"\n"}
@@ -431,8 +446,8 @@ export default function HomeScreen() {
                 activeOpacity={0.8}
                 onPress={() => router.push("/pages/booking")}
               >
-                <Text style={styles.goldButtonText}>Table Reservation</Text>
-                <Ionicons name="arrow-forward" size={12} color={BLACK} />
+                <Text style={styles.goldButtonText}>RESERVE TABLE</Text>
+                <Ionicons name="arrow-forward" size={14} color={BLACK} />
               </TouchableOpacity>
             </View>
           </ImageBackground>
@@ -484,7 +499,7 @@ export default function HomeScreen() {
                 style={styles.viewAllButton}
               >
                 <Text style={styles.viewAllText}>View All</Text>
-                <Ionicons name="arrow-forward" size={13} color={GOLD} />
+                <Ionicons name="arrow-forward" size={14} color={GOLD} />
               </TouchableOpacity>
             </View>
 
@@ -717,7 +732,7 @@ const styles = StyleSheet.create({
   // HEADER
 
   header: {
-    height: 60,
+    height: 56,
     paddingHorizontal: 18,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -833,7 +848,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#151515",
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: "#554700",
     borderRadius: 10,
     gap: 10,
@@ -843,13 +858,13 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     color: "#FFFFFF",
-    fontSize: 13,
+    fontSize: 14,
     paddingVertical: 0,
   },
 
   emptySearchText: {
     color: "#AAAAAA",
-    fontSize: 13,
+    fontSize: 14,
     paddingHorizontal: 16,
     paddingVertical: 15,
   },
@@ -857,7 +872,7 @@ const styles = StyleSheet.create({
   // HERO BANNER
 
   heroBanner: {
-    height: 150,
+    height: 160,
     marginHorizontal: 12,
     marginTop: 12,
     borderRadius: 12,
@@ -877,16 +892,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     paddingHorizontal: 18,
     backgroundColor: "rgba(0,0,0,0.48)",
-  },
-
-  heroEyebrow: {
-    color: GOLD,
-    fontSize: 10,
-    fontWeight: "bold",
-    letterSpacing: 1.3,
-    textShadowColor: "rgba(0, 0, 0, 0.85)",
-    textShadowOffset: { width: 1, height: 2 },
-    textShadowRadius: 5,
   },
 
   heroTitle: {
@@ -915,17 +920,17 @@ const styles = StyleSheet.create({
   goldButton: {
     backgroundColor: GOLD,
     borderRadius: 22,
-    paddingHorizontal: 7,
-    paddingVertical: 2,
+    paddingHorizontal: 6,
+    paddingVertical: 4,
     marginTop: 8,
     flexDirection: "row",
     alignItems: "center",
-    gap: 7,
+    gap: 2,
   },
 
   goldButtonText: {
     color: BLACK,
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
   },
 
@@ -960,7 +965,7 @@ const styles = StyleSheet.create({
 
   quickTabText: {
     color: "#DDDDDD",
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "600",
   },
 
@@ -972,8 +977,7 @@ const styles = StyleSheet.create({
   // FOOD CATEGORIES
 
   foodCategorySection: {
-    paddingTop: 15,
-    paddingBottom: 20,
+    paddingTop: 5,
   },
 
   categoryHeader: {
@@ -986,7 +990,7 @@ const styles = StyleSheet.create({
 
   categoryTitle: {
     color: "#FFFFFF",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
     fontFamily: "Georgia",
   },
