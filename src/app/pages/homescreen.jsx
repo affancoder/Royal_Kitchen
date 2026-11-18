@@ -250,13 +250,13 @@ export default function HomeScreen() {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={styles.notificationButton}
                 activeOpacity={0.7}
                 onPress={() => router.push("/pages/location")}
               >
                 <Ionicons name="location-outline" size={23} color={GOLD} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
               <TouchableOpacity
                 style={styles.notificationButton}
@@ -290,9 +290,9 @@ export default function HomeScreen() {
               <TouchableOpacity
                 style={styles.goldButton}
                 activeOpacity={0.8}
-                onPress={() => router.push("/pages/menu")}
+                onPress={() => router.push("/pages/booking")}
               >
-                <Text style={styles.goldButtonText}>Explore Menu</Text>
+                <Text style={styles.goldButtonText}>Table Reservation</Text>
                 <Ionicons name="arrow-forward" size={12} color={BLACK} />
               </TouchableOpacity>
             </View>
