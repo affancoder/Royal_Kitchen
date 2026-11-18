@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
     width: 58,
     height: 2,
     backgroundColor: GOLD,
-    marginTop: 6,
+    marginTop: 2,
   },
   subtitle: {
     color: "#AAAAAA",

@@ -23,7 +23,7 @@ export default function ProfileScreen() {
 
   const menuItems = [
     {
-      title: "Book a Table",
+      title: "Table Booking",
       icon: "calendar",
       type: "ion",
       action: "booking",

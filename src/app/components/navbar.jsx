@@ -1,4 +1,3 @@
-
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -9,10 +8,26 @@ const BLACK = "#000000";
 
 const navItems = [
   { name: "home", label: "Home", icon: "home", route: "/pages/homescreen" },
+
   { name: "menu", label: "Menu", icon: "restaurant", route: "/pages/menu" },
-  { name: "booking", label: "Booking", icon: "calendar", route: "/pages/booking" },
-  { name: "services", label: "Services", icon: "briefcase", route: "/pages/services" },
-  { name: "profile", label: "Profile", icon: "person", route: "/pages/profile" },
+  // {
+  //   name: "booking",
+  //   label: "Booking",
+  //   icon: "calendar",
+  //   route: "/pages/booking",
+  // },
+  {
+    name: "services",
+    label: "Services",
+    icon: "briefcase",
+    route: "/pages/services",
+  },
+  {
+    name: "profile",
+    label: "Profile",
+    icon: "person",
+    route: "/pages/profile",
+  },
 ];
 
 export default function Navbar({ active }) {

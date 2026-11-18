@@ -12,7 +12,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import Navbar from "../components/navbar";
-import paneertikka from "../../../assets/images/paneer-tikka.jpg";
+// import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -26,7 +26,7 @@ const menuItems = [
     category: "Starters",
     price: "₹349",
     description: "Marinated cottage cheese grilled to perfection",
-    image: paneertikka,
+    image: "https://images.unsplash.com/photo-1666001120694-3ebe8fd207be?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
   },
   {
     name: "Tandoori Chicken",
