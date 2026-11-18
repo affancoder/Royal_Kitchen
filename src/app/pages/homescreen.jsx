@@ -316,8 +316,6 @@ export default function HomeScreen() {
     "All",
     "Under ₹199",
     "Bestsellers",
-    "Chef's Specials",
-    "Veg Only",
     "Combos",
     "Offers",
   ];
