@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   View,
@@ -15,7 +14,16 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import Navbar from "../components/navbar";
+
 import logo from "../../../assets/images/icon.png";
+import heroImage from "../../../assets/images/hero.jpeg";
+import ExceptionalIngredients from "../../../assets/images/ExceptionalIngredients.jpeg";
+import ChefImage from "../../../assets/images/chef.jpeg";
+import hospitality from "../../../assets/images/hospitality.jpeg";
+import experience from "../../../assets/images/experience.jpeg";
+
+import paneer from "../../../assets/images/paneer.jpeg";
+import vegBiryani from "../../../assets/images/vegBiryani.jpeg";
 import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
 import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 import butterChicken from "../../../assets/images/butterChicken.jpg";
@@ -35,9 +43,7 @@ const BLACK = "#000000";
 const CARD = "#111111";
 
 const images = {
-  hero: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400",
-  chef: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=900",
-  food: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200",
+  hero: heroImage,
 };
 
 const eventServices = [
@@ -94,13 +100,13 @@ const foodCategories = [
     id: "1",
     name: "Paneer",
     mode: "veg",
-    image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400",
+    image: paneer,
   },
   {
     id: "2",
     name: "Veg Biryani",
     mode: "veg",
-    image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400",
+    image: vegBiryani,
   },
   {
     id: "3",
@@ -152,6 +158,9 @@ const chefSpecials = [
     price: "₹99",
     image: VegMomo,
     mode: "veg",
+    bestseller: true,
+    offer: true,
+    discount: 20,
   },
   {
     id: "4",
@@ -192,6 +201,8 @@ const chefSpecials = [
     price: "₹189",
     image: pizza,
     mode: "veg",
+    offer: true,
+    discount: 15,
   },
   {
     id: "9",
@@ -232,6 +243,8 @@ const chefSpecials = [
     price: "₹186",
     image: samosa,
     mode: "veg",
+    offer: true,
+    discount: 10,
   },
 ];
 
@@ -240,49 +253,76 @@ const excellenceFeatures2 = [
     icon: "restaurant-outline",
     title: "Exceptional Ingredients",
     description: "Precious Ingredients for remarkable flavours.",
-    image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=700",
+    image: ExceptionalIngredients,
   },
   {
     icon: "people-outline",
     title: "Expert Culinary Team",
     description: "Creative chefs bringing passion to every plate.",
-    image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700",
+    image: ChefImage,
   },
   {
     icon: "star-outline",
     title: "Premium Hospitality",
     description: "Personalized service for every guest.",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700",
+    image: hospitality,
   },
   {
     icon: "heart-outline",
     title: "Unforgettable Experiences",
     description: "Beautifully moments for every occasion.",
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700",
+    image: experience,
   },
 ];
 
 export default function HomeScreen() {
   const [vegMode, setVegMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeFoodTab, setActiveFoodTab] = useState("All");
 
-  // Search text
   const searchText = searchQuery.trim().toLowerCase();
 
-  // Filter categories according to Veg Mode and Search
   const visibleCategories = foodCategories.filter(
     (item) =>
       (!vegMode || item.mode === "veg") &&
       item.name.toLowerCase().includes(searchText),
   );
 
-  // Filter chef specials according to Veg Mode and Search
   const visibleSpecials = chefSpecials.filter(
     (item) =>
       (!vegMode || item.mode === "veg") &&
       (item.name.toLowerCase().includes(searchText) ||
         item.description.toLowerCase().includes(searchText)),
   );
+
+  const quickTabs = [
+    "All",
+    "Under ₹199",
+    "Bestsellers",
+    "Chef's Specials",
+    "Veg Only",
+    "Combos",
+    "Offers",
+  ];
+
+  const filteredSpecials = visibleSpecials.filter((item) => {
+    switch (activeFoodTab) {
+      case "Under ₹199":
+        return Number(item.price.replace(/[^0-9.]/g, "")) < 200;
+      case "Bestsellers":
+        return item.bestseller === true;
+      case "Chef's Specials":
+        return true;
+      case "Veg Only":
+        return item.mode === "veg";
+      case "Combos":
+        return item.name.toLowerCase().includes("combo");
+      case "Offers":
+        return item.offer === true;
+      default:
+        return true;
+    }
+  });
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -302,8 +342,6 @@ export default function HomeScreen() {
             </View>
 
             <View style={styles.nearby}>
-              {/* VEG MODE TOGGLE */}
-
               <TouchableOpacity
                 style={[styles.vegModeButton, vegMode && styles.vegModeActive]}
                 activeOpacity={0.8}
@@ -369,10 +407,10 @@ export default function HomeScreen() {
             )}
           </View>
 
-          {/* SECTION 1 - HERO BANNER */}
+          {/* HERO BANNER */}
 
           <ImageBackground
-            source={{ uri: images.hero }}
+            source={images.hero}
             style={styles.heroBanner}
             imageStyle={styles.heroImage}
           >
@@ -399,7 +437,38 @@ export default function HomeScreen() {
             </View>
           </ImageBackground>
 
-          {/* SECTION 2 - EXPLORE OUR MENU */}
+          {/* QUICK FOOD DISCOVERY TABS */}
+
+          <View style={styles.quickTabsSection}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.quickTabsScroll}
+            >
+              {quickTabs.map((tab) => (
+                <TouchableOpacity
+                  key={tab}
+                  activeOpacity={0.8}
+                  style={[
+                    styles.quickTab,
+                    activeFoodTab === tab && styles.quickTabActive,
+                  ]}
+                  onPress={() => setActiveFoodTab(tab)}
+                >
+                  <Text
+                    style={[
+                      styles.quickTabText,
+                      activeFoodTab === tab && styles.quickTabTextActive,
+                    ]}
+                  >
+                    {tab}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+
+          {/* EXPLORE OUR MENU */}
 
           <View style={styles.foodCategorySection}>
             <View style={styles.categoryHeader}>
@@ -442,7 +511,7 @@ export default function HomeScreen() {
                   >
                     <View style={styles.categoryImageWrapper}>
                       <Image
-                        source={{ uri: item.image }}
+                        source={item.image }
                         style={styles.categoryImage}
                         resizeMode="cover"
                       />
@@ -461,14 +530,14 @@ export default function HomeScreen() {
             )}
           </View>
 
-          {/* SECTION - CHEF'S RECOMMENDATIONS */}
+          {/* CHEF'S RECOMMENDATIONS */}
 
           <View style={styles.specialSection}>
             <View style={styles.categoryHeader}>
               <View>
-                <Text style={styles.categoryTitle}>Chef's Recomendations</Text>
+                <Text style={styles.categoryTitle}>Chef's Recommendations</Text>
                 <Text style={styles.categorySubtitle}>
-                  Handpicked recomended from our kitchen
+                  Handpicked recommendations from our kitchen
                 </Text>
               </View>
 
@@ -481,13 +550,13 @@ export default function HomeScreen() {
               </TouchableOpacity>
             </View>
 
-            {visibleSpecials.length > 0 ? (
+            {filteredSpecials.length > 0 ? (
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.specialScroll}
               >
-                {visibleSpecials.map((item) => (
+                {filteredSpecials.map((item) => (
                   <TouchableOpacity
                     key={item.id}
                     activeOpacity={0.85}
@@ -504,39 +573,23 @@ export default function HomeScreen() {
                   >
                     <View style={styles.specialImageContainer}>
                       <Image
-                        source={
-                          typeof item.image === "string"
-                            ? { uri: item.image }
-                            : item.image
-                        }
+                        source={item.image}
                         style={styles.specialImage}
                         resizeMode="cover"
                       />
 
-                      {/* Chef special veg or non-veg indicator */}
-
-                      {/* <View
-                        style={[
-                          styles.specialFoodIndicator,
-                          {
-                            borderColor:
-                              item.mode === "veg" ? "#35C759" : "#F04444",
-                          },
-                        ]}
-                      >
-                        <View
-                          style={[
-                            styles.foodTypeDot,
-                            {
-                              backgroundColor:
-                                item.mode === "veg" ? "#35C759" : "#F04444",
-                            },
-                          ]}
-                        />
-                      </View> */}
+                      {item.offer && (
+                        <View style={styles.offerBadge}>
+                          <Text style={styles.offerBadgeText}>
+                            {item.discount}% OFF
+                          </Text>
+                        </View>
+                      )}
 
                       <View style={styles.specialTag}>
-                        <Text style={styles.specialTagText}>CHEF'S PICK</Text>
+                        <Text style={styles.specialTagText}>
+                          {item.offer ? "SPECIAL OFFER" : "CHEF'S PICK"}
+                        </Text>
                       </View>
                     </View>
 
@@ -550,7 +603,28 @@ export default function HomeScreen() {
                       </Text>
 
                       <View style={styles.specialBottom}>
-                        <Text style={styles.specialPrice}>{item.price}</Text>
+                        <View>
+                          {item.offer ? (
+                            <>
+                              <Text style={styles.originalPrice}>
+                                {item.price}
+                              </Text>
+                              <Text style={styles.specialPrice}>
+                                ₹
+                                {Math.round(
+                                  Number(
+                                    item.price.replace(/[^0-9.]/g, ""),
+                                  ) *
+                                    (1 - item.discount / 100),
+                                )}
+                              </Text>
+                            </>
+                          ) : (
+                            <Text style={styles.specialPrice}>
+                              {item.price}
+                            </Text>
+                          )}
+                        </View>
 
                         <View style={styles.addButton}>
                           <Ionicons name="add" size={18} color={BLACK} />
@@ -567,7 +641,7 @@ export default function HomeScreen() {
             )}
           </View>
 
-          {/* SECTION - CULINARY EXCELLENCE */}
+          {/* CULINARY EXCELLENCE */}
 
           <View style={styles.excellenceSection}>
             <Text style={styles.excellenceEyebrow}>THE ROYAL EXPERIENCE</Text>
@@ -583,10 +657,10 @@ export default function HomeScreen() {
             </Text>
 
             <View style={styles.excellenceGrid}>
-              {excellenceFeatures2.map((item, index) => (
+              {excellenceFeatures2.map((item) => (
                 <ImageBackground
                   key={item.title}
-                  source={{ uri: item.image }}
+                  source={item.image}
                   style={styles.excellenceCard}
                   imageStyle={styles.excellenceCardImage}
                   resizeMode="cover"
@@ -652,8 +726,6 @@ const styles = StyleSheet.create({
     borderBottomColor: "#332B00",
   },
 
-  // LOGO
-
   logoContainer: {
     width: 46,
     height: 46,
@@ -680,7 +752,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  // VEG MODE TOGGLE
+  // VEG MODE
 
   vegModeButton: {
     flexDirection: "row",
@@ -750,7 +822,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
 
-  // FOOD SEARCH
+  // SEARCH
 
   searchContainer: {
     height: 46,
@@ -854,6 +926,46 @@ const styles = StyleSheet.create({
   goldButtonText: {
     color: BLACK,
     fontSize: 10,
+    fontWeight: "bold",
+  },
+
+  // QUICK FOOD DISCOVERY TABS
+
+  quickTabsSection: {
+    paddingTop: 14,
+    paddingBottom: 8,
+  },
+
+  quickTabsScroll: {
+    paddingHorizontal: 16,
+    gap: 9,
+    alignItems: "center",
+  },
+
+  quickTab: {
+    paddingHorizontal: 16,
+    paddingVertical: 9,
+    borderRadius: 22,
+    backgroundColor: "#151515",
+    borderWidth: 1,
+    borderColor: "#3A3210",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  quickTabActive: {
+    backgroundColor: GOLD,
+    borderColor: GOLD,
+  },
+
+  quickTabText: {
+    color: "#DDDDDD",
+    fontSize: 12,
+    fontWeight: "600",
+  },
+
+  quickTabTextActive: {
+    color: BLACK,
     fontWeight: "bold",
   },
 
@@ -982,6 +1094,22 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 
+  offerBadge: {
+    position: "absolute",
+    top: 9,
+    right: 9,
+    backgroundColor: "#D62828",
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+
+  offerBadgeText: {
+    color: "#FFFFFF",
+    fontSize: 10,
+    fontWeight: "bold",
+  },
+
   specialFoodIndicator: {
     position: "absolute",
     top: 10,
@@ -1035,6 +1163,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginTop: 12,
+  },
+
+  originalPrice: {
+    color: "#888888",
+    fontSize: 12,
+    textDecorationLine: "line-through",
   },
 
   specialPrice: {
