@@ -138,17 +138,17 @@ const foodCategories = [
     image: FishCurry,
   },
   {
-    id:"7",
-    name:"Burger",
-    mode:"veg",
-    image:burger,
+    id: "7",
+    name: "Burger",
+    mode: "veg",
+    image: burger,
   },
   {
-    id:"8",
-    name:"Pizza",
-    mode:"veg",
-    image:pizza,
-  }
+    id: "8",
+    name: "Pizza",
+    mode: "veg",
+    image: pizza,
+  },
 ];
 
 const chefSpecials = [
@@ -298,6 +298,15 @@ export default function HomeScreen() {
   const [activeFoodTab, setActiveFoodTab] = useState("All");
 
   const searchText = searchQuery.trim().toLowerCase();
+  const isSearching = searchText.length > 0;
+
+  // Search actual food items and respect the active Veg Mode.
+  const searchResults = chefSpecials.filter(
+    (item) =>
+      (!vegMode || item.mode === "veg") &&
+      (item.name.toLowerCase().includes(searchText) ||
+        item.description.toLowerCase().includes(searchText)),
+  );
 
   const visibleCategories = foodCategories.filter(
     (item) =>
@@ -422,159 +431,30 @@ export default function HomeScreen() {
             )}
           </View>
 
-          {/* HERO BANNER */}
+          {/* SEARCH RESULTS - SHOWN DIRECTLY BELOW THE SEARCH BAR */}
 
-          <ImageBackground
-            source={images.hero}
-            style={styles.heroBanner}
-            imageStyle={styles.heroImage}
-          >
-            <View style={styles.heroOverlay}>
-
-              <Text style={styles.heroTitle}>
-                Indulge in {"\n"}
-                <Text style={styles.gold}>Royal Dining</Text>
-              </Text>
-
-              <Text style={styles.heroDescription}>
-                Discover our flavours, delicious & dining experiences.
-              </Text>
-
-              <TouchableOpacity
-                style={styles.goldButton}
-                activeOpacity={0.8}
-                onPress={() => router.push("/pages/booking")}
-              >
-                <Text style={styles.goldButtonText}>RESERVE TABLE</Text>
-                <Ionicons name="arrow-forward" size={14} color={BLACK} />
-              </TouchableOpacity>
-            </View>
-          </ImageBackground>
-
-          {/* QUICK FOOD DISCOVERY TABS */}
-
-          <View style={styles.quickTabsSection}>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.quickTabsScroll}
-            >
-              {quickTabs.map((tab) => (
-                <TouchableOpacity
-                  key={tab}
-                  activeOpacity={0.8}
-                  style={[
-                    styles.quickTab,
-                    activeFoodTab === tab && styles.quickTabActive,
-                  ]}
-                  onPress={() => setActiveFoodTab(tab)}
-                >
-                  <Text
-                    style={[
-                      styles.quickTabText,
-                      activeFoodTab === tab && styles.quickTabTextActive,
-                    ]}
-                  >
-                    {tab}
+          {isSearching ? (
+            <View style={styles.searchResultsSection}>
+              <View style={styles.searchResultsHeader}>
+                <View>
+                  <Text style={styles.categoryTitle}>Search Results</Text>
+                  <Text style={styles.categorySubtitle}>
+                    Results for "{searchQuery.trim()}"
                   </Text>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-          </View>
+                </View>
 
-          {/* EXPLORE OUR MENU */}
-
-          <View style={styles.foodCategorySection}>
-            <View style={styles.categoryHeader}>
-              <View>
-                <Text style={styles.categoryTitle}>Explore Our Menu</Text>
-                <Text style={styles.categorySubtitle}>
-                  Discover something delicious
+                <Text style={styles.searchResultCount}>
+                  {searchResults.length}{" "}
+                  {searchResults.length === 1 ? "dish" : "dishes"}
                 </Text>
               </View>
 
-              <TouchableOpacity
-                onPress={() => router.push("/pages/menu")}
-                style={styles.viewAllButton}
-              >
-                <Text style={styles.viewAllText}>View All</Text>
-                <Ionicons name="arrow-forward" size={14} color={GOLD} />
-              </TouchableOpacity>
-            </View>
-
-            {visibleCategories.length > 0 ? (
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.categoryScroll}
-              >
-                {visibleCategories.map((item) => (
+              {searchResults.length > 0 ? (
+                searchResults.map((item) => (
                   <TouchableOpacity
                     key={item.id}
-                    style={styles.categoryItem}
-                    activeOpacity={0.8}
-                    onPress={() =>
-                      router.push({
-                        pathname: "/pages/menu",
-                        params: {
-                          mode: item.mode,
-                          category: item.name,
-                        },
-                      })
-                    }
-                  >
-                    <View style={styles.categoryImageWrapper}>
-                      <Image
-                        source={item.image }
-                        style={styles.categoryImage}
-                        resizeMode="cover"
-                      />
-                    </View>
-
-                    <Text style={styles.categoryName} numberOfLines={1}>
-                      {item.name}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-            ) : (
-              <Text style={styles.emptySearchText}>
-                No matching food categories found.
-              </Text>
-            )}
-          </View>
-
-          {/* CHEF'S RECOMMENDATIONS */}
-
-          <View style={styles.specialSection}>
-            <View style={styles.categoryHeader}>
-              <View>
-                <Text style={styles.categoryTitle}>Chef's Recommendations</Text>
-                <Text style={styles.categorySubtitle}>
-                  Handpicked recommendations from our kitchen
-                </Text>
-              </View>
-
-              <TouchableOpacity
-                style={styles.viewAllButton}
-                onPress={() => router.push("/pages/menu")}
-              >
-                <Text style={styles.viewAllText}>View All</Text>
-                <Ionicons name="arrow-forward" size={13} color={GOLD} />
-              </TouchableOpacity>
-            </View>
-
-            {filteredSpecials.length > 0 ? (
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.specialScroll}
-              >
-                {filteredSpecials.map((item) => (
-                  <TouchableOpacity
-                    key={item.id}
+                    style={styles.searchResultCard}
                     activeOpacity={0.85}
-                    style={styles.specialCard}
                     onPress={() =>
                       router.push({
                         pathname: "/auth/login",
@@ -585,123 +465,374 @@ export default function HomeScreen() {
                       })
                     }
                   >
-                    <View style={styles.specialImageContainer}>
-                      <Image
-                        source={item.image}
-                        style={styles.specialImage}
-                        resizeMode="cover"
-                      />
+                    <Image
+                      source={item.image}
+                      style={styles.searchResultImage}
+                      resizeMode="cover"
+                    />
 
-                      {item.offer && (
-                        <View style={styles.offerBadge}>
-                          <Text style={styles.offerBadgeText}>
-                            {item.discount}% OFF
-                          </Text>
-                        </View>
-                      )}
-
-                      <View style={styles.specialTag}>
-                        <Text style={styles.specialTagText}>
-                          {item.offer ? "SPECIAL OFFER" : "CHEF'S PICK"}
-                        </Text>
-                      </View>
-                    </View>
-
-                    <View style={styles.specialInfo}>
-                      <Text style={styles.specialName} numberOfLines={1}>
+                    <View style={styles.searchResultInfo}>
+                      <Text style={styles.searchResultName} numberOfLines={1}>
                         {item.name}
                       </Text>
 
-                      <Text style={styles.specialDescription} numberOfLines={2}>
+                      <Text
+                        style={styles.searchResultDescription}
+                        numberOfLines={2}
+                      >
                         {item.description}
                       </Text>
 
-                      <View style={styles.specialBottom}>
-                        <View>
-                          {item.offer ? (
-                            <>
-                              <Text style={styles.originalPrice}>
-                                {item.price}
-                              </Text>
-                              <Text style={styles.specialPrice}>
-                                ₹
-                                {Math.round(
-                                  Number(
-                                    item.price.replace(/[^0-9.]/g, ""),
-                                  ) *
-                                    (1 - item.discount / 100),
-                                )}
-                              </Text>
-                            </>
-                          ) : (
-                            <Text style={styles.specialPrice}>
+                      <View style={styles.searchResultPriceRow}>
+                        {item.offer ? (
+                          <>
+                            <Text style={styles.searchResultPrice}>
+                              ₹
+                              {Math.round(
+                                Number(item.price.replace(/[^0-9.]/g, "")) *
+                                  (1 - item.discount / 100),
+                              )}
+                            </Text>
+
+                            <Text style={styles.searchResultOriginalPrice}>
                               {item.price}
                             </Text>
-                          )}
-                        </View>
 
-                        <View style={styles.addButton}>
-                          <Ionicons name="add" size={18} color={BLACK} />
-                        </View>
+                            <View style={styles.searchResultOffer}>
+                              <Text style={styles.searchResultOfferText}>
+                                {item.discount}% OFF
+                              </Text>
+                            </View>
+                          </>
+                        ) : (
+                          <Text style={styles.searchResultPrice}>
+                            {item.price}
+                          </Text>
+                        )}
                       </View>
                     </View>
+
+                    <Ionicons
+                      name="chevron-forward"
+                      size={20}
+                      color={GOLD}
+                    />
                   </TouchableOpacity>
-                ))}
-              </ScrollView>
-            ) : (
-              <Text style={styles.emptySearchText}>
-                No matching food items found.
-              </Text>
-            )}
-          </View>
+                ))
+              ) : (
+                <View style={styles.searchNoResults}>
+                  <Ionicons
+                    name="search-outline"
+                    size={34}
+                    color="#777777"
+                  />
 
-          {/* CULINARY EXCELLENCE */}
+                  <Text style={styles.searchNoResultsTitle}>
+                    No food items found
+                  </Text>
 
-          <View style={styles.excellenceSection}>
-            <Text style={styles.excellenceEyebrow}>THE ROYAL EXPERIENCE</Text>
-
-            <Text style={styles.excellenceTitle}>
-              A Legacy of Royal Dining &{"\n"}
-              <Text style={styles.gold}>Culinary Excellence</Text>
-            </Text>
-
-            <Text style={styles.paragraphCenter}>
-              Our values define every experience we create, from the first
-              ingredient to the final presentation.
-            </Text>
-
-            <View style={styles.excellenceGrid}>
-              {excellenceFeatures2.map((item) => (
-                <ImageBackground
-                  key={item.title}
-                  source={item.image}
-                  style={styles.excellenceCard}
-                  imageStyle={styles.excellenceCardImage}
-                  resizeMode="cover"
-                >
-                  <View style={styles.excellenceOverlay}>
-                    <View style={styles.excellenceIconContainer}>
-                      <Ionicons name={item.icon} size={23} color={GOLD} />
-                    </View>
-
-                    <View style={styles.excellenceCardContent}>
-                      <Text style={styles.excellenceCardTitle}>
-                        {item.title}
-                      </Text>
-
-                      <Text style={styles.excellenceCardDescription}>
-                        {item.description}
-                      </Text>
-                    </View>
-
-                    <View style={styles.excellenceCardLine} />
-                  </View>
-                </ImageBackground>
-              ))}
+                  <Text style={styles.searchNoResultsText}>
+                    Try another food name
+                    {vegMode ? " or turn off Veg Mode" : ""}.
+                  </Text>
+                </View>
+              )}
             </View>
-          </View>
+          ) : (
+            <>
+              {/* HERO BANNER */}
 
-          <View style={styles.bottomSpace} />
+              <ImageBackground
+                source={images.hero}
+                style={styles.heroBanner}
+                imageStyle={styles.heroImage}
+              >
+                <View style={styles.heroOverlay}>
+                  <Text style={styles.heroTitle}>
+                    Indulge in {"\n"}
+                    <Text style={styles.gold}>Royal Dining</Text>
+                  </Text>
+
+                  <Text style={styles.heroDescription}>
+                    Discover our flavours, delicious & dining experiences.
+                  </Text>
+
+                  <TouchableOpacity
+                    style={styles.goldButton}
+                    activeOpacity={0.8}
+                    onPress={() => router.push("/pages/booking")}
+                  >
+                    <Text style={styles.goldButtonText}>RESERVE TABLE</Text>
+                    <Ionicons name="arrow-forward" size={14} color={BLACK} />
+                  </TouchableOpacity>
+                </View>
+              </ImageBackground>
+
+              {/* QUICK FOOD DISCOVERY TABS */}
+
+              <View style={styles.quickTabsSection}>
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.quickTabsScroll}
+                >
+                  {quickTabs.map((tab) => (
+                    <TouchableOpacity
+                      key={tab}
+                      activeOpacity={0.8}
+                      style={[
+                        styles.quickTab,
+                        activeFoodTab === tab && styles.quickTabActive,
+                      ]}
+                      onPress={() => setActiveFoodTab(tab)}
+                    >
+                      <Text
+                        style={[
+                          styles.quickTabText,
+                          activeFoodTab === tab && styles.quickTabTextActive,
+                        ]}
+                      >
+                        {tab}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
+
+              {/* EXPLORE OUR MENU */}
+
+              <View style={styles.foodCategorySection}>
+                <View style={styles.categoryHeader}>
+                  <View>
+                    <Text style={styles.categoryTitle}>Explore Our Menu</Text>
+                    <Text style={styles.categorySubtitle}>
+                      Discover something delicious
+                    </Text>
+                  </View>
+
+                  <TouchableOpacity
+                    onPress={() => router.push("/pages/menu")}
+                    style={styles.viewAllButton}
+                  >
+                    <Text style={styles.viewAllText}>View All</Text>
+                    <Ionicons name="arrow-forward" size={14} color={GOLD} />
+                  </TouchableOpacity>
+                </View>
+
+                {visibleCategories.length > 0 ? (
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.categoryScroll}
+                  >
+                    {visibleCategories.map((item) => (
+                      <TouchableOpacity
+                        key={item.id}
+                        style={styles.categoryItem}
+                        activeOpacity={0.8}
+                        onPress={() =>
+                          router.push({
+                            pathname: "/pages/menu",
+                            params: {
+                              mode: item.mode,
+                              category: item.name,
+                            },
+                          })
+                        }
+                      >
+                        <View style={styles.categoryImageWrapper}>
+                          <Image
+                            source={item.image}
+                            style={styles.categoryImage}
+                            resizeMode="cover"
+                          />
+                        </View>
+
+                        <Text style={styles.categoryName} numberOfLines={1}>
+                          {item.name}
+                        </Text>
+                      </TouchableOpacity>
+                    ))}
+                  </ScrollView>
+                ) : (
+                  <Text style={styles.emptySearchText}>
+                    No matching food categories found.
+                  </Text>
+                )}
+              </View>
+
+              {/* CHEF'S RECOMMENDATIONS */}
+
+              <View style={styles.specialSection}>
+                <View style={styles.categoryHeader}>
+                  <View>
+                    <Text style={styles.categoryTitle}>
+                      Chef's Recommendations
+                    </Text>
+                    <Text style={styles.categorySubtitle}>
+                      Handpicked recommendations from our kitchen
+                    </Text>
+                  </View>
+
+                  <TouchableOpacity
+                    style={styles.viewAllButton}
+                    onPress={() => router.push("/pages/menu")}
+                  >
+                    <Text style={styles.viewAllText}>View All</Text>
+                    <Ionicons name="arrow-forward" size={13} color={GOLD} />
+                  </TouchableOpacity>
+                </View>
+
+                {filteredSpecials.length > 0 ? (
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.specialScroll}
+                  >
+                    {filteredSpecials.map((item) => (
+                      <TouchableOpacity
+                        key={item.id}
+                        activeOpacity={0.85}
+                        style={styles.specialCard}
+                        onPress={() =>
+                          router.push({
+                            pathname: "/auth/login",
+                            params: {
+                              mode: item.mode,
+                              category: item.name,
+                            },
+                          })
+                        }
+                      >
+                        <View style={styles.specialImageContainer}>
+                          <Image
+                            source={item.image}
+                            style={styles.specialImage}
+                            resizeMode="cover"
+                          />
+
+                          {item.offer && (
+                            <View style={styles.offerBadge}>
+                              <Text style={styles.offerBadgeText}>
+                                {item.discount}% OFF
+                              </Text>
+                            </View>
+                          )}
+
+                          <View style={styles.specialTag}>
+                            <Text style={styles.specialTagText}>
+                              {item.offer ? "SPECIAL OFFER" : "CHEF'S PICK"}
+                            </Text>
+                          </View>
+                        </View>
+
+                        <View style={styles.specialInfo}>
+                          <Text style={styles.specialName} numberOfLines={1}>
+                            {item.name}
+                          </Text>
+
+                          <Text
+                            style={styles.specialDescription}
+                            numberOfLines={2}
+                          >
+                            {item.description}
+                          </Text>
+
+                          <View style={styles.specialBottom}>
+                            <View>
+                              {item.offer ? (
+                                <>
+                                  <Text style={styles.originalPrice}>
+                                    {item.price}
+                                  </Text>
+
+                                  <Text style={styles.specialPrice}>
+                                    ₹
+                                    {Math.round(
+                                      Number(
+                                        item.price.replace(/[^0-9.]/g, ""),
+                                      ) *
+                                        (1 - item.discount / 100),
+                                    )}
+                                  </Text>
+                                </>
+                              ) : (
+                                <Text style={styles.specialPrice}>
+                                  {item.price}
+                                </Text>
+                              )}
+                            </View>
+
+                            <View style={styles.addButton}>
+                              <Ionicons name="add" size={18} color={BLACK} />
+                            </View>
+                          </View>
+                        </View>
+                      </TouchableOpacity>
+                    ))}
+                  </ScrollView>
+                ) : (
+                  <Text style={styles.emptySearchText}>
+                    No matching food items found.
+                  </Text>
+                )}
+              </View>
+
+              {/* CULINARY EXCELLENCE */}
+
+              <View style={styles.excellenceSection}>
+                <Text style={styles.excellenceEyebrow}>
+                  THE ROYAL EXPERIENCE
+                </Text>
+
+                <Text style={styles.excellenceTitle}>
+                  A Legacy of Royal Dining &{"\n"}
+                  <Text style={styles.gold}>Culinary Excellence</Text>
+                </Text>
+
+                <Text style={styles.paragraphCenter}>
+                  Our values define every experience we create, from the first
+                  ingredient to the final presentation.
+                </Text>
+
+                <View style={styles.excellenceGrid}>
+                  {excellenceFeatures2.map((item) => (
+                    <ImageBackground
+                      key={item.title}
+                      source={item.image}
+                      style={styles.excellenceCard}
+                      imageStyle={styles.excellenceCardImage}
+                      resizeMode="cover"
+                    >
+                      <View style={styles.excellenceOverlay}>
+                        <View style={styles.excellenceIconContainer}>
+                          <Ionicons
+                            name={item.icon}
+                            size={23}
+                            color={GOLD}
+                          />
+                        </View>
+
+                        <View style={styles.excellenceCardContent}>
+                          <Text style={styles.excellenceCardTitle}>
+                            {item.title}
+                          </Text>
+
+                          <Text style={styles.excellenceCardDescription}>
+                            {item.description}
+                          </Text>
+                        </View>
+
+                        <View style={styles.excellenceCardLine} />
+                      </View>
+                    </ImageBackground>
+                  ))}
+                </View>
+              </View>
+
+              <View style={styles.bottomSpace} />
+            </>
+          )}
         </ScrollView>
 
         {/* BOTTOM NAVIGATION */}
@@ -836,7 +967,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
 
-  // SEARCH
+  // SEARCH BAR
 
   searchContainer: {
     height: 46,
@@ -866,6 +997,119 @@ const styles = StyleSheet.create({
     fontSize: 14,
     paddingHorizontal: 16,
     paddingVertical: 15,
+  },
+
+  // SEARCH RESULTS
+
+  searchResultsSection: {
+    paddingHorizontal: 16,
+    paddingTop: 20,
+    paddingBottom: 24,
+    minHeight: 250,
+  },
+
+  searchResultsHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 16,
+  },
+
+  searchResultCount: {
+    color: GOLD,
+    fontSize: 12,
+    fontWeight: "600",
+  },
+
+  searchResultCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: CARD,
+    borderWidth: 1,
+    borderColor: "#30280A",
+    borderRadius: 12,
+    padding: 10,
+    marginBottom: 11,
+    gap: 12,
+  },
+
+  searchResultImage: {
+    width: 82,
+    height: 82,
+    borderRadius: 9,
+    backgroundColor: "#222222",
+  },
+
+  searchResultInfo: {
+    flex: 1,
+    justifyContent: "center",
+  },
+
+  searchResultName: {
+    color: "#FFFFFF",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+
+  searchResultDescription: {
+    color: "#999999",
+    fontSize: 11,
+    lineHeight: 15,
+    marginTop: 4,
+  },
+
+  searchResultPriceRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: 7,
+    marginTop: 7,
+  },
+
+  searchResultPrice: {
+    color: GOLD,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
+  searchResultOriginalPrice: {
+    color: "#888888",
+    fontSize: 11,
+    textDecorationLine: "line-through",
+  },
+
+  searchResultOffer: {
+    backgroundColor: "#5A1717",
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderRadius: 4,
+  },
+
+  searchResultOfferText: {
+    color: "#FF7777",
+    fontSize: 9,
+    fontWeight: "bold",
+  },
+
+  searchNoResults: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 45,
+    paddingHorizontal: 20,
+  },
+
+  searchNoResultsTitle: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 12,
+  },
+
+  searchNoResultsText: {
+    color: "#999999",
+    fontSize: 12,
+    textAlign: "center",
+    marginTop: 6,
   },
 
   // HERO BANNER
@@ -1060,7 +1304,7 @@ const styles = StyleSheet.create({
   categoryName: {
     color: "#FFFFFF",
     fontSize: 14,
-    width:100,
+    width: 100,
     fontWeight: "600",
     textAlign: "center",
     marginTop: 9,
