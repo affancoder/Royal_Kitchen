@@ -25,6 +25,10 @@ import experience from "../../../assets/images/experience.jpeg";
 
 // Food Images Importing
 
+import homeParty from "../../../assets/images/homeParty.webp";
+import snacks from "../../../assets/images/snacks.webp";
+import biryaniCombo from "../../../assets/images/biryaniCombo.webp";
+import DumBiyani from "../../../assets/images/dumbiryani.jpg";
 import FishCurry from "../../../assets/images/FishCurry.jpeg";
 import DalMakhni from "../../../assets/images/DalMakhni.jpeg";
 import paneer from "../../../assets/images/paneer.jpeg";
@@ -321,13 +325,7 @@ export default function HomeScreen() {
         item.description.toLowerCase().includes(searchText)),
   );
 
-  const quickTabs = [
-    "All",
-    "Under ₹199",
-    "Bestsellers",
-    "Combos",
-    "Offers",
-  ];
+  const quickTabs = ["All", "Under ₹199", "Bestsellers", "Combos", "Offers"];
 
   const filteredSpecials = visibleSpecials.filter((item) => {
     switch (activeFoodTab) {
@@ -512,20 +510,12 @@ export default function HomeScreen() {
                       </View>
                     </View>
 
-                    <Ionicons
-                      name="chevron-forward"
-                      size={20}
-                      color={GOLD}
-                    />
+                    <Ionicons name="chevron-forward" size={20} color={GOLD} />
                   </TouchableOpacity>
                 ))
               ) : (
                 <View style={styles.searchNoResults}>
-                  <Ionicons
-                    name="search-outline"
-                    size={34}
-                    color="#777777"
-                  />
+                  <Ionicons name="search-outline" size={34} color="#777777" />
 
                   <Text style={styles.searchNoResultsTitle}>
                     No food items found
@@ -778,6 +768,134 @@ export default function HomeScreen() {
                 )}
               </View>
 
+              {/* SIGNATURE COMBOS */}
+              <View style={styles.signatureSection}>
+                <View style={styles.signatureHeader}>
+                  <View>
+                    <Text style={styles.signatureTitle}>Signature Combos</Text>
+                    <Text style={styles.signatureSubtitle}>
+                      Complete meals, specially curated by our chefs
+                    </Text>
+                  </View>
+
+                  <TouchableOpacity>
+                    <Text style={styles.signatureViewAll}>View All →</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.signatureScroll}
+                >
+                  {[
+                    {
+                      name: "Veg Combo",
+                      description: "Paneer, biryani & delicious sides",
+                      price: 349,
+                      image: VegThali,
+                      mode: "veg",
+                      offer: "19% OFF",
+                    },
+                    {
+                      name: "Biryani Combo",
+                      description: "Chicken biryani with royal sides",
+                      price: 449,
+                      image: biryaniCombo,
+                      mode: "non-veg",
+                      offer: "15% OFF",
+                    },
+                    {
+                      name:"Spicy Snacks",
+                      description:"Evening delicious snacks with sauce.",
+                      price: 139,
+                      image: snacks,
+                      mode: "veg",
+                      offer: "50%",
+                    },
+                    {
+                      name: "Family Feast",
+                      description: "A delicious feast for the whole family",
+                      price: 899,
+                      image: chefSpecials[10].image,
+                      mode: "veg",
+                      offer: "18% OFF",
+                    },
+                    {
+                      name: "Home Party",
+                      description: "Anger Chill feast combo for friends.",
+                      price: 648,
+                      image: homeParty,
+                      mode: "non-veg",
+                      offer: "8% OFF",
+                    },
+                  ]
+                    .filter((item) => !vegMode || item.mode === "veg")
+                    .map((item, index) => (
+                      <TouchableOpacity
+                        key={index}
+                        activeOpacity={0.85}
+                        style={styles.signatureCard}
+                      >
+                        <View style={styles.signatureImageContainer}>
+                          <Image
+                            source={item.image}
+                            style={styles.signatureImage}
+                          />
+
+                          <View style={styles.signatureOffer}>
+                            <Text style={styles.signatureOfferText}>
+                              {item.offer}
+                            </Text>
+                          </View>
+
+                          
+                        </View>
+
+                        <View style={styles.signatureInfo}>
+                          <Text
+                            style={styles.signatureFoodName}
+                            numberOfLines={1}
+                          >
+                            {item.name}
+                          </Text>
+
+                          <Text
+                            style={styles.signatureDescription}
+                            numberOfLines={2}
+                          >
+                            {item.description}
+                          </Text>
+
+                          <View style={styles.signaturePriceRow}>
+                            <View>
+                              <Text style={styles.signaturePrice}>
+                                ₹{item.price}
+                              </Text>
+                            </View>
+
+                            <TouchableOpacity
+                              activeOpacity={0.8}
+                              style={styles.signatureAddButton}
+                              onPress={() =>
+                                router.push({
+                                  pathname: "/auth/login",
+                                  params: {
+                                    mode: item.mode,
+                                    category: item.name,
+                                  },
+                                })
+                              }
+                            >
+                              <Ionicons name="add" size={22} color="#000000" />
+                            </TouchableOpacity>
+                          </View>
+                        </View>
+                      </TouchableOpacity>
+                    ))}
+                </ScrollView>
+              </View>
+
               {/* CULINARY EXCELLENCE */}
 
               <View style={styles.excellenceSection}>
@@ -806,11 +924,7 @@ export default function HomeScreen() {
                     >
                       <View style={styles.excellenceOverlay}>
                         <View style={styles.excellenceIconContainer}>
-                          <Ionicons
-                            name={item.icon}
-                            size={23}
-                            color={GOLD}
-                          />
+                          <Ionicons name={item.icon} size={23} color={GOLD} />
                         </View>
 
                         <View style={styles.excellenceCardContent}>
@@ -1400,7 +1514,7 @@ const styles = StyleSheet.create({
 
   specialDescription: {
     color: "#999999",
-    fontSize: 13,
+    fontSize: 14,
     lineHeight: 15,
     marginTop: 5,
     minHeight: 30,
@@ -1434,6 +1548,133 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  // Combo Signature
+
+  signatureSection: {
+    marginBottom: 12,
+  },
+
+  signatureHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 16,
+    paddingHorizontal: 20,
+  },
+
+  signatureTitle: {
+    color: "#FFFFFF",
+    fontSize: 21,
+    fontWeight: "bold",
+    fontFamily: "Georgia",
+  },
+
+  signatureSubtitle: {
+    color: "#999999",
+    fontSize: 11,
+  },
+
+  signatureViewAll: {
+    color: "#D4AF00",
+    fontSize: 15,
+    fontWeight: "700",
+  },
+
+  signatureScroll: {
+    paddingHorizontal: 20,
+    paddingBottom: 8,
+    gap: 14,
+  },
+
+  signatureCard: {
+    width: 150,
+    backgroundColor: "#111111",
+    borderRadius: 14,
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "#292929",
+  },
+
+  signatureImageContainer: {
+    height: 100,
+    position: "relative",
+  },
+
+  signatureImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
+
+  signatureOffer: {
+    position: "absolute",
+    top: 10,
+    left: 10,
+    backgroundColor: "#D4AF00",
+    paddingHorizontal: 9,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+
+  signatureOfferText: {
+    color: "#000000",
+    fontSize: 10,
+    fontWeight: "bold",
+  },
+
+  signatureFoodType: {
+    position: "absolute",
+    right: 10,
+    top: 10,
+    width: 19,
+    height: 19,
+    borderRadius: 4,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  signatureInfo: {
+    padding: 12,
+  },
+
+  signatureFoodName: {
+    color: "#FFFFFF",
+    fontSize: 17,
+    fontWeight: "bold",
+  },
+
+  signatureDescription: {
+    color: "#999999",
+    fontSize: 14,
+    marginTop: 2,
+    lineHeight: 16,
+    minHeight: 32,
+  },
+
+  signaturePriceRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 12,
+  },
+
+  signaturePrice: {
+    color: "#D4AF00",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+
+  signatureAddButton: {
+    width: 34,
+    height: 34,
+    borderRadius: 8,
+    backgroundColor: "#D4AF00",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
   // CULINARY EXCELLENCE
 
   excellenceSection: {
@@ -1444,11 +1685,11 @@ const styles = StyleSheet.create({
 
   excellenceEyebrow: {
     color: GOLD,
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "bold",
     letterSpacing: 2.5,
     textAlign: "center",
-    marginBottom: 9,
+    // marginBottom: 9,
   },
 
   excellenceTitle: {
