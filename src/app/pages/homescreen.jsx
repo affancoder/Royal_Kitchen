@@ -22,6 +22,7 @@ import ExceptionalIngredients from "../../../assets/images/ExceptionalIngredient
 import ChefImage from "../../../assets/images/chef.jpeg";
 import hospitality from "../../../assets/images/hospitality.jpeg";
 import experience from "../../../assets/images/experience.jpeg";
+import catering from "../../../assets/images/catering.jpg"
 
 // Food Images Importing
 
@@ -295,6 +296,7 @@ const excellenceFeatures2 = [
     image: experience,
   },
 ];
+
 
 export default function HomeScreen() {
   const [vegMode, setVegMode] = useState(false);
@@ -895,6 +897,77 @@ export default function HomeScreen() {
                     ))}
                 </ScrollView>
               </View>
+
+              {/* ROYAL CATERING & EVENTS */}
+<View style={styles.servicesSection}>
+  <View style={styles.servicesHeading}>
+    <Text style={styles.servicesEyebrow}>BEYOND THE DINING EXPERIENCE</Text>
+
+    <Text style={styles.servicesTitle}>
+      Celebrate Every Moment
+    </Text>
+
+    <Text style={styles.servicesSubtitle}>
+      Exceptional food and royal hospitality for your special occasions.
+    </Text>
+  </View>
+
+  <ImageBackground
+    source={catering}
+    style={styles.servicesBanner}
+    imageStyle={styles.servicesBannerImage}
+  >
+    <View style={styles.servicesImageOverlay} />
+
+    <View style={styles.servicesBannerContent}>
+      <Text style={styles.servicesBannerLabel}>
+        THE ROYAL EXPERIENCE
+      </Text>
+
+      <Text style={styles.servicesBannerTitle}>
+        We Make Your Events
+      </Text>
+
+      <Text style={styles.servicesBannerGold}>
+        Truly Special
+      </Text>
+
+      <Text style={styles.servicesBannerDescription}>
+        From intimate gatherings to grand celebrations,
+        let us make every occasion unforgettable.
+      </Text>
+
+      <View style={styles.servicesHighlights}>
+        <View style={styles.servicesHighlight}>
+          <Ionicons name="heart-outline" size={19} color="#D4AF00" />
+          <Text style={styles.servicesHighlightText}>Weddings</Text>
+        </View>
+
+        <View style={styles.servicesHighlight}>
+          <Ionicons name="business-outline" size={19} color="#D4AF00" />
+          <Text style={styles.servicesHighlightText}>Corporate</Text>
+        </View>
+
+        <View style={styles.servicesHighlight}>
+          <Ionicons name="people-outline" size={19} color="#D4AF00" />
+          <Text style={styles.servicesHighlightText}>Celebrations</Text>
+        </View>
+      </View>
+
+      <TouchableOpacity
+        activeOpacity={0.85}
+        style={styles.servicesButton}
+        onPress={() => router.push("/services")}
+      >
+        <Text style={styles.servicesButtonText}>
+          Explore Our Services
+        </Text>
+
+        <Ionicons name="arrow-forward" size={18} color="#000000" />
+      </TouchableOpacity>
+    </View>
+  </ImageBackground>
+</View>
 
               {/* CULINARY EXCELLENCE */}
 
@@ -1781,4 +1854,126 @@ const styles = StyleSheet.create({
   bottomSpace: {
     height: 10,
   },
+
+  servicesSection: {
+  marginTop: 30,
+  marginBottom: 15,
+},
+
+servicesHeading: {
+  marginBottom: 16,
+},
+
+servicesEyebrow: {
+  color: "#D4AF00",
+  fontSize: 10,
+  fontWeight: "bold",
+  letterSpacing: 2,
+  marginBottom: 8,
+},
+
+servicesTitle: {
+  color: "#FFFFFF",
+  fontSize: 23,
+  fontWeight: "bold",
+  fontFamily: "Georgia",
+},
+
+servicesSubtitle: {
+  color: "#AAAAAA",
+  fontSize: 13,
+  lineHeight: 20,
+  marginTop: 7,
+},
+
+servicesBanner: {
+  minHeight: 390,
+  justifyContent: "flex-end",
+  overflow: "hidden",
+  borderRadius: 16,
+  backgroundColor: "#171717",
+},
+
+servicesBannerImage: {
+  borderRadius: 16,
+},
+
+servicesImageOverlay: {
+  ...StyleSheet.absoluteFillObject,
+  backgroundColor: "rgba(0,0,0,0.68)",
+},
+
+servicesBannerContent: {
+  padding: 20,
+},
+
+servicesBannerLabel: {
+  color: "#D4AF00",
+  fontSize: 10,
+  fontWeight: "bold",
+  letterSpacing: 2,
+  marginBottom: 12,
+},
+
+servicesBannerTitle: {
+  color: "#FFFFFF",
+  fontSize: 25,
+  fontWeight: "bold",
+  fontFamily: "Georgia",
+},
+
+servicesBannerGold: {
+  color: "#D4AF00",
+  fontSize: 29,
+  fontWeight: "bold",
+  fontFamily: "Georgia",
+  marginTop: 3,
+},
+
+servicesBannerDescription: {
+  color: "#E0E0E0",
+  fontSize: 13,
+  lineHeight: 21,
+  marginTop: 12,
+  maxWidth: 300,
+},
+
+servicesHighlights: {
+  flexDirection: "row",
+  flexWrap: "wrap",
+  alignItems: "center",
+  gap: 16,
+  marginTop: 22,
+  marginBottom: 22,
+},
+
+servicesHighlight: {
+  flexDirection: "row",
+  alignItems: "center",
+  gap: 6,
+},
+
+servicesHighlightText: {
+  color: "#FFFFFF",
+  fontSize: 12,
+  fontWeight: "500",
+},
+
+servicesButton: {
+  backgroundColor: "#D4AF00",
+  paddingVertical: 14,
+  paddingHorizontal: 17,
+  borderRadius: 8,
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 10,
+  alignSelf: "flex-start",
+},
+
+servicesButtonText: {
+  color: "#000000",
+  fontSize: 13,
+  fontWeight: "bold",
+},
 });
