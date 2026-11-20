@@ -22,7 +22,7 @@ import ExceptionalIngredients from "../../../assets/images/ExceptionalIngredient
 import ChefImage from "../../../assets/images/chef.jpeg";
 import hospitality from "../../../assets/images/hospitality.jpeg";
 import experience from "../../../assets/images/experience.jpeg";
-import catering from "../../../assets/images/catering.jpg"
+import catering from "../../../assets/images/catering.jpg";
 
 // Food Images Importing
 
@@ -297,7 +297,6 @@ const excellenceFeatures2 = [
   },
 ];
 
-
 export default function HomeScreen() {
   const [vegMode, setVegMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -305,6 +304,11 @@ export default function HomeScreen() {
 
   const searchText = searchQuery.trim().toLowerCase();
   const isSearching = searchText.length > 0;
+
+  // Royal Catering Experience
+  const [selectedGuestCount, setSelectedGuestCount] = useState(null);
+
+  const guestOptions = ["100+", "250+", "500+", "1000+"];
 
   // Search actual food items and respect the active Veg Mode.
   const searchResults = chefSpecials.filter(
@@ -808,8 +812,8 @@ export default function HomeScreen() {
                       offer: "15% OFF",
                     },
                     {
-                      name:"Spicy Snacks",
-                      description:"Evening delicious snacks with sauce.",
+                      name: "Spicy Snacks",
+                      description: "Evening delicious snacks with sauce.",
                       price: 139,
                       image: snacks,
                       mode: "veg",
@@ -850,8 +854,6 @@ export default function HomeScreen() {
                               {item.offer}
                             </Text>
                           </View>
-
-                          
                         </View>
 
                         <View style={styles.signatureInfo}>
@@ -898,76 +900,93 @@ export default function HomeScreen() {
                 </ScrollView>
               </View>
 
-              {/* ROYAL CATERING & EVENTS */}
-<View style={styles.servicesSection}>
-  <View style={styles.servicesHeading}>
-    <Text style={styles.servicesEyebrow}>BEYOND THE DINING EXPERIENCE</Text>
+              {/* ROYAL CATERING EXPERIENCE */}
+              <View style={styles.eventSection}>
+                <Text style={styles.eventEyebrow}>
+                  ROYAL CATERING EXPERIENCE
+                </Text>
 
-    <Text style={styles.servicesTitle}>
-      Celebrate Every Moment
-    </Text>
+                <Text style={styles.eventTitle}>Planning a Special Event?</Text>
 
-    <Text style={styles.servicesSubtitle}>
-      Exceptional food and royal hospitality for your special occasions.
-    </Text>
-  </View>
+                <Text style={styles.eventDescription}>
+                  Tell us how many guests you're expecting. We'll help you plan
+                  the perfect catering experience.
+                </Text>
 
-  <ImageBackground
-    source={catering}
-    style={styles.servicesBanner}
-    imageStyle={styles.servicesBannerImage}
-  >
-    <View style={styles.servicesImageOverlay} />
+                <Text style={styles.guestHeading}>
+                  How many guests are you expecting?
+                </Text>
 
-    <View style={styles.servicesBannerContent}>
-      <Text style={styles.servicesBannerLabel}>
-        THE ROYAL EXPERIENCE
-      </Text>
+                <View style={styles.guestOptions}>
+                  {guestOptions.map((guest) => {
+                    const isSelected = selectedGuestCount === guest;
 
-      <Text style={styles.servicesBannerTitle}>
-        We Make Your Events
-      </Text>
+                    return (
+                      <TouchableOpacity
+                        key={guest}
+                        activeOpacity={0.8}
+                        style={[
+                          styles.guestOption,
+                          isSelected && styles.guestOptionSelected,
+                        ]}
+                        onPress={() => setSelectedGuestCount(guest)}
+                      >
+                        <Text
+                          style={[
+                            styles.guestOptionText,
+                            isSelected && styles.guestOptionTextSelected,
+                          ]}
+                        >
+                          {guest}
+                        </Text>
 
-      <Text style={styles.servicesBannerGold}>
-        Truly Special
-      </Text>
+                        <Text
+                          style={[
+                            styles.guestLabel,
+                            isSelected && styles.guestLabelSelected,
+                          ]}
+                        >
+                          Guests
+                        </Text>
 
-      <Text style={styles.servicesBannerDescription}>
-        From intimate gatherings to grand celebrations,
-        let us make every occasion unforgettable.
-      </Text>
+                        {isSelected && (
+                          <Ionicons
+                            name="checkmark-circle"
+                            size={18}
+                            color="#D4AF00"
+                            style={styles.guestCheck}
+                          />
+                        )}
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
 
-      <View style={styles.servicesHighlights}>
-        <View style={styles.servicesHighlight}>
-          <Ionicons name="heart-outline" size={19} color="#D4AF00" />
-          <Text style={styles.servicesHighlightText}>Weddings</Text>
-        </View>
+                <TouchableOpacity
+                  activeOpacity={0.85}
+                  disabled={!selectedGuestCount}
+                  style={[
+                    styles.planEventButton,
+                    !selectedGuestCount && styles.planEventButtonDisabled,
+                  ]}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/pages/services",
+                      params: {
+                        guests: selectedGuestCount,
+                      },
+                    })
+                  }
+                >
+                  <Text style={styles.planEventButtonText}>Plan My Event</Text>
 
-        <View style={styles.servicesHighlight}>
-          <Ionicons name="business-outline" size={19} color="#D4AF00" />
-          <Text style={styles.servicesHighlightText}>Corporate</Text>
-        </View>
+                  <Ionicons name="arrow-forward" size={19} color="#000000" />
+                </TouchableOpacity>
 
-        <View style={styles.servicesHighlight}>
-          <Ionicons name="people-outline" size={19} color="#D4AF00" />
-          <Text style={styles.servicesHighlightText}>Celebrations</Text>
-        </View>
-      </View>
-
-      <TouchableOpacity
-        activeOpacity={0.85}
-        style={styles.servicesButton}
-        onPress={() => router.push("/services")}
-      >
-        <Text style={styles.servicesButtonText}>
-          Explore Our Services
-        </Text>
-
-        <Ionicons name="arrow-forward" size={18} color="#000000" />
-      </TouchableOpacity>
-    </View>
-  </ImageBackground>
-</View>
+                <Text style={styles.guestHint}>
+                  Choose your guest count to get started
+                </Text>
+              </View>
 
               {/* CULINARY EXCELLENCE */}
 
@@ -1748,6 +1767,124 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  eventSection: {
+    backgroundColor: "#111111",
+    borderWidth: 1,
+    borderColor: "#393020",
+    borderRadius: 16,
+    padding: 18,
+    marginTop: 25,
+    marginBottom: 20,
+  },
+
+  eventEyebrow: {
+    color: "#D4AF00",
+    fontSize: 10,
+    fontWeight: "bold",
+    letterSpacing: 2,
+    marginBottom: 10,
+  },
+
+  eventTitle: {
+    color: "#FFFFFF",
+    fontSize: 23,
+    fontWeight: "bold",
+    fontFamily: "Georgia",
+  },
+
+  eventDescription: {
+    color: "#AAAAAA",
+    fontSize: 13,
+    lineHeight: 20,
+    marginTop: 9,
+  },
+
+  guestHeading: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "600",
+    marginTop: 23,
+    marginBottom: 13,
+  },
+
+  guestOptions: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+
+  guestOption: {
+    width: "48%",
+    minHeight: 76,
+    backgroundColor: "#1C1C1C",
+    borderWidth: 1,
+    borderColor: "#383838",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+  },
+
+  guestOptionSelected: {
+    borderColor: "#D4AF00",
+    backgroundColor: "#29230D",
+  },
+
+  guestOptionText: {
+    color: "#FFFFFF",
+    fontSize: 21,
+    fontWeight: "bold",
+  },
+
+  guestOptionTextSelected: {
+    color: "#D4AF00",
+  },
+
+  guestLabel: {
+    color: "#999999",
+    fontSize: 11,
+    marginTop: 3,
+  },
+
+  guestLabelSelected: {
+    color: "#D4AF00",
+  },
+
+  guestCheck: {
+    position: "absolute",
+    top: 7,
+    right: 7,
+  },
+
+  planEventButton: {
+    backgroundColor: "#D4AF00",
+    borderRadius: 9,
+    paddingVertical: 15,
+    marginTop: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+  },
+
+  planEventButtonDisabled: {
+    opacity: 0.45,
+  },
+
+  planEventButtonText: {
+    color: "#000000",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+
+  guestHint: {
+    color: "#777777",
+    fontSize: 11,
+    textAlign: "center",
+    marginTop: 12,
+  },
+
   // CULINARY EXCELLENCE
 
   excellenceSection: {
@@ -1854,126 +1991,4 @@ const styles = StyleSheet.create({
   bottomSpace: {
     height: 10,
   },
-
-  servicesSection: {
-  marginTop: 30,
-  marginBottom: 15,
-},
-
-servicesHeading: {
-  marginBottom: 16,
-},
-
-servicesEyebrow: {
-  color: "#D4AF00",
-  fontSize: 10,
-  fontWeight: "bold",
-  letterSpacing: 2,
-  marginBottom: 8,
-},
-
-servicesTitle: {
-  color: "#FFFFFF",
-  fontSize: 23,
-  fontWeight: "bold",
-  fontFamily: "Georgia",
-},
-
-servicesSubtitle: {
-  color: "#AAAAAA",
-  fontSize: 13,
-  lineHeight: 20,
-  marginTop: 7,
-},
-
-servicesBanner: {
-  minHeight: 390,
-  justifyContent: "flex-end",
-  overflow: "hidden",
-  borderRadius: 16,
-  backgroundColor: "#171717",
-},
-
-servicesBannerImage: {
-  borderRadius: 16,
-},
-
-servicesImageOverlay: {
-  ...StyleSheet.absoluteFillObject,
-  backgroundColor: "rgba(0,0,0,0.68)",
-},
-
-servicesBannerContent: {
-  padding: 20,
-},
-
-servicesBannerLabel: {
-  color: "#D4AF00",
-  fontSize: 10,
-  fontWeight: "bold",
-  letterSpacing: 2,
-  marginBottom: 12,
-},
-
-servicesBannerTitle: {
-  color: "#FFFFFF",
-  fontSize: 25,
-  fontWeight: "bold",
-  fontFamily: "Georgia",
-},
-
-servicesBannerGold: {
-  color: "#D4AF00",
-  fontSize: 29,
-  fontWeight: "bold",
-  fontFamily: "Georgia",
-  marginTop: 3,
-},
-
-servicesBannerDescription: {
-  color: "#E0E0E0",
-  fontSize: 13,
-  lineHeight: 21,
-  marginTop: 12,
-  maxWidth: 300,
-},
-
-servicesHighlights: {
-  flexDirection: "row",
-  flexWrap: "wrap",
-  alignItems: "center",
-  gap: 16,
-  marginTop: 22,
-  marginBottom: 22,
-},
-
-servicesHighlight: {
-  flexDirection: "row",
-  alignItems: "center",
-  gap: 6,
-},
-
-servicesHighlightText: {
-  color: "#FFFFFF",
-  fontSize: 12,
-  fontWeight: "500",
-},
-
-servicesButton: {
-  backgroundColor: "#D4AF00",
-  paddingVertical: 14,
-  paddingHorizontal: 17,
-  borderRadius: 8,
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: 10,
-  alignSelf: "flex-start",
-},
-
-servicesButtonText: {
-  color: "#000000",
-  fontSize: 13,
-  fontWeight: "bold",
-},
 });

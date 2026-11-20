@@ -14,6 +14,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import Navbar from "../components/navbar";
 
+import { useLocalSearchParams } from "expo-router";
+
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
 const CARD = "#111111";
@@ -104,6 +106,7 @@ export default function Services() {
 
           {/* SECTION 2 - INTRODUCTION */}
           <View style={styles.introSection}>
+            <Text>Expected Guests: {guests || "Not selected"}</Text>
             <Text style={styles.smallGoldHeading}>
               OUR EXCLUSIVE SERVICES
             </Text>
