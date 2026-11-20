@@ -177,7 +177,7 @@ const chefSpecials = [
     id: "3",
     name: "Veg Momo",
     description: "Delicious vegetarian dumplings",
-    price: "₹99",
+    price: "₹244",
     image: VegMomo,
     mode: "veg",
     bestseller: true,
@@ -220,7 +220,7 @@ const chefSpecials = [
     id: "8",
     name: "Cheese Pizza",
     description: "Delicious pizza with creamy cheese & toppings",
-    price: "₹189",
+    price: "₹239",
     image: pizza,
     mode: "veg",
     offer: true,
@@ -297,6 +297,41 @@ const excellenceFeatures2 = [
   },
 ];
 
+const royalFeatures = [
+  {
+    id: "quality",
+    title: "Premium Quality",
+    subtitle: "Fresh ingredients",
+    description:
+      "We carefully select fresh ingredients and prepare every dish with attention to taste and quality.",
+    icon: "leaf-outline",
+  },
+  {
+    id: "chefs",
+    title: "Expert Chefs",
+    subtitle: "Masterful cooking",
+    description:
+      "Our skilled chefs bring authentic flavours and creativity to every meal.",
+    icon: "restaurant-outline",
+  },
+  {
+    id: "service",
+    title: "Royal Service",
+    subtitle: "Hospitality first",
+    description:
+      "Enjoy warm hospitality and a memorable experience every time you dine with us.",
+    icon: "people-outline",
+  },
+  {
+    id: "events",
+    title: "Catering Events",
+    subtitle: "Every occasion",
+    description:
+      "From weddings to birthdays and corporate events, we make every celebration special.",
+    icon: "calendar-outline",
+  },
+];
+
 export default function HomeScreen() {
   const [vegMode, setVegMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -351,6 +386,12 @@ export default function HomeScreen() {
         return true;
     }
   });
+
+  const [activeFeature, setActiveFeature] = useState("quality");
+
+  const selectedFeature = royalFeatures.find(
+    (item) => item.id === activeFeature,
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -746,9 +787,13 @@ export default function HomeScreen() {
                                     ₹
                                     {Math.round(
                                       Number(
-                                        item.price.replace(/[^0-9.]/g, ""),
+                                        String(item.price ?? "0").replace(
+                                          /[^0-9.]/g,
+                                          "",
+                                        ),
                                       ) *
-                                        (1 - item.discount / 100),
+                                        (1 -
+                                          (Number(item.discount) || 0) / 100),
                                     )}
                                   </Text>
                                 </>
@@ -986,6 +1031,94 @@ export default function HomeScreen() {
                 <Text style={styles.guestHint}>
                   Choose your guest count to get started
                 </Text>
+              </View>
+
+              {/* ROYAL EXPERIENCE SECTION */}
+              <View style={styles.royalSection}>
+                <Text style={styles.royalLabel}>DISCOVER OUR DIFFERENCE</Text>
+
+                <Text style={styles.royalHeading}>The Royal Experience</Text>
+
+                <Text style={styles.royalSubheading}>
+                  More than food, it's an experience.
+                </Text>
+
+                {/* CLICKABLE FEATURE OPTIONS */}
+                <View style={styles.featureOptions}>
+                  {royalFeatures.map((item) => {
+                    const isActive = activeFeature === item.id;
+
+                    return (
+                      <TouchableOpacity
+                        key={item.id}
+                        activeOpacity={0.8}
+                        onPress={() => setActiveFeature(item.id)}
+                        style={[
+                          styles.featureOption,
+                          isActive && styles.featureOptionActive,
+                        ]}
+                      >
+                        <Ionicons
+                          name={item.icon}
+                          size={23}
+                          color={isActive ? GOLD : "#888888"}
+                        />
+
+                        <Text
+                          style={[
+                            styles.featureOptionText,
+                            isActive && styles.featureOptionTextActive,
+                          ]}
+                        >
+                          {item.title}
+                        </Text>
+
+                        {isActive && <View style={styles.activeIndicator} />}
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+
+                {/* DYNAMIC FEATURE DETAILS */}
+                <View style={styles.featureDetails}>
+                  <View style={styles.featureIconLarge}>
+                    <Ionicons
+                      name={selectedFeature.icon}
+                      size={34}
+                      color={GOLD}
+                    />
+                  </View>
+
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.featureDetailTitle}>
+                      {selectedFeature.title}
+                    </Text>
+
+                    <Text style={styles.featureDetailSubtitle}>
+                      {selectedFeature.subtitle}
+                    </Text>
+
+                    <Text style={styles.featureDescription}>
+                      {selectedFeature.description}
+                    </Text>
+                  </View>
+
+                  <Ionicons
+                    name="arrow-forward-circle"
+                    size={27}
+                    color={GOLD}
+                  />
+                </View>
+
+                <View style={styles.featureCounter}>
+                  <Text style={styles.featureCounterText}>
+                    {royalFeatures.findIndex(
+                      (item) => item.id === activeFeature,
+                    ) + 1}{" "}
+                    / {royalFeatures.length}
+                  </Text>
+                  <Text style={styles.featureCounterText}>TAP TO EXPLORE</Text>
+                </View>
               </View>
 
               {/* CULINARY EXCELLENCE */}
@@ -1779,10 +1912,10 @@ const styles = StyleSheet.create({
 
   eventEyebrow: {
     color: "#D4AF00",
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
     letterSpacing: 2,
-    marginBottom: 10,
+    marginBottom: 1,
   },
 
   eventTitle: {
@@ -1833,7 +1966,7 @@ const styles = StyleSheet.create({
 
   guestOptionText: {
     color: "#FFFFFF",
-    fontSize: 21,
+    fontSize: 26,
     fontWeight: "bold",
   },
 
@@ -1843,7 +1976,7 @@ const styles = StyleSheet.create({
 
   guestLabel: {
     color: "#999999",
-    fontSize: 11,
+    fontSize: 14,
     marginTop: 3,
   },
 
@@ -1874,7 +2007,7 @@ const styles = StyleSheet.create({
 
   planEventButtonText: {
     color: "#000000",
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "bold",
   },
 
@@ -1883,6 +2016,129 @@ const styles = StyleSheet.create({
     fontSize: 11,
     textAlign: "center",
     marginTop: 12,
+  },
+
+  royalSection: {
+    paddingHorizontal: 18,
+    paddingVertical: 28,
+    backgroundColor: "#080808",
+  },
+
+  royalLabel: {
+    color: GOLD,
+    fontSize: 10,
+    letterSpacing: 2,
+    fontWeight: "bold",
+    marginBottom: 9,
+  },
+
+  royalHeading: {
+    color: "#FFFFFF",
+    fontSize: 25,
+    fontWeight: "bold",
+    fontFamily: "Georgia",
+  },
+
+  royalSubheading: {
+    color: "#999999",
+    fontSize: 13,
+    marginTop: 7,
+    marginBottom: 22,
+  },
+
+  featureOptions: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 9,
+  },
+
+  featureOption: {
+    width: "48%",
+    minHeight: 85,
+    backgroundColor: "#141414",
+    borderWidth: 1,
+    borderColor: "#292929",
+    borderRadius: 12,
+    padding: 12,
+    justifyContent: "center",
+    gap: 7,
+  },
+
+  featureOptionActive: {
+    backgroundColor: "#211B08",
+    borderColor: GOLD,
+  },
+
+  featureOptionText: {
+    color: "#999999",
+    fontSize: 12,
+    fontWeight: "600",
+  },
+
+  featureOptionTextActive: {
+    color: GOLD,
+  },
+
+  activeIndicator: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    width: 7,
+    height: 7,
+    borderRadius: 5,
+    backgroundColor: GOLD,
+  },
+
+  featureDetails: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 13,
+    backgroundColor: "#151515",
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#40350F",
+    padding: 16,
+    marginTop: 15,
+  },
+
+  featureIconLarge: {
+    width: 55,
+    height: 55,
+    borderRadius: 12,
+    backgroundColor: "#29220C",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  featureDetailTitle: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
+  featureDetailSubtitle: {
+    color: GOLD,
+    fontSize: 11,
+    marginTop: 3,
+  },
+
+  featureDescription: {
+    color: "#AAAAAA",
+    fontSize: 11,
+    lineHeight: 17,
+    marginTop: 8,
+  },
+
+  featureCounter: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 12,
+  },
+
+  featureCounterText: {
+    color: "#777777",
+    fontSize: 9,
+    letterSpacing: 1,
   },
 
   // CULINARY EXCELLENCE

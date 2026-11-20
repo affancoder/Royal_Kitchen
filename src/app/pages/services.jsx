@@ -11,10 +11,8 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import Navbar from "../components/navbar";
-
-import { useLocalSearchParams } from "expo-router";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -61,6 +59,8 @@ const services = [
 ];
 
 export default function Services() {
+  const { guests } = useLocalSearchParams();
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor={BLACK} />
