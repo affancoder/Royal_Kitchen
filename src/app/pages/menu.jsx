@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   View,
@@ -39,10 +38,17 @@ const categories = [
   "Beverages",
 ];
 
+const foodPreferences = [
+  { label: "All", icon: "restaurant-outline" },
+  { label: "Veg", icon: "leaf-outline" },
+  { label: "Non-Veg", icon: "fast-food-outline" },
+];
+
 const menuItems = [
   {
     name: "Royal Paneer Tikka",
     category: "Starters",
+    foodType: "Veg",
     price: "₹349",
     description: "Marinated cottage cheese grilled to perfection",
     image: paneertikka,
@@ -50,6 +56,7 @@ const menuItems = [
   {
     name: "Tandoori Chicken",
     category: "Starters",
+    foodType: "Non-Veg",
     price: "₹449",
     description: "Traditional spices with smoky tandoor flavour",
     image: tandooriChicken,
@@ -57,6 +64,7 @@ const menuItems = [
   {
     name: "Royal Dum Biryani",
     category: "Main Course",
+    foodType: "Non-Veg",
     price: "₹399",
     description: "Aromatic basmati rice with royal spices",
     image: DumBiyani,
@@ -64,6 +72,7 @@ const menuItems = [
   {
     name: "Butter Chicken",
     category: "Main Course",
+    foodType: "Non-Veg",
     price: "₹449",
     description: "Creamy tomato gravy with tender chicken",
     image: butterChicken,
@@ -71,6 +80,7 @@ const menuItems = [
   {
     name: "Chocolate Lava Cake",
     category: "Desserts",
+    foodType: "Veg",
     price: "₹249",
     description: "Warm chocolate cake with a rich molten centre",
     image: chocolateCake,
@@ -78,6 +88,7 @@ const menuItems = [
   {
     name: "Royal Mocktail",
     category: "Beverages",
+    foodType: "Veg",
     price: "₹199",
     description: "Refreshing signature fruit blend",
     image: mocktail,
@@ -86,13 +97,20 @@ const menuItems = [
 
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [foodPreference, setFoodPreference] = useState("All");
 
-  const filteredItems =
-    selectedCategory === "All"
-      ? menuItems
-      : menuItems.filter(
-          (item) => item.category === selectedCategory
-        );
+  // COMBINE CATEGORY AND FOOD PREFERENCE FILTERS
+  const filteredItems = menuItems.filter((item) => {
+    const matchesCategory =
+      selectedCategory === "All" ||
+      item.category === selectedCategory;
+
+    const matchesFoodPreference =
+      foodPreference === "All" ||
+      item.foodType === foodPreference;
+
+    return matchesCategory && matchesFoodPreference;
+  });
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -123,7 +141,6 @@ export default function Menu() {
 
           {/* MODERN HERO BANNER */}
           <View style={styles.heroBanner}>
-
             {/* BACKGROUND IMAGE */}
             <Image
               source={MenuBanner}
@@ -186,6 +203,53 @@ export default function Menu() {
             </View>
           </View>
 
+          {/* VEG / NON-VEG PREFERENCE FILTER */}
+          <View style={styles.preferenceSection}>
+            <Text style={styles.preferenceTitle}>
+              Choose Your Preference
+            </Text>
+
+            <Text style={styles.preferenceSubtitle}>
+              Explore dishes according to your taste
+            </Text>
+
+            <View style={styles.preferenceToggle}>
+              {foodPreferences.map((option) => {
+                const isSelected =
+                  foodPreference === option.label;
+
+                return (
+                  <TouchableOpacity
+                    key={option.label}
+                    activeOpacity={0.8}
+                    style={[
+                      styles.preferenceButton,
+                      isSelected && styles.activePreferenceButton,
+                    ]}
+                    onPress={() =>
+                      setFoodPreference(option.label)
+                    }
+                  >
+                    <Ionicons
+                      name={option.icon}
+                      size={16}
+                      color={isSelected ? BLACK : "#AAAAAA"}
+                    />
+
+                    <Text
+                      style={[
+                        styles.preferenceText,
+                        isSelected && styles.activePreferenceText,
+                      ]}
+                    >
+                      {option.label}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View>
+
           {/* CATEGORIES */}
           <View style={styles.sectionHeading}>
             <Text style={styles.sectionTitle}>
@@ -211,6 +275,7 @@ export default function Menu() {
                     styles.selectedCategory,
                 ]}
                 onPress={() => setSelectedCategory(category)}
+                activeOpacity={0.8}
               >
                 <Text
                   style={[
@@ -225,56 +290,129 @@ export default function Menu() {
             ))}
           </ScrollView>
 
+          {/* FILTER RESULT COUNT */}
+          <View style={styles.resultRow}>
+            <Text style={styles.resultText}>
+              {filteredItems.length} dishes found
+            </Text>
+
+            {(foodPreference !== "All" ||
+              selectedCategory !== "All") && (
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => {
+                  setFoodPreference("All");
+                  setSelectedCategory("All");
+                }}
+              >
+                <Text style={styles.resetText}>
+                  Reset Filters
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
+
           {/* MENU ITEMS */}
           <View style={styles.menuGrid}>
-            {filteredItems.map((item) => (
-              <View
-                style={styles.menuCard}
-                key={item.name}
-              >
-                <Image
-                  source={item.image}
-                  style={styles.foodImage}
-                  resizeMode="cover"
-                />
+            {filteredItems.length > 0 ? (
+              filteredItems.map((item) => (
+                <View
+                  style={styles.menuCard}
+                  key={item.name}
+                >
+                  <View style={styles.foodImageContainer}>
+                    <Image
+                      source={item.image}
+                      style={styles.foodImage}
+                      resizeMode="cover"
+                    />
 
-                <View style={styles.foodInfo}>
-                  <Text style={styles.foodCategory}>
-                    {item.category.toUpperCase()}
-                  </Text>
+                    {/* VEG / NON-VEG ITEM INDICATOR */}
+                    <View style={styles.foodTypeBadge}>
+                      <View
+                        style={[
+                          styles.foodTypeDot,
+                          {
+                            backgroundColor:
+                              item.foodType === "Veg"
+                                ? "#32CD32"
+                                : "#E53935",
+                          },
+                        ]}
+                      />
 
-                  <Text style={styles.foodName}>
-                    {item.name}
-                  </Text>
+                      <Text style={styles.foodTypeText}>
+                        {item.foodType}
+                      </Text>
+                    </View>
+                  </View>
 
-                  <Text style={styles.foodDescription}>
-                    {item.description}
-                  </Text>
-
-                  <View style={styles.foodBottom}>
-                    <Text style={styles.foodPrice}>
-                      {item.price}
+                  <View style={styles.foodInfo}>
+                    <Text style={styles.foodCategory}>
+                      {item.category.toUpperCase()}
                     </Text>
 
-                    <TouchableOpacity
-                      style={styles.orderButton}
-                      onPress={() => router.push("/auth/login")}
-                      activeOpacity={0.7}
-                    >
-                      <Text style={styles.orderButtonText}>
-                        Order
+                    <Text style={styles.foodName}>
+                      {item.name}
+                    </Text>
+
+                    <Text style={styles.foodDescription}>
+                      {item.description}
+                    </Text>
+
+                    <View style={styles.foodBottom}>
+                      <Text style={styles.foodPrice}>
+                        {item.price}
                       </Text>
 
-                      <Ionicons
-                        name="arrow-forward"
-                        size={14}
-                        color={BLACK}
-                      />
-                    </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.orderButton}
+                        onPress={() => router.push("/auth/login")}
+                        activeOpacity={0.7}
+                      >
+                        <Text style={styles.orderButtonText}>
+                          Order
+                        </Text>
+
+                        <Ionicons
+                          name="arrow-forward"
+                          size={14}
+                          color={BLACK}
+                        />
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 </View>
+              ))
+            ) : (
+              <View style={styles.emptyContainer}>
+                <Ionicons
+                  name="restaurant-outline"
+                  size={38}
+                  color={GOLD}
+                />
+
+                <Text style={styles.emptyTitle}>
+                  No Dishes Found
+                </Text>
+
+                <Text style={styles.emptyDescription}>
+                  Try selecting another category or food preference.
+                </Text>
+
+                <TouchableOpacity
+                  style={styles.clearFilterButton}
+                  onPress={() => {
+                    setFoodPreference("All");
+                    setSelectedCategory("All");
+                  }}
+                >
+                  <Text style={styles.clearFilterText}>
+                    Clear Filters
+                  </Text>
+                </TouchableOpacity>
               </View>
-            ))}
+            )}
           </View>
 
           {/* BOTTOM BANNER */}
@@ -463,6 +601,61 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
+  // VEG / NON-VEG PREFERENCE FILTER
+  preferenceSection: {
+    marginHorizontal: 18,
+    marginTop: 22,
+    marginBottom: 5,
+  },
+
+  preferenceTitle: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
+  preferenceSubtitle: {
+    color: "#888888",
+    fontSize: 11,
+    marginTop: 5,
+  },
+
+  preferenceToggle: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#151515",
+    borderWidth: 1,
+    borderColor: "#292929",
+    borderRadius: 12,
+    padding: 5,
+    marginTop: 13,
+  },
+
+  preferenceButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    paddingVertical: 11,
+    borderRadius: 9,
+  },
+
+  activePreferenceButton: {
+    backgroundColor: GOLD,
+  },
+
+  preferenceText: {
+    color: "#AAAAAA",
+    fontSize: 11,
+    fontWeight: "600",
+  },
+
+  activePreferenceText: {
+    color: BLACK,
+    fontWeight: "bold",
+  },
+
   // SECTION HEADING
   sectionHeading: {
     paddingHorizontal: 20,
@@ -512,6 +705,26 @@ const styles = StyleSheet.create({
     color: BLACK,
   },
 
+  // FILTER RESULT
+  resultRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    marginBottom: 12,
+  },
+
+  resultText: {
+    color: "#888888",
+    fontSize: 11,
+  },
+
+  resetText: {
+    color: GOLD,
+    fontSize: 11,
+    fontWeight: "bold",
+  },
+
   // MENU CARDS
   menuGrid: {
     paddingHorizontal: 18,
@@ -526,10 +739,41 @@ const styles = StyleSheet.create({
     borderColor: "#252525",
   },
 
-  foodImage: {
+  foodImageContainer: {
     width: "100%",
     height: 175,
+    position: "relative",
     backgroundColor: "#222222",
+  },
+
+  foodImage: {
+    width: "100%",
+    height: "100%",
+  },
+
+  foodTypeBadge: {
+    position: "absolute",
+    top: 10,
+    left: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    backgroundColor: "rgba(0,0,0,0.8)",
+    paddingHorizontal: 9,
+    paddingVertical: 6,
+    borderRadius: 5,
+  },
+
+  foodTypeDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+
+  foodTypeText: {
+    color: "#FFFFFF",
+    fontSize: 9,
+    fontWeight: "bold",
   },
 
   foodInfo: {
@@ -581,6 +825,46 @@ const styles = StyleSheet.create({
   },
 
   orderButtonText: {
+    color: BLACK,
+    fontSize: 11,
+    fontWeight: "bold",
+  },
+
+  // EMPTY FILTER RESULT
+  emptyContainer: {
+    backgroundColor: CARD,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#292929",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 35,
+  },
+
+  emptyTitle: {
+    color: "#FFFFFF",
+    fontSize: 17,
+    fontWeight: "bold",
+    marginTop: 12,
+  },
+
+  emptyDescription: {
+    color: "#999999",
+    fontSize: 11,
+    textAlign: "center",
+    lineHeight: 18,
+    marginTop: 7,
+  },
+
+  clearFilterButton: {
+    backgroundColor: GOLD,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 6,
+    marginTop: 15,
+  },
+
+  clearFilterText: {
     color: BLACK,
     fontSize: 11,
     fontWeight: "bold",
