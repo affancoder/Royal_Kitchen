@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   View,
@@ -27,6 +26,27 @@ import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 import butterChicken from "../../../assets/images/butterChicken.jpg";
 import chocolateCake from "../../../assets/images/chocolate-lave-cake.jpg";
 import mocktail from "../../../assets/images/mocktail.jpg";
+
+// Food Images Importing
+
+import homeParty from "../../../assets/images/homeParty.webp";
+import snacks from "../../../assets/images/snacks.webp";
+import biryaniCombo from "../../../assets/images/biryaniCombo.webp";
+import FishCurry from "../../../assets/images/FishCurry.jpeg";
+import DalMakhni from "../../../assets/images/DalMakhni.jpeg";
+import paneer from "../../../assets/images/paneer.jpeg";
+import vegBiryani from "../../../assets/images/vegBiryani.jpeg";
+import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
+
+import VegMomo from "../../../assets/images/veg-momo.jpg";
+import burger from "../../../assets/images/burger.jpg";
+import IceCream from "../../../assets/images/iceCream.jpg";
+import pizza from "../../../assets/images/pizza.jpg";
+import CreameToast from "../../../assets/images/creameToast.jpg";
+import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
+import lunchCombo from "../../../assets/images/lunchCombo.jpg";
+import VegThali from "../../../assets/images/vegThali.jpg";
+import samosa from "../../../assets/images/samosa.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -94,6 +114,30 @@ const menuItems = [
     price: "₹199",
     description: "Refreshing signature fruit blend",
     image: mocktail,
+  },
+  {
+    name: "Spicy Party",
+    category: "Starter",
+    foodType: "non-Veg",
+    price: "₹369",
+    description: "Refreshing signature fruit blend",
+    image: homeParty,
+  },
+  {
+    name: "Snaks",
+    category: "Starter",
+    foodType: "Veg",
+    price: "₹199",
+    description: "Anger signature spicy blend",
+    image: snacks,
+  },
+  {
+    name: "Fish Curry",
+    category: "Main Course",
+    foodType: "non-Veg",
+    price: "₹659",
+    description: "Lemon signature fish blend",
+    image: FishCurry,
   },
 ];
 
