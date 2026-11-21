@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   View,
@@ -8,6 +9,7 @@ import {
   TouchableOpacity,
   StatusBar,
   SafeAreaView,
+  TextInput,
 } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
@@ -96,10 +98,12 @@ const menuItems = [
 ];
 
 export default function Menu() {
+  // ALL HOOKS MUST STAY INSIDE THE COMPONENT
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [foodPreference, setFoodPreference] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // COMBINE CATEGORY AND FOOD PREFERENCE FILTERS
+  // FILTER MENU ITEMS
   const filteredItems = menuItems.filter((item) => {
     const matchesCategory =
       selectedCategory === "All" ||
@@ -109,8 +113,26 @@ export default function Menu() {
       foodPreference === "All" ||
       item.foodType === foodPreference;
 
-    return matchesCategory && matchesFoodPreference;
+    const searchText = searchQuery.trim().toLowerCase();
+
+    const matchesSearch =
+      item.name.toLowerCase().includes(searchText) ||
+      item.category.toLowerCase().includes(searchText) ||
+      item.description.toLowerCase().includes(searchText);
+
+    return (
+      matchesCategory &&
+      matchesFoodPreference &&
+      matchesSearch
+    );
   });
+
+  // RESET ALL FILTERS
+  const resetFilters = () => {
+    setFoodPreference("All");
+    setSelectedCategory("All");
+    setSearchQuery("");
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -139,16 +161,14 @@ export default function Menu() {
             </Text>
           </View>
 
-          {/* MODERN HERO BANNER */}
+          {/* HERO BANNER */}
           <View style={styles.heroBanner}>
-            {/* BACKGROUND IMAGE */}
             <Image
               source={MenuBanner}
               style={styles.heroImage}
               resizeMode="cover"
             />
 
-            {/* DARK GRADIENT OVERLAY */}
             <LinearGradient
               pointerEvents="none"
               colors={[
@@ -163,7 +183,6 @@ export default function Menu() {
               style={styles.heroOverlay}
             />
 
-            {/* HERO CONTENT */}
             <View style={styles.heroContent}>
               <View style={styles.heroBadge}>
                 <Ionicons
@@ -203,7 +222,37 @@ export default function Menu() {
             </View>
           </View>
 
-          {/* VEG / NON-VEG PREFERENCE FILTER */}
+          {/* SEARCH BAR */}
+          <View style={styles.searchContainer}>
+            <Ionicons
+              name="search-outline"
+              size={20}
+              color={GOLD}
+            />
+
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search dishes, categories..."
+              placeholderTextColor="#777777"
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+            />
+
+            {searchQuery.length > 0 && (
+              <TouchableOpacity
+                onPress={() => setSearchQuery("")}
+                activeOpacity={0.7}
+              >
+                <Ionicons
+                  name="close-circle"
+                  size={20}
+                  color="#AAAAAA"
+                />
+              </TouchableOpacity>
+            )}
+          </View>
+
+          {/* VEG / NON-VEG FILTER */}
           <View style={styles.preferenceSection}>
             <Text style={styles.preferenceTitle}>
               Choose Your Preference
@@ -297,13 +346,11 @@ export default function Menu() {
             </Text>
 
             {(foodPreference !== "All" ||
-              selectedCategory !== "All") && (
+              selectedCategory !== "All" ||
+              searchQuery.trim() !== "") && (
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => {
-                  setFoodPreference("All");
-                  setSelectedCategory("All");
-                }}
+                onPress={resetFilters}
               >
                 <Text style={styles.resetText}>
                   Reset Filters
@@ -327,7 +374,7 @@ export default function Menu() {
                       resizeMode="cover"
                     />
 
-                    {/* VEG / NON-VEG ITEM INDICATOR */}
+                    {/* FOOD TYPE INDICATOR */}
                     <View style={styles.foodTypeBadge}>
                       <View
                         style={[
@@ -397,15 +444,12 @@ export default function Menu() {
                 </Text>
 
                 <Text style={styles.emptyDescription}>
-                  Try selecting another category or food preference.
+                  Try another search, category or food preference.
                 </Text>
 
                 <TouchableOpacity
                   style={styles.clearFilterButton}
-                  onPress={() => {
-                    setFoodPreference("All");
-                    setSelectedCategory("All");
-                  }}
+                  onPress={resetFilters}
                 >
                   <Text style={styles.clearFilterText}>
                     Clear Filters
@@ -601,7 +645,29 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  // VEG / NON-VEG PREFERENCE FILTER
+  // SEARCH BAR
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#151515",
+    borderWidth: 1,
+    borderColor: "#333333",
+    borderRadius: 12,
+    marginHorizontal: 18,
+    marginTop: 18,
+    paddingHorizontal: 14,
+    height: 48,
+    gap: 10,
+  },
+
+  searchInput: {
+    flex: 1,
+    color: "#FFFFFF",
+    fontSize: 12,
+    paddingVertical: 0,
+  },
+
+  // VEG / NON-VEG FILTER
   preferenceSection: {
     marginHorizontal: 18,
     marginTop: 22,
