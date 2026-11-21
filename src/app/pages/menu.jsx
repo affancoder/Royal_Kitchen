@@ -14,6 +14,30 @@ import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import Navbar from "../components/navbar";
 
+// Food Images Importing
+
+import homeParty from "../../../assets/images/homeParty.webp";
+import snacks from "../../../assets/images/snacks.webp";
+import biryaniCombo from "../../../assets/images/biryaniCombo.webp";
+import DumBiyani from "../../../assets/images/dumbiryani.jpg";
+import FishCurry from "../../../assets/images/FishCurry.jpeg";
+import DalMakhni from "../../../assets/images/DalMakhni.jpeg";
+import paneer from "../../../assets/images/paneer.jpeg";
+import vegBiryani from "../../../assets/images/vegBiryani.jpeg";
+import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
+import paneertikka from "../../../assets/images/paneer-tikka.jpg";
+import butterChicken from "../../../assets/images/butterChicken.jpg";
+import VegMomo from "../../../assets/images/veg-momo.jpg";
+import burger from "../../../assets/images/burger.jpg";
+import chocolateCake from "../../../assets/images/chocolate-lave-cake.jpg";
+import IceCream from "../../../assets/images/iceCream.jpg";
+import pizza from "../../../assets/images/pizza.jpg";
+import CreameToast from "../../../assets/images/creameToast.jpg";
+import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
+import lunchCombo from "../../../assets/images/lunchCombo.jpg";
+import VegThali from "../../../assets/images/vegThali.jpg";
+import samosa from "../../../assets/images/samosa.jpg";
+
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
 const CARD = "#111111";
@@ -26,8 +50,7 @@ const menuItems = [
     category: "Starters",
     price: "₹349",
     description: "Marinated cottage cheese grilled to perfection",
-    image:
-      "https://images.unsplash.com/photo-1666001120694-3ebe8fd207be?w=500&auto=format&fit=crop&q=60",
+    image: paneertikka,
   },
   {
     name: "Tandoori Chicken",
@@ -138,7 +161,7 @@ export default function Menu() {
               <Text style={styles.heroTitle}>A Taste of{"\n"}Royalty.</Text>
 
               <Text style={styles.heroDescription}>
-                Discover extraordinary flavours crafted with passion.
+                Discover our flavours crafted with passion.
               </Text>
 
               <TouchableOpacity
@@ -148,7 +171,7 @@ export default function Menu() {
               >
                 <Text style={styles.heroButtonText}>Reserve Table</Text>
 
-                <Ionicons name="arrow-forward" size={15} color={BLACK} />
+                <Ionicons name="arrow-forward" size={14} color={BLACK} />
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
@@ -374,7 +397,7 @@ const styles = StyleSheet.create({
 
   heroDescription: {
     color: "#FFFFFF",
-    fontSize: 11,
+    fontSize: 12,
     maxWidth: 230,
     textShadowColor: "#000000",
     textShadowOffset: { width: 1, height: 1 },
@@ -385,17 +408,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     alignSelf: "flex-start",
-    gap: 9,
+    gap: 5,
     backgroundColor: GOLD,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 8,
-    marginTop: 2,
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderRadius: 5,
+    marginTop: 8,
   },
 
   heroButtonText: {
     color: BLACK,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: "bold",
   },
 
