@@ -139,6 +139,14 @@ const menuItems = [
     description: "Lemon signature fish blend",
     image: FishCurry,
   },
+  {
+    name: "DalMakhni",
+    category: "Main Course",
+    foodType: "Veg",
+    price: "₹259",
+    description: "Lemony Makhini Dal Enrich",
+    image: DalMakhni,
+  },
 ];
 
 export default function Menu() {
