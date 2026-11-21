@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 import Navbar from "../components/navbar";
-// import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -26,47 +26,43 @@ const menuItems = [
     category: "Starters",
     price: "₹349",
     description: "Marinated cottage cheese grilled to perfection",
-    image: "https://images.unsplash.com/photo-1666001120694-3ebe8fd207be?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+    image:
+      "https://images.unsplash.com/photo-1666001120694-3ebe8fd207be?w=500&auto=format&fit=crop&q=60",
   },
   {
     name: "Tandoori Chicken",
     category: "Starters",
     price: "₹449",
     description: "Traditional spices with smoky tandoor flavour",
-    image:
-      "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800",
+    image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800",
   },
   {
     name: "Royal Dum Biryani",
     category: "Main Course",
     price: "₹399",
     description: "Aromatic basmati rice with royal spices",
-    image:
-      "https://images.unsplash.com/photo-1563379091339-03246963d96c?w=800",
+    image: "https://images.unsplash.com/photo-1563379091339-03246963d96c?w=800",
   },
   {
     name: "Butter Chicken",
     category: "Main Course",
     price: "₹449",
     description: "Creamy tomato gravy with tender chicken",
-    image:
-      "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800",
+    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800",
   },
   {
     name: "Chocolate Lava Cake",
     category: "Desserts",
     price: "₹249",
     description: "Warm chocolate cake with a rich molten centre",
-    image:
-      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800",
+    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800",
   },
   {
     name: "Royal Mocktail",
     category: "Beverages",
     price: "₹199",
     description: "Refreshing signature fruit blend",
-    image:
-      "https://images.unsplash.com/photo-1513558161293-cdaf765edfd4?w=800",
+    image: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd4?w=800",
   },
 ];
 
@@ -76,9 +72,7 @@ export default function Menu() {
   const filteredItems =
     selectedCategory === "All"
       ? menuItems
-      : menuItems.filter(
-          (item) => item.category === selectedCategory
-        );
+      : menuItems.filter((item) => item.category === selectedCategory);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -89,38 +83,80 @@ export default function Menu() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          {/* Page Heading */}
+          {/* PAGE HEADING */}
           <View style={styles.heading}>
             <Text style={styles.smallTitle}>THE ROYAL KITCHEN & CATERER</Text>
+
             <Text style={styles.title}>Our Menu</Text>
+
             <View style={styles.goldLine} />
+
             <Text style={styles.subtitle}>
               Discover our exquisite collection of royal flavours
             </Text>
           </View>
 
-          {/* Featured Banner */}
-          <View style={styles.featuredCard}>
+          {/* MODERN HERO BANNER */}
+          <TouchableOpacity
+            activeOpacity={0.95}
+            style={styles.heroBanner}
+            onPress={() => router.push("/pages/menu")}
+          >
+            {/* BACKGROUND IMAGE */}
             <Image
               source={{
                 uri: "https://images.unsplash.com/photo-1547592180-85f173990554?w=1200",
               }}
-              style={styles.featuredImage}
+              style={styles.heroImage}
+              resizeMode="cover"
             />
-            <View style={styles.featuredOverlay}>
-              <Text style={styles.featuredLabel}>CHEF'S SPECIAL</Text>
-              <Text style={styles.featuredTitle}>
-                A Taste of Royalty
-              </Text>
-              <Text style={styles.featuredDescription}>
-                Experience unforgettable flavours crafted with passion.
-              </Text>
-            </View>
-          </View>
 
-          {/* Categories */}
+            {/* DARK OVERLAY */}
+            <View pointerEvents="none" style={styles.heroOverlay}>
+              <LinearGradient
+                colors={[
+                  "rgba(0,0,0,0.95)",
+                  "rgba(0,0,0,0.78)",
+                  "rgba(0,0,0,0.30)",
+                  "rgba(0,0,0,0.08)",
+                ]}
+                locations={[0, 0.4, 0.75, 1]}
+                start={{ x: 0, y: 0.5 }}
+                end={{ x: 1, y: 0.5 }}
+                style={StyleSheet.absoluteFillObject}
+              />
+            </View>
+
+            {/* HERO CONTENT */}
+            <View style={styles.heroContent}>
+              <View style={styles.heroBadge}>
+                <Ionicons name="sparkles" size={11} color={GOLD} />
+
+                <Text style={styles.heroBadgeText}>CHEF'S SPECIAL</Text>
+              </View>
+
+              <Text style={styles.heroTitle}>A Taste of{"\n"}Royalty.</Text>
+
+              <Text style={styles.heroDescription}>
+                Discover extraordinary flavours crafted with passion.
+              </Text>
+
+              <TouchableOpacity
+                style={styles.heroButton}
+                onPress={() => router.push("/pages/booking")}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.heroButtonText}>Reserve Table</Text>
+
+                <Ionicons name="arrow-forward" size={15} color={BLACK} />
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+
+          {/* CATEGORIES */}
           <View style={styles.sectionHeading}>
             <Text style={styles.sectionTitle}>Explore Our Menu</Text>
+
             <Text style={styles.sectionSubtitle}>
               Choose your favourite category
             </Text>
@@ -136,8 +172,7 @@ export default function Menu() {
                 key={category}
                 style={[
                   styles.categoryButton,
-                  selectedCategory === category &&
-                    styles.selectedCategory,
+                  selectedCategory === category && styles.selectedCategory,
                 ]}
                 onPress={() => setSelectedCategory(category)}
               >
@@ -154,14 +189,11 @@ export default function Menu() {
             ))}
           </ScrollView>
 
-          {/* Menu Items */}
+          {/* MENU ITEMS */}
           <View style={styles.menuGrid}>
-            {filteredItems.map((item, index) => (
-              <View style={styles.menuCard} key={index}>
-                <Image
-                  source={{ uri: item.image }}
-                  style={styles.foodImage}
-                />
+            {filteredItems.map((item) => (
+              <View style={styles.menuCard} key={item.name}>
+                <Image source={{ uri: item.image }} style={styles.foodImage} />
 
                 <View style={styles.foodInfo}>
                   <Text style={styles.foodCategory}>
@@ -170,9 +202,7 @@ export default function Menu() {
 
                   <Text style={styles.foodName}>{item.name}</Text>
 
-                  <Text style={styles.foodDescription}>
-                    {item.description}
-                  </Text>
+                  <Text style={styles.foodDescription}>{item.description}</Text>
 
                   <View style={styles.foodBottom}>
                     <Text style={styles.foodPrice}>{item.price}</Text>
@@ -182,11 +212,8 @@ export default function Menu() {
                       onPress={() => router.push("/auth/login")}
                     >
                       <Text style={styles.orderButtonText}>Order</Text>
-                      <Ionicons
-                        name="arrow-forward"
-                        size={14}
-                        color={BLACK}
-                      />
+
+                      <Ionicons name="arrow-forward" size={14} color={BLACK} />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -194,13 +221,11 @@ export default function Menu() {
             ))}
           </View>
 
-          {/* Bottom Banner */}
+          {/* BOTTOM BANNER */}
           <View style={styles.bottomBanner}>
             <Ionicons name="restaurant-outline" size={30} color={GOLD} />
 
-            <Text style={styles.bannerTitle}>
-              Crafted With Passion
-            </Text>
+            <Text style={styles.bannerTitle}>Crafted With Passion</Text>
 
             <Text style={styles.bannerDescription}>
               Every dish tells a story of tradition, flavour and royal
@@ -211,9 +236,7 @@ export default function Menu() {
               style={styles.reserveButton}
               onPress={() => router.push("/pages/booking")}
             >
-              <Text style={styles.reserveButtonText}>
-                Reserve Your Table
-              </Text>
+              <Text style={styles.reserveButtonText}>Reserve Your Table</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -229,101 +252,179 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: BLACK,
   },
+
   container: {
     flex: 1,
     backgroundColor: BLACK,
     marginTop: StatusBar.currentHeight || 0,
   },
+
   scrollContent: {
     paddingBottom: 25,
   },
+
+  // PAGE HEADING
   heading: {
     paddingHorizontal: 20,
-    paddingTop: 24,
-    paddingBottom: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     alignItems: "center",
   },
+
   smallTitle: {
     color: GOLD,
     fontSize: 14,
     letterSpacing: 3,
     fontWeight: "700",
   },
+
   title: {
     color: "#FFFFFF",
     fontSize: 30,
     fontWeight: "bold",
-    marginTop: 2,
   },
+
   goldLine: {
     width: 48,
     height: 2,
     backgroundColor: GOLD,
-    marginTop: 6,
+    marginTop: 4,
   },
+
   subtitle: {
     color: "#AAAAAA",
     fontSize: 12,
     textAlign: "center",
-    marginTop: 12,
+    marginTop: 4,
   },
-  featuredCard: {
-    height: 190,
+
+  // HERO BANNER
+  heroBanner: {
+    height: 180,
     marginHorizontal: 18,
-    borderRadius: 12,
+    borderRadius: 22,
     overflow: "hidden",
-    backgroundColor: CARD,
+    backgroundColor: "#171717",
+    position: "relative",
+    borderColor: "#cca402",
+    borderWidth: 1.5,
   },
-  featuredImage: {
+
+  heroImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     width: "100%",
     height: "100%",
+    zIndex: 0,
+  },
+
+  heroOverlay: {
     position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1,
+    backgroundColor: "rgba(0,0,0,0.55)",
   },
-  featuredOverlay: {
+
+  heroContent: {
     flex: 1,
+    zIndex: 2,
     justifyContent: "center",
-    paddingHorizontal: 20,
-    backgroundColor: "rgba(0,0,0,0.58)",
+    alignItems: "flex-start",
+    paddingHorizontal: 22,
+    paddingVertical: 10,
   },
-  featuredLabel: {
+
+  heroBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-start",
+    gap: 5,
+    borderWidth: 1,
+    borderColor: "rgba(212,175,0,0.65)",
+    backgroundColor: "rgba(0,0,0,0.65)",
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 20,
+  },
+
+  heroBadgeText: {
     color: GOLD,
     fontSize: 10,
-    letterSpacing: 2,
     fontWeight: "bold",
+    letterSpacing: 1.5,
   },
-  featuredTitle: {
+
+  heroTitle: {
     color: "#FFFFFF",
-    fontSize: 25,
+    fontSize: 32,
+    fontFamily: "Georgia",
     fontWeight: "bold",
-    marginTop: 8,
+    marginTop: 2,
+    lineHeight: 39,
+    textShadowColor: "#000000",
+    textShadowOffset: { width: 1, height: 2 },
+    textShadowRadius: 6,
   },
-  featuredDescription: {
-    color: "#DDDDDD",
-    fontSize: 12,
-    marginTop: 8,
-    maxWidth: 260,
-    lineHeight: 18,
+
+  heroDescription: {
+    color: "#FFFFFF",
+    fontSize: 11,
+    maxWidth: 230,
+    textShadowColor: "#000000",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 4,
   },
+
+  heroButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-start",
+    gap: 9,
+    backgroundColor: GOLD,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+    marginTop: 2,
+  },
+
+  heroButtonText: {
+    color: BLACK,
+    fontSize: 13,
+    fontWeight: "bold",
+  },
+
+  // SECTION HEADING
   sectionHeading: {
     paddingHorizontal: 20,
     marginTop: 28,
     marginBottom: 15,
   },
+
   sectionTitle: {
     color: "#FFFFFF",
     fontSize: 20,
     fontWeight: "bold",
   },
+
   sectionSubtitle: {
     color: "#888888",
     fontSize: 11,
     marginTop: 5,
   },
+
+  // CATEGORY FILTER
   categoryContainer: {
     paddingHorizontal: 18,
     paddingBottom: 18,
     gap: 9,
   },
+
   categoryButton: {
     borderWidth: 1,
     borderColor: "#444444",
@@ -331,22 +432,28 @@ const styles = StyleSheet.create({
     paddingVertical: 9,
     paddingHorizontal: 15,
   },
+
   selectedCategory: {
     backgroundColor: GOLD,
     borderColor: GOLD,
   },
+
   categoryText: {
     color: "#CCCCCC",
     fontSize: 11,
     fontWeight: "600",
   },
+
   selectedCategoryText: {
     color: BLACK,
   },
+
+  // MENU CARDS
   menuGrid: {
     paddingHorizontal: 18,
     gap: 16,
   },
+
   menuCard: {
     backgroundColor: CARD,
     borderRadius: 12,
@@ -354,43 +461,51 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#252525",
   },
+
   foodImage: {
     width: "100%",
     height: 175,
     backgroundColor: "#222222",
   },
+
   foodInfo: {
     padding: 14,
   },
+
   foodCategory: {
     color: GOLD,
     fontSize: 9,
     letterSpacing: 1.5,
     fontWeight: "bold",
   },
+
   foodName: {
     color: "#FFFFFF",
     fontSize: 17,
     fontWeight: "bold",
     marginTop: 6,
   },
+
   foodDescription: {
     color: "#999999",
     fontSize: 11,
     marginTop: 6,
     lineHeight: 17,
   },
+
   foodBottom: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 14,
   },
+
   foodPrice: {
     color: GOLD,
     fontSize: 17,
     fontWeight: "bold",
   },
+
   orderButton: {
     backgroundColor: GOLD,
     borderRadius: 6,
@@ -400,11 +515,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 6,
   },
+
   orderButtonText: {
     color: BLACK,
     fontSize: 11,
     fontWeight: "bold",
   },
+
+  // BOTTOM BANNER
   bottomBanner: {
     marginHorizontal: 18,
     marginTop: 28,
@@ -415,12 +533,14 @@ const styles = StyleSheet.create({
     borderColor: "#292929",
     alignItems: "center",
   },
+
   bannerTitle: {
     color: "#FFFFFF",
     fontSize: 19,
     fontWeight: "bold",
     marginTop: 12,
   },
+
   bannerDescription: {
     color: "#999999",
     fontSize: 12,
@@ -428,6 +548,7 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     marginTop: 9,
   },
+
   reserveButton: {
     backgroundColor: GOLD,
     paddingVertical: 12,
@@ -435,31 +556,10 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginTop: 18,
   },
+
   reserveButtonText: {
     color: BLACK,
     fontWeight: "bold",
     fontSize: 12,
-  },
-  bottomNav: {
-    height: 57,
-    backgroundColor: BLACK,
-    borderTopWidth: 1,
-    borderTopColor: GOLD,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  navItem: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 2,
-  },
-  navLabel: {
-    color: GOLD,
-    fontSize: 8,
-  },
-  activeNavLabel: {
-    fontWeight: "bold",
   },
 });
