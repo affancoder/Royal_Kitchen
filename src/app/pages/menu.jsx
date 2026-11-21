@@ -147,6 +147,38 @@ const menuItems = [
     description: "Lemony Makhini Dal Enrich",
     image: DalMakhni,
   },
+  {
+    name: "vegBiryani",
+    category: "Main Course",
+    foodType: "Veg",
+    price: "₹359",
+    description: "Delicious Biryani with rich Taste",
+    image: vegBiryani,
+  },
+  {
+    name: "Veg Momo",
+    category: "Starter",
+    foodType: "Veg",
+    price: "₹159",
+    description: "Delicious Momo with rich vegetables",
+    image: VegMomo,
+  },
+  {
+    name: "Ice Creame",
+    category: "Starter",
+    foodType: "Veg",
+    price: "₹179",
+    description: "Delicious creamy with rich milk",
+    image: IceCream,
+  },
+  {
+    name: "CreameToast",
+    category: "starter",
+    foodType:"veg",
+    price:"₹149",
+    description: "Butter toast with tea",
+    image: CreameToast,
+  }
 ];
 
 export default function Menu() {
