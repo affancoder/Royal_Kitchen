@@ -24,6 +24,7 @@ import FishCurry from "../../../assets/images/FishCurry.jpeg";
 import DalMakhni from "../../../assets/images/DalMakhni.jpeg";
 import paneer from "../../../assets/images/paneer.jpeg";
 import vegBiryani from "../../../assets/images/vegBiryani.jpeg";
+import tandooriChicken from "../../../assets/images/tandooriChicken.webp";
 import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
 import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 import butterChicken from "../../../assets/images/butterChicken.jpg";
@@ -37,6 +38,7 @@ import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
 import lunchCombo from "../../../assets/images/lunchCombo.jpg";
 import VegThali from "../../../assets/images/vegThali.jpg";
 import samosa from "../../../assets/images/samosa.jpg";
+import mocktail from "../../../assets/images/mocktail.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -57,35 +59,35 @@ const menuItems = [
     category: "Starters",
     price: "₹449",
     description: "Traditional spices with smoky tandoor flavour",
-    image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800",
+    image: tandooriChicken,
   },
   {
     name: "Royal Dum Biryani",
     category: "Main Course",
     price: "₹399",
     description: "Aromatic basmati rice with royal spices",
-    image: "https://images.unsplash.com/photo-1563379091339-03246963d96c?w=800",
+    image: DumBiyani,
   },
   {
     name: "Butter Chicken",
     category: "Main Course",
     price: "₹449",
     description: "Creamy tomato gravy with tender chicken",
-    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800",
+    image: butterChicken,
   },
   {
     name: "Chocolate Lava Cake",
     category: "Desserts",
     price: "₹249",
     description: "Warm chocolate cake with a rich molten centre",
-    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800",
+    image: chocolateCake,
   },
   {
     name: "Royal Mocktail",
     category: "Beverages",
     price: "₹199",
     description: "Refreshing signature fruit blend",
-    image: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd4?w=800",
+    image: mocktail,
   },
 ];
 
@@ -216,7 +218,7 @@ export default function Menu() {
           <View style={styles.menuGrid}>
             {filteredItems.map((item) => (
               <View style={styles.menuCard} key={item.name}>
-                <Image source={{ uri: item.image }} style={styles.foodImage} />
+                <Image source={item.image} style={styles.foodImage} />
 
                 <View style={styles.foodInfo}>
                   <Text style={styles.foodCategory}>
