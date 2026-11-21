@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   View,
@@ -9,42 +10,34 @@ import {
   StatusBar,
   SafeAreaView,
 } from "react-native";
+
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import Navbar from "../components/navbar";
 
-// Food Images Importing
+// HERO BANNER IMAGE
+import MenuBanner from "../../../assets/images/menu.jpg";
 
-import homeParty from "../../../assets/images/homeParty.webp";
-import snacks from "../../../assets/images/snacks.webp";
-import biryaniCombo from "../../../assets/images/biryaniCombo.webp";
+// FOOD IMAGES
 import DumBiyani from "../../../assets/images/dumbiryani.jpg";
-import FishCurry from "../../../assets/images/FishCurry.jpeg";
-import DalMakhni from "../../../assets/images/DalMakhni.jpeg";
-import paneer from "../../../assets/images/paneer.jpeg";
-import vegBiryani from "../../../assets/images/vegBiryani.jpeg";
 import tandooriChicken from "../../../assets/images/tandooriChicken.webp";
-import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
 import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 import butterChicken from "../../../assets/images/butterChicken.jpg";
-import VegMomo from "../../../assets/images/veg-momo.jpg";
-import burger from "../../../assets/images/burger.jpg";
 import chocolateCake from "../../../assets/images/chocolate-lave-cake.jpg";
-import IceCream from "../../../assets/images/iceCream.jpg";
-import pizza from "../../../assets/images/pizza.jpg";
-import CreameToast from "../../../assets/images/creameToast.jpg";
-import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
-import lunchCombo from "../../../assets/images/lunchCombo.jpg";
-import VegThali from "../../../assets/images/vegThali.jpg";
-import samosa from "../../../assets/images/samosa.jpg";
 import mocktail from "../../../assets/images/mocktail.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
 const CARD = "#111111";
 
-const categories = ["All", "Starters", "Main Course", "Desserts", "Beverages"];
+const categories = [
+  "All",
+  "Starters",
+  "Main Course",
+  "Desserts",
+  "Beverages",
+];
 
 const menuItems = [
   {
@@ -97,11 +90,16 @@ export default function Menu() {
   const filteredItems =
     selectedCategory === "All"
       ? menuItems
-      : menuItems.filter((item) => item.category === selectedCategory);
+      : menuItems.filter(
+          (item) => item.category === selectedCategory
+        );
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar backgroundColor={BLACK} barStyle="light-content" />
+      <StatusBar
+        backgroundColor={BLACK}
+        barStyle="light-content"
+      />
 
       <View style={styles.container}>
         <ScrollView
@@ -110,7 +108,9 @@ export default function Menu() {
         >
           {/* PAGE HEADING */}
           <View style={styles.heading}>
-            <Text style={styles.smallTitle}>THE ROYAL KITCHEN & CATERER</Text>
+            <Text style={styles.smallTitle}>
+              THE ROYAL KITCHEN & CATERER
+            </Text>
 
             <Text style={styles.title}>Our Menu</Text>
 
@@ -122,45 +122,47 @@ export default function Menu() {
           </View>
 
           {/* MODERN HERO BANNER */}
-          <TouchableOpacity
-            activeOpacity={0.95}
-            style={styles.heroBanner}
-            onPress={() => router.push("/pages/menu")}
-          >
+          <View style={styles.heroBanner}>
+
             {/* BACKGROUND IMAGE */}
             <Image
-              source={{
-                uri: "https://images.unsplash.com/photo-1547592180-85f173990554?w=1200",
-              }}
+              source={MenuBanner}
               style={styles.heroImage}
               resizeMode="cover"
             />
 
-            {/* DARK OVERLAY */}
-            <View pointerEvents="none" style={styles.heroOverlay}>
-              <LinearGradient
-                colors={[
-                  "rgba(0,0,0,0.95)",
-                  "rgba(0,0,0,0.78)",
-                  "rgba(0,0,0,0.30)",
-                  "rgba(0,0,0,0.08)",
-                ]}
-                locations={[0, 0.4, 0.75, 1]}
-                start={{ x: 0, y: 0.5 }}
-                end={{ x: 1, y: 0.5 }}
-                style={StyleSheet.absoluteFillObject}
-              />
-            </View>
+            {/* DARK GRADIENT OVERLAY */}
+            <LinearGradient
+              pointerEvents="none"
+              colors={[
+                "rgba(0,0,0,0.95)",
+                "rgba(0,0,0,0.78)",
+                "rgba(0,0,0,0.30)",
+                "rgba(0,0,0,0.08)",
+              ]}
+              locations={[0, 0.4, 0.75, 1]}
+              start={{ x: 0, y: 0.5 }}
+              end={{ x: 1, y: 0.5 }}
+              style={styles.heroOverlay}
+            />
 
             {/* HERO CONTENT */}
             <View style={styles.heroContent}>
               <View style={styles.heroBadge}>
-                <Ionicons name="sparkles" size={11} color={GOLD} />
+                <Ionicons
+                  name="sparkles"
+                  size={11}
+                  color={GOLD}
+                />
 
-                <Text style={styles.heroBadgeText}>CHEF'S SPECIAL</Text>
+                <Text style={styles.heroBadgeText}>
+                  CHEF'S SPECIAL
+                </Text>
               </View>
 
-              <Text style={styles.heroTitle}>A Taste of{"\n"}Royalty.</Text>
+              <Text style={styles.heroTitle}>
+                A Taste of{"\n"}Royalty.
+              </Text>
 
               <Text style={styles.heroDescription}>
                 Discover our flavours crafted with passion.
@@ -171,16 +173,24 @@ export default function Menu() {
                 onPress={() => router.push("/pages/booking")}
                 activeOpacity={0.7}
               >
-                <Text style={styles.heroButtonText}>Reserve Table</Text>
+                <Text style={styles.heroButtonText}>
+                  Reserve Table
+                </Text>
 
-                <Ionicons name="arrow-forward" size={14} color={BLACK} />
+                <Ionicons
+                  name="arrow-forward"
+                  size={14}
+                  color={BLACK}
+                />
               </TouchableOpacity>
             </View>
-          </TouchableOpacity>
+          </View>
 
           {/* CATEGORIES */}
           <View style={styles.sectionHeading}>
-            <Text style={styles.sectionTitle}>Explore Our Menu</Text>
+            <Text style={styles.sectionTitle}>
+              Explore Our Menu
+            </Text>
 
             <Text style={styles.sectionSubtitle}>
               Choose your favourite category
@@ -197,7 +207,8 @@ export default function Menu() {
                 key={category}
                 style={[
                   styles.categoryButton,
-                  selectedCategory === category && styles.selectedCategory,
+                  selectedCategory === category &&
+                    styles.selectedCategory,
                 ]}
                 onPress={() => setSelectedCategory(category)}
               >
@@ -217,28 +228,48 @@ export default function Menu() {
           {/* MENU ITEMS */}
           <View style={styles.menuGrid}>
             {filteredItems.map((item) => (
-              <View style={styles.menuCard} key={item.name}>
-                <Image source={item.image} style={styles.foodImage} />
+              <View
+                style={styles.menuCard}
+                key={item.name}
+              >
+                <Image
+                  source={item.image}
+                  style={styles.foodImage}
+                  resizeMode="cover"
+                />
 
                 <View style={styles.foodInfo}>
                   <Text style={styles.foodCategory}>
                     {item.category.toUpperCase()}
                   </Text>
 
-                  <Text style={styles.foodName}>{item.name}</Text>
+                  <Text style={styles.foodName}>
+                    {item.name}
+                  </Text>
 
-                  <Text style={styles.foodDescription}>{item.description}</Text>
+                  <Text style={styles.foodDescription}>
+                    {item.description}
+                  </Text>
 
                   <View style={styles.foodBottom}>
-                    <Text style={styles.foodPrice}>{item.price}</Text>
+                    <Text style={styles.foodPrice}>
+                      {item.price}
+                    </Text>
 
                     <TouchableOpacity
                       style={styles.orderButton}
                       onPress={() => router.push("/auth/login")}
+                      activeOpacity={0.7}
                     >
-                      <Text style={styles.orderButtonText}>Order</Text>
+                      <Text style={styles.orderButtonText}>
+                        Order
+                      </Text>
 
-                      <Ionicons name="arrow-forward" size={14} color={BLACK} />
+                      <Ionicons
+                        name="arrow-forward"
+                        size={14}
+                        color={BLACK}
+                      />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -248,9 +279,15 @@ export default function Menu() {
 
           {/* BOTTOM BANNER */}
           <View style={styles.bottomBanner}>
-            <Ionicons name="restaurant-outline" size={30} color={GOLD} />
+            <Ionicons
+              name="restaurant-outline"
+              size={30}
+              color={GOLD}
+            />
 
-            <Text style={styles.bannerTitle}>Crafted With Passion</Text>
+            <Text style={styles.bannerTitle}>
+              Crafted With Passion
+            </Text>
 
             <Text style={styles.bannerDescription}>
               Every dish tells a story of tradition, flavour and royal
@@ -260,8 +297,11 @@ export default function Menu() {
             <TouchableOpacity
               style={styles.reserveButton}
               onPress={() => router.push("/pages/booking")}
+              activeOpacity={0.7}
             >
-              <Text style={styles.reserveButtonText}>Reserve Your Table</Text>
+              <Text style={styles.reserveButtonText}>
+                Reserve Your Table
+              </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -331,7 +371,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#171717",
     position: "relative",
-    borderColor: "#cca402",
+    borderColor: "#CCA402",
     borderWidth: 1.5,
   },
 
@@ -353,7 +393,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     zIndex: 1,
-    backgroundColor: "rgba(0,0,0,0.55)",
   },
 
   heroContent: {
@@ -373,8 +412,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(212,175,0,0.65)",
     backgroundColor: "rgba(0,0,0,0.65)",
-    paddingHorizontal: 10,
-    paddingVertical: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
     borderRadius: 20,
   },
 
@@ -412,15 +451,15 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     gap: 5,
     backgroundColor: GOLD,
-    paddingHorizontal: 6,
-    paddingVertical: 3,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
     borderRadius: 5,
     marginTop: 8,
   },
 
   heroButtonText: {
     color: BLACK,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "bold",
   },
 
