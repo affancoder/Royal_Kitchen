@@ -345,14 +345,18 @@ const styles = StyleSheet.create({
 
   imageContainer: {
     width: "100%",
-    height: 290,
+    height: 275,
     backgroundColor: CARD,
     position: "relative",
+    borderWidth: 2,
+    borderColor: "#cca402",
+    borderRadius: 12,
   },
 
   foodImage: {
     width: "100%",
     height: "100%",
+    borderRadius: 12,
   },
 
   imagePlaceholder: {
@@ -409,9 +413,9 @@ const styles = StyleSheet.create({
 
   foodDescription: {
     color: "#AAAAAA",
-    fontSize: 14,
+    fontSize: 18,
     lineHeight: 22,
-    marginTop: 9,
+    marginTop: 4,
   },
 
   priceRow: {
@@ -423,32 +427,33 @@ const styles = StyleSheet.create({
 
   priceLabel: {
     color: "#BBBBBB",
-    fontSize: 15,
+    fontSize: 18,
   },
 
   foodPrice: {
     color: GOLD,
-    fontSize: 23,
+    fontSize: 28,
     fontWeight: "800",
   },
 
   divider: {
     height: 1,
     backgroundColor: "#292929",
-    marginVertical: 22,
+    marginVertical: 20,
   },
 
   sectionTitle: {
     color: "#FFFFFF",
-    fontSize: 17,
+    fontSize: 20,
     fontWeight: "700",
-    marginBottom: 16,
+    marginBottom: 14,
+    textAlign: "center",
   },
 
   quantityContainer: {
     flexDirection: "row",
     alignItems: "center",
-    alignSelf: "flex-start",
+    alignSelf: "center",
     backgroundColor: CARD,
     borderRadius: 10,
     padding: 6,
@@ -487,12 +492,12 @@ const styles = StyleSheet.create({
 
   summaryLabel: {
     color: "#AAAAAA",
-    fontSize: 13,
+    fontSize: 16,
   },
 
   summaryValue: {
     color: "#FFFFFF",
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: "600",
     maxWidth: "60%",
     textAlign: "right",
@@ -510,13 +515,13 @@ const styles = StyleSheet.create({
 
   totalLabel: {
     color: "#FFFFFF",
-    fontSize: 15,
+    fontSize: 19,
     fontWeight: "700",
   },
 
   totalPrice: {
     color: GOLD,
-    fontSize: 22,
+    fontSize: 23,
     fontWeight: "800",
   },
 
@@ -528,12 +533,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 12,
+    gap: 8,
   },
 
   orderButtonText: {
     color: BLACK,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "800",
     letterSpacing: 1.2,
   },
@@ -542,12 +547,12 @@ const styles = StyleSheet.create({
     height: 48,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 9,
+    marginTop: 4,
   },
 
   continueButtonText: {
     color: "#AAAAAA",
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: "600",
   },
 });
