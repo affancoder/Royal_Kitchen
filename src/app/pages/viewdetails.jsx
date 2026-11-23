@@ -85,12 +85,18 @@ export default function ViewDetails() {
   };
 
   const handleOrder = () => {
-    Alert.alert(
-      "Order Selection",
-      `${quantity} × ${foodName} selected. Total: ₹${totalPrice}`,
-      [{ text: "OK" }]
-    );
-  };
+  router.push({
+    pathname: "/pages/orderproceed",
+    params: {
+      id: String(id || ""),
+      name: String(foodName),
+      description: String(foodDescription),
+      price: String(foodPrice),
+      mode: String(mode || ""),
+      quantity: String(quantity),
+    },
+  });
+};
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -304,6 +310,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BLACK,
+    marginTop: StatusBar.currentHeight || 0,
   },
 
   header: {
