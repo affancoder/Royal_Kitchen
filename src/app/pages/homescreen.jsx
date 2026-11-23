@@ -605,7 +605,7 @@ export default function HomeScreen() {
                     activeOpacity={0.8}
                     onPress={() => router.push("/pages/booking")}
                   >
-                    <Text style={styles.goldButtonText}>RESERVE TABLE</Text>
+                    <Text style={styles.goldButtonText}>Reserve Table</Text>
                     <Ionicons name="arrow-forward" size={14} color={BLACK} />
                   </TouchableOpacity>
                 </View>
@@ -1492,18 +1492,18 @@ const styles = StyleSheet.create({
 
   goldButton: {
     backgroundColor: GOLD,
-    borderRadius: 22,
+    borderRadius: 6,
     paddingHorizontal: 6,
     paddingVertical: 4,
     marginTop: 8,
     flexDirection: "row",
     alignItems: "center",
-    gap: 2,
+    gap: 4,
   },
 
   goldButtonText: {
     color: BLACK,
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: "bold",
   },
 

@@ -148,7 +148,7 @@ const menuItems = [
     image: DalMakhni,
   },
   {
-    name: "vegBiryani",
+    name: "Veg Biryani",
     category: "Main Course",
     foodType: "Veg",
     price: "₹359",
@@ -178,6 +178,30 @@ const menuItems = [
     price:"₹149",
     description: "Butter toast with tea",
     image: CreameToast,
+  },
+  {
+    name: "Burger",
+    category: "starter",
+    foodType:"veg",
+    price:"₹149",
+    description: "Delicious bun with fresh vegetable",
+    image: burger,
+  },
+  {
+    name: "Chicken Biryani",
+    category: "Main course",
+    foodType:"non-veg",
+    price: "₹379",
+    description: "Delicious biryani with fresh chicken",
+    image: chickenbiryani,
+  },
+  {
+    name: "Kashmiri Rogan",
+    category: "starter",
+    foodType:"non-veg",
+    price:"₹149",
+    description: "Delicious Rogan with fresh jeera rice ",
+    image: kashmiriRogan,
   }
 ];
 
@@ -624,7 +648,7 @@ const styles = StyleSheet.create({
 
   subtitle: {
     color: "#AAAAAA",
-    fontSize: 12,
+    fontSize: 16,
     textAlign: "center",
     marginTop: 4,
   },
