@@ -15,34 +15,44 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 
 // Food images
-import paneertikka from "../../../assets/images/paneer-tikka.jpg";
+
+import homeParty from "../../../assets/images/homeParty.webp";
+import snacks from "../../../assets/images/snacks.webp";
+import biryaniCombo from "../../../assets/images/biryaniCombo.webp";
+import DumBiyani from "../../../assets/images/dumbiryani.jpg";
+import FishCurry from "../../../assets/images/FishCurry.jpeg";
+import DalMakhni from "../../../assets/images/DalMakhni.jpeg";
+import paneer from "../../../assets/images/paneer.jpeg";
+import vegBiryani from "../../../assets/images/vegBiryani.jpeg";
 import chickenbiryani from "../../../assets/images/chickenbiryani.jpg";
-import VegMomo from "../../../assets/images/veg-momo.jpg";
+import paneertikka from "../../../assets/images/paneer-tikka.jpg";
 import butterChicken from "../../../assets/images/butterChicken.jpg";
+import VegMomo from "../../../assets/images/veg-momo.jpg";
 import burger from "../../../assets/images/burger.jpg";
 import chocolateCake from "../../../assets/images/chocolate-lave-cake.jpg";
 import IceCream from "../../../assets/images/iceCream.jpg";
 import pizza from "../../../assets/images/pizza.jpg";
-import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
 import CreameToast from "../../../assets/images/creameToast.jpg";
+import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
 import lunchCombo from "../../../assets/images/lunchCombo.jpg";
 import VegThali from "../../../assets/images/vegThali.jpg";
 import samosa from "../../../assets/images/samosa.jpg";
-import biryaniCombo from "../../../assets/images/biryaniCombo.webp";
-import snacks from "../../../assets/images/snacks.webp";
-import homeParty from "../../../assets/images/homeParty.webp";
+import TandooriChicken from "../../../assets/images/tandooriChicken.webp";
+import Mocktail from "../../../assets/images/mocktail.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
 const CARD = "#111111";
 
 const foodImages = {
-  "Paneer Tikka": paneertikka,
+  "Royal Paneer Tikka": paneertikka,
+  "Tandoori Chicken" : TandooriChicken,
   "Chicken Biryani": chickenbiryani,
+  "Royal Dum Biryani": DumBiyani,
   "Veg Momo": VegMomo,
   "Butter Chicken": butterChicken,
   Burger: burger,
-  "Chocolate Cake": chocolateCake,
+  "Chocolate Lava Cake": chocolateCake,
   "Ice Cream Combo": IceCream,
   "Cheese Pizza": pizza,
   "Kashmiri Rogan": kashmiriRogan,
@@ -55,6 +65,7 @@ const foodImages = {
   "Spicy Snacks": snacks,
   "Family Feast": lunchCombo,
   "Home Party": homeParty,
+  "Royal Mocktail" : Mocktail,
 };
 
 export default function ViewDetails() {

@@ -52,13 +52,7 @@ const GOLD = "#D4AF00";
 const BLACK = "#000000";
 const CARD = "#111111";
 
-const categories = [
-  "All",
-  "Starters",
-  "Main Course",
-  "Desserts",
-  "Beverages",
-];
+const categories = ["All", "Starters", "Main Course", "Desserts", "Beverages"];
 
 const foodPreferences = [
   { label: "All", icon: "restaurant-outline" },
@@ -174,23 +168,23 @@ const menuItems = [
   {
     name: "CreameToast",
     category: "starter",
-    foodType:"veg",
-    price:"₹149",
+    foodType: "veg",
+    price: "₹149",
     description: "Butter toast with tea",
     image: CreameToast,
   },
   {
     name: "Burger",
     category: "starter",
-    foodType:"veg",
-    price:"₹149",
+    foodType: "veg",
+    price: "₹149",
     description: "Delicious bun with fresh vegetable",
     image: burger,
   },
   {
     name: "Chicken Biryani",
     category: "Main course",
-    foodType:"non-veg",
+    foodType: "non-veg",
     price: "₹379",
     description: "Delicious biryani with fresh chicken",
     image: chickenbiryani,
@@ -198,11 +192,11 @@ const menuItems = [
   {
     name: "Kashmiri Rogan",
     category: "starter",
-    foodType:"non-veg",
-    price:"₹149",
+    foodType: "non-veg",
+    price: "₹149",
     description: "Delicious Rogan with fresh jeera rice ",
     image: kashmiriRogan,
-  }
+  },
 ];
 
 export default function Menu() {
@@ -214,12 +208,10 @@ export default function Menu() {
   // FILTER MENU ITEMS
   const filteredItems = menuItems.filter((item) => {
     const matchesCategory =
-      selectedCategory === "All" ||
-      item.category === selectedCategory;
+      selectedCategory === "All" || item.category === selectedCategory;
 
     const matchesFoodPreference =
-      foodPreference === "All" ||
-      item.foodType === foodPreference;
+      foodPreference === "All" || item.foodType === foodPreference;
 
     const searchText = searchQuery.trim().toLowerCase();
 
@@ -228,12 +220,21 @@ export default function Menu() {
       item.category.toLowerCase().includes(searchText) ||
       item.description.toLowerCase().includes(searchText);
 
-    return (
-      matchesCategory &&
-      matchesFoodPreference &&
-      matchesSearch
-    );
+    return matchesCategory && matchesFoodPreference && matchesSearch;
   });
+
+  const openFoodDetails = (item) => {
+    router.push({
+      pathname: "/pages/viewdetails",
+      params: {
+        id: String(item.id || item.name),
+        name: item.name,
+        description: item.description || "",
+        price: String(item.price || ""),
+        mode: String(item.foodType || ""),
+      },
+    });
+  };
 
   // RESET ALL FILTERS
   const resetFilters = () => {
@@ -244,10 +245,7 @@ export default function Menu() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar
-        backgroundColor={BLACK}
-        barStyle="light-content"
-      />
+      <StatusBar backgroundColor={BLACK} barStyle="light-content" />
 
       <View style={styles.container}>
         <ScrollView
@@ -256,9 +254,7 @@ export default function Menu() {
         >
           {/* PAGE HEADING */}
           <View style={styles.heading}>
-            <Text style={styles.smallTitle}>
-              THE ROYAL KITCHEN & CATERER
-            </Text>
+            <Text style={styles.smallTitle}>THE ROYAL KITCHEN & CATERER</Text>
 
             <Text style={styles.title}>Our Menu</Text>
 
@@ -293,20 +289,12 @@ export default function Menu() {
 
             <View style={styles.heroContent}>
               <View style={styles.heroBadge}>
-                <Ionicons
-                  name="sparkles"
-                  size={11}
-                  color={GOLD}
-                />
+                <Ionicons name="sparkles" size={11} color={GOLD} />
 
-                <Text style={styles.heroBadgeText}>
-                  CHEF'S SPECIAL
-                </Text>
+                <Text style={styles.heroBadgeText}>CHEF'S SPECIAL</Text>
               </View>
 
-              <Text style={styles.heroTitle}>
-                A Taste of{"\n"}Royalty.
-              </Text>
+              <Text style={styles.heroTitle}>A Taste of{"\n"}Royalty.</Text>
 
               <Text style={styles.heroDescription}>
                 Discover our flavours crafted with passion.
@@ -317,26 +305,16 @@ export default function Menu() {
                 onPress={() => router.push("/pages/booking")}
                 activeOpacity={0.7}
               >
-                <Text style={styles.heroButtonText}>
-                  Reserve Table
-                </Text>
+                <Text style={styles.heroButtonText}>Reserve Table</Text>
 
-                <Ionicons
-                  name="arrow-forward"
-                  size={14}
-                  color={BLACK}
-                />
+                <Ionicons name="arrow-forward" size={14} color={BLACK} />
               </TouchableOpacity>
             </View>
           </View>
 
           {/* SEARCH BAR */}
           <View style={styles.searchContainer}>
-            <Ionicons
-              name="search-outline"
-              size={20}
-              color={GOLD}
-            />
+            <Ionicons name="search-outline" size={20} color={GOLD} />
 
             <TextInput
               style={styles.searchInput}
@@ -351,20 +329,14 @@ export default function Menu() {
                 onPress={() => setSearchQuery("")}
                 activeOpacity={0.7}
               >
-                <Ionicons
-                  name="close-circle"
-                  size={20}
-                  color="#AAAAAA"
-                />
+                <Ionicons name="close-circle" size={20} color="#AAAAAA" />
               </TouchableOpacity>
             )}
           </View>
 
           {/* VEG / NON-VEG FILTER */}
           <View style={styles.preferenceSection}>
-            <Text style={styles.preferenceTitle}>
-              Choose Your Preference
-            </Text>
+            <Text style={styles.preferenceTitle}>Choose Your Preference</Text>
 
             <Text style={styles.preferenceSubtitle}>
               Explore dishes according to your taste
@@ -372,8 +344,7 @@ export default function Menu() {
 
             <View style={styles.preferenceToggle}>
               {foodPreferences.map((option) => {
-                const isSelected =
-                  foodPreference === option.label;
+                const isSelected = foodPreference === option.label;
 
                 return (
                   <TouchableOpacity
@@ -383,9 +354,7 @@ export default function Menu() {
                       styles.preferenceButton,
                       isSelected && styles.activePreferenceButton,
                     ]}
-                    onPress={() =>
-                      setFoodPreference(option.label)
-                    }
+                    onPress={() => setFoodPreference(option.label)}
                   >
                     <Ionicons
                       name={option.icon}
@@ -409,9 +378,7 @@ export default function Menu() {
 
           {/* CATEGORIES */}
           <View style={styles.sectionHeading}>
-            <Text style={styles.sectionTitle}>
-              Explore Our Menu
-            </Text>
+            <Text style={styles.sectionTitle}>Explore Our Menu</Text>
 
             <Text style={styles.sectionSubtitle}>
               Choose your favourite category
@@ -428,8 +395,7 @@ export default function Menu() {
                 key={category}
                 style={[
                   styles.categoryButton,
-                  selectedCategory === category &&
-                    styles.selectedCategory,
+                  selectedCategory === category && styles.selectedCategory,
                 ]}
                 onPress={() => setSelectedCategory(category)}
                 activeOpacity={0.8}
@@ -456,13 +422,8 @@ export default function Menu() {
             {(foodPreference !== "All" ||
               selectedCategory !== "All" ||
               searchQuery.trim() !== "") && (
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={resetFilters}
-              >
-                <Text style={styles.resetText}>
-                  Reset Filters
-                </Text>
+              <TouchableOpacity activeOpacity={0.7} onPress={resetFilters}>
+                <Text style={styles.resetText}>Reset Filters</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -471,10 +432,7 @@ export default function Menu() {
           <View style={styles.menuGrid}>
             {filteredItems.length > 0 ? (
               filteredItems.map((item) => (
-                <View
-                  style={styles.menuCard}
-                  key={item.name}
-                >
+                <View style={styles.menuCard} key={item.name}>
                   <View style={styles.foodImageContainer}>
                     <Image
                       source={item.image}
@@ -489,16 +447,12 @@ export default function Menu() {
                           styles.foodTypeDot,
                           {
                             backgroundColor:
-                              item.foodType === "Veg"
-                                ? "#32CD32"
-                                : "#E53935",
+                              item.foodType === "Veg" ? "#32CD32" : "#E53935",
                           },
                         ]}
                       />
 
-                      <Text style={styles.foodTypeText}>
-                        {item.foodType}
-                      </Text>
+                      <Text style={styles.foodTypeText}>{item.foodType}</Text>
                     </View>
                   </View>
 
@@ -507,27 +461,21 @@ export default function Menu() {
                       {item.category.toUpperCase()}
                     </Text>
 
-                    <Text style={styles.foodName}>
-                      {item.name}
-                    </Text>
+                    <Text style={styles.foodName}>{item.name}</Text>
 
                     <Text style={styles.foodDescription}>
                       {item.description}
                     </Text>
 
                     <View style={styles.foodBottom}>
-                      <Text style={styles.foodPrice}>
-                        {item.price}
-                      </Text>
+                      <Text style={styles.foodPrice}>{item.price}</Text>
 
                       <TouchableOpacity
                         style={styles.orderButton}
-                        onPress={() => router.push("/auth/login")}
+                        onPress={() => openFoodDetails(item)}
                         activeOpacity={0.7}
                       >
-                        <Text style={styles.orderButtonText}>
-                          Order
-                        </Text>
+                        <Text style={styles.orderButtonText}>Order</Text>
 
                         <Ionicons
                           name="arrow-forward"
@@ -541,15 +489,9 @@ export default function Menu() {
               ))
             ) : (
               <View style={styles.emptyContainer}>
-                <Ionicons
-                  name="restaurant-outline"
-                  size={38}
-                  color={GOLD}
-                />
+                <Ionicons name="restaurant-outline" size={38} color={GOLD} />
 
-                <Text style={styles.emptyTitle}>
-                  No Dishes Found
-                </Text>
+                <Text style={styles.emptyTitle}>No Dishes Found</Text>
 
                 <Text style={styles.emptyDescription}>
                   Try another search, category or food preference.
@@ -559,9 +501,7 @@ export default function Menu() {
                   style={styles.clearFilterButton}
                   onPress={resetFilters}
                 >
-                  <Text style={styles.clearFilterText}>
-                    Clear Filters
-                  </Text>
+                  <Text style={styles.clearFilterText}>Clear Filters</Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -569,15 +509,9 @@ export default function Menu() {
 
           {/* BOTTOM BANNER */}
           <View style={styles.bottomBanner}>
-            <Ionicons
-              name="restaurant-outline"
-              size={30}
-              color={GOLD}
-            />
+            <Ionicons name="restaurant-outline" size={30} color={GOLD} />
 
-            <Text style={styles.bannerTitle}>
-              Crafted With Passion
-            </Text>
+            <Text style={styles.bannerTitle}>Crafted With Passion</Text>
 
             <Text style={styles.bannerDescription}>
               Every dish tells a story of tradition, flavour and royal
@@ -589,9 +523,7 @@ export default function Menu() {
               onPress={() => router.push("/pages/booking")}
               activeOpacity={0.7}
             >
-              <Text style={styles.reserveButtonText}>
-                Reserve Your Table
-              </Text>
+              <Text style={styles.reserveButtonText}>Reserve Your Table</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

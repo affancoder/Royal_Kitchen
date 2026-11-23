@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     paddingBottom: 25,
   },
   heading: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
     paddingTop: 24,
     paddingBottom: 22,
     alignItems: "center",
@@ -323,9 +323,9 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: "#AAAAAA",
-    fontSize: 12,
+    fontSize: 13,
     textAlign: "center",
-    marginTop: 12,
+    marginTop: 8,
     lineHeight: 19,
   },
   banner: {
@@ -334,46 +334,46 @@ const styles = StyleSheet.create({
     backgroundColor: CARD,
     borderRadius: 12,
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#292929",
+    borderWidth: 0.5,
+    borderColor: "#cca402",
   },
   bannerTitle: {
     color: "#FFFFFF",
     fontSize: 18,
     fontWeight: "bold",
-    marginTop: 12,
+    marginTop: 8,
     textAlign: "center",
   },
   bannerDescription: {
     color: "#999999",
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
     lineHeight: 19,
-    marginTop: 8,
+    marginTop: 6,
   },
   formCard: {
     marginHorizontal: 18,
-    marginTop: 22,
-    padding: 17,
+    marginTop: 16,
+    padding: 16,
     backgroundColor: CARD,
     borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#292929",
+    borderWidth: 0.5,
+    borderColor: "#cca402",
   },
   formTitle: {
     color: "#FFFFFF",
-    fontSize: 21,
+    fontSize: 22,
     fontWeight: "bold",
   },
   formSubtitle: {
     color: "#888888",
-    fontSize: 11,
-    marginTop: 6,
-    marginBottom: 18,
+    fontSize: 14,
+    marginTop: 2,
+    marginBottom: 16,
   },
   label: {
     color: "#DDDDDD",
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: "600",
     marginTop: 17,
     marginBottom: 9,
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     color: "#FFFFFF",
-    fontSize: 12,
+    fontSize: 16,
   },
   guestBox: {
     height: 52,
@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
   },
   guestText: {
     color: "#DDDDDD",
-    fontSize: 12,
+    fontSize: 16,
   },
   counter: {
     flexDirection: "row",
@@ -430,7 +430,7 @@ const styles = StyleSheet.create({
   },
   guestNumber: {
     color: "#FFFFFF",
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: "bold",
   },
   timeGrid: {
@@ -451,7 +451,7 @@ const styles = StyleSheet.create({
   },
   timeText: {
     color: "#CCCCCC",
-    fontSize: 11,
+    fontSize: 14,
   },
   selectedTimeText: {
     color: BLACK,
@@ -475,7 +475,7 @@ const styles = StyleSheet.create({
   },
   occasionText: {
     color: "#CCCCCC",
-    fontSize: 10,
+    fontSize: 14,
   },
   selectedOccasionText: {
     color: BLACK,
@@ -503,7 +503,7 @@ const styles = StyleSheet.create({
   },
   submitText: {
     color: BLACK,
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: "bold",
   },
   contactCard: {
@@ -513,22 +513,24 @@ const styles = StyleSheet.create({
     backgroundColor: CARD,
     borderRadius: 12,
     alignItems: "center",
+    borderWidth: 0.5,
+    borderColor: "#cca402",
   },
   contactTitle: {
     color: "#FFFFFF",
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: "bold",
     marginTop: 10,
   },
   contactDescription: {
     color: "#999999",
-    fontSize: 11,
+    fontSize: 13,
     textAlign: "center",
-    marginTop: 7,
+    marginTop: 6,
   },
   contactLink: {
     color: GOLD,
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "bold",
     marginTop: 12,
   },
