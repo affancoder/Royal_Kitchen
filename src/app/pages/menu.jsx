@@ -648,7 +648,7 @@ const styles = StyleSheet.create({
 
   subtitle: {
     color: "#AAAAAA",
-    fontSize: 16,
+    fontSize: 13,
     textAlign: "center",
     marginTop: 4,
   },
@@ -758,8 +758,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#151515",
-    borderWidth: 1,
-    borderColor: "#333333",
+    borderWidth: 0.45,
+    borderColor: "#cca402",
     borderRadius: 12,
     marginHorizontal: 18,
     marginTop: 18,
@@ -771,7 +771,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     color: "#FFFFFF",
-    fontSize: 12,
+    fontSize: 14,
     paddingVertical: 0,
   },
 
@@ -784,14 +784,14 @@ const styles = StyleSheet.create({
 
   preferenceTitle: {
     color: "#FFFFFF",
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
   },
 
   preferenceSubtitle: {
     color: "#888888",
-    fontSize: 11,
-    marginTop: 5,
+    fontSize: 13,
+    marginTop: 2,
   },
 
   preferenceToggle: {
@@ -811,8 +811,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 6,
-    paddingVertical: 11,
-    borderRadius: 9,
+    paddingVertical: 4,
+    borderRadius: 6,
   },
 
   activePreferenceButton: {
@@ -821,7 +821,7 @@ const styles = StyleSheet.create({
 
   preferenceText: {
     color: "#AAAAAA",
-    fontSize: 11,
+    fontSize: 16,
     fontWeight: "600",
   },
 
@@ -845,8 +845,8 @@ const styles = StyleSheet.create({
 
   sectionSubtitle: {
     color: "#888888",
-    fontSize: 11,
-    marginTop: 5,
+    fontSize: 12,
+    marginTop: 2,
   },
 
   // CATEGORY FILTER
@@ -860,8 +860,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#444444",
     borderRadius: 20,
-    paddingVertical: 9,
-    paddingHorizontal: 15,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
   },
 
   selectedCategory: {
@@ -871,7 +871,7 @@ const styles = StyleSheet.create({
 
   categoryText: {
     color: "#CCCCCC",
-    fontSize: 11,
+    fontSize: 14,
     fontWeight: "600",
   },
 
@@ -890,7 +890,7 @@ const styles = StyleSheet.create({
 
   resultText: {
     color: "#888888",
-    fontSize: 11,
+    fontSize: 12,
   },
 
   resetText: {
@@ -909,13 +909,13 @@ const styles = StyleSheet.create({
     backgroundColor: CARD,
     borderRadius: 12,
     overflow: "hidden",
-    borderWidth: 1,
-    borderColor: "#252525",
+    borderWidth: 0.5,
+    borderColor: "#cca402",
   },
 
   foodImageContainer: {
     width: "100%",
-    height: 175,
+    height: 160,
     position: "relative",
     backgroundColor: "#222222",
   },
@@ -946,32 +946,32 @@ const styles = StyleSheet.create({
 
   foodTypeText: {
     color: "#FFFFFF",
-    fontSize: 9,
+    fontSize: 10,
     fontWeight: "bold",
   },
 
   foodInfo: {
-    padding: 14,
+    padding: 12,
   },
 
   foodCategory: {
     color: GOLD,
-    fontSize: 9,
+    fontSize: 10,
     letterSpacing: 1.5,
     fontWeight: "bold",
   },
 
   foodName: {
     color: "#FFFFFF",
-    fontSize: 17,
+    fontSize: 23,
     fontWeight: "bold",
-    marginTop: 6,
+    marginTop: 2,
   },
 
   foodDescription: {
     color: "#999999",
-    fontSize: 11,
-    marginTop: 6,
+    fontSize: 14,
+    marginTop: 4,
     lineHeight: 17,
   },
 
@@ -984,23 +984,23 @@ const styles = StyleSheet.create({
 
   foodPrice: {
     color: GOLD,
-    fontSize: 17,
+    fontSize: 24,
     fontWeight: "bold",
   },
 
   orderButton: {
     backgroundColor: GOLD,
     borderRadius: 6,
-    paddingVertical: 8,
-    paddingHorizontal: 13,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
+    gap: 4,
   },
 
   orderButtonText: {
     color: BLACK,
-    fontSize: 11,
+    fontSize: 15,
     fontWeight: "bold",
   },
 
