@@ -39,6 +39,7 @@ import VegThali from "../../../assets/images/vegThali.jpg";
 import samosa from "../../../assets/images/samosa.jpg";
 import TandooriChicken from "../../../assets/images/tandooriChicken.webp";
 import Mocktail from "../../../assets/images/mocktail.jpg";
+import cake from "../../../assets/images/cake.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -53,19 +54,24 @@ const foodImages = {
   "Butter Chicken": butterChicken,
   Burger: burger,
   "Chocolate Lava Cake": chocolateCake,
-  "Ice Cream Combo": IceCream,
+  "Ice Creame": IceCream,
   "Cheese Pizza": pizza,
   "Kashmiri Rogan": kashmiriRogan,
   "Creame Toast": CreameToast,
   "Lunch Combo": lunchCombo,
   "Veg Thali": VegThali,
-  Samosa: samosa,
+  "Samosa": samosa,
+  "Veg Biryani": vegBiryani,
   "Veg Combo": VegThali,
   "Biryani Combo": biryaniCombo,
-  "Spicy Snacks": snacks,
+  "Snacks": snacks,
+  "Spicy Party": homeParty,
   "Family Feast": lunchCombo,
   "Home Party": homeParty,
   "Royal Mocktail" : Mocktail,
+  "Fish Curry": FishCurry,
+  "Dal Makhni": DalMakhni,
+  "Cake": cake,
 };
 
 export default function ViewDetails() {

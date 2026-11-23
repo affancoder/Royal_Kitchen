@@ -47,6 +47,7 @@ import kashmiriRogan from "../../../assets/images/kashmiriRogan.jpg";
 import lunchCombo from "../../../assets/images/lunchCombo.jpg";
 import VegThali from "../../../assets/images/vegThali.jpg";
 import samosa from "../../../assets/images/samosa.jpg";
+import cake from "../../../assets/images/cake.jpg";
 
 const GOLD = "#D4AF00";
 const BLACK = "#000000";
@@ -118,7 +119,7 @@ const menuItems = [
     image: homeParty,
   },
   {
-    name: "Snaks",
+    name: "Snacks",
     category: "Starter",
     foodType: "Veg",
     price: "₹199",
@@ -134,7 +135,7 @@ const menuItems = [
     image: FishCurry,
   },
   {
-    name: "DalMakhni",
+    name: "Dal Makhni",
     category: "Main Course",
     foodType: "Veg",
     price: "₹259",
@@ -166,9 +167,9 @@ const menuItems = [
     image: IceCream,
   },
   {
-    name: "CreameToast",
+    name: "Creame Toast",
     category: "starter",
-    foodType: "veg",
+    foodType: "Veg",
     price: "₹149",
     description: "Butter toast with tea",
     image: CreameToast,
@@ -176,7 +177,7 @@ const menuItems = [
   {
     name: "Burger",
     category: "starter",
-    foodType: "veg",
+    foodType: "Veg",
     price: "₹149",
     description: "Delicious bun with fresh vegetable",
     image: burger,
@@ -194,8 +195,48 @@ const menuItems = [
     category: "starter",
     foodType: "non-veg",
     price: "₹149",
-    description: "Delicious Rogan with fresh jeera rice ",
+    description: "Delicious Rogan with fresh jeera rice",
     image: kashmiriRogan,
+  },
+  {
+    name:"Veg Thali",
+    category:"Main Course",
+    foodType: "Veg",
+    price:"455",
+    description : "Fresh rice with vegetables enrich",
+    image: VegThali,
+  },
+  {
+    name:"Biryani Combo",
+    category:"Main Course",
+    foodType: "non-veg",
+    price:"415",
+    description : "Biryani rice with combo vegetables & egg enrich",
+    image: biryaniCombo,
+  },
+  {
+    name:"Family Feast",
+    category:"Main Course",
+    foodType: "Veg",
+    price: "515",
+    description : "High quality Rice with combo vegetables & egg enrich",
+    image: lunchCombo,
+  },
+  {
+    name:"Cake",
+    category:"Main Course",
+    foodType: "non-veg",
+    price:"365",
+    description : "Cake delicious with combo creame enrich",
+    image: cake,
+  },
+  {
+    name:"Samosa",
+    category:"Starter",
+    foodType: "Veg",
+    price: "215",
+    description : "Potato boiled with combo vegetables & fresh enrich",
+    image: samosa,
   },
 ];
 
