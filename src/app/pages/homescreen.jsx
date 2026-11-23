@@ -337,6 +337,20 @@ export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFoodTab, setActiveFoodTab] = useState("All");
 
+  // Open the selected food or combo on the details screen.
+  const openFoodDetails = (item) => {
+    router.push({
+      pathname: "/pages/viewdetails",
+      params: {
+        id: String(item.id || item.name),
+        name: item.name,
+        description: item.description || "",
+        price: String(item.price || ""),
+        mode: item.mode || "",
+      },
+    });
+  };
+
   const searchText = searchQuery.trim().toLowerCase();
   const isSearching = searchText.length > 0;
 
@@ -500,15 +514,7 @@ export default function HomeScreen() {
                     key={item.id}
                     style={styles.searchResultCard}
                     activeOpacity={0.85}
-                    onPress={() =>
-                      router.push({
-                        pathname: "/auth/login",
-                        params: {
-                          mode: item.mode,
-                          category: item.name,
-                        },
-                      })
-                    }
+                    onPress={() => openFoodDetails(item)}
                   >
                     <Image
                       source={item.image}
@@ -731,15 +737,7 @@ export default function HomeScreen() {
                         key={item.id}
                         activeOpacity={0.85}
                         style={styles.specialCard}
-                        onPress={() =>
-                          router.push({
-                            pathname: "/auth/login",
-                            params: {
-                              mode: item.mode,
-                              category: item.name,
-                            },
-                          })
-                        }
+                        onPress={() => openFoodDetails(item)}
                       >
                         <View style={styles.specialImageContainer}>
                           <Image
@@ -887,6 +885,7 @@ export default function HomeScreen() {
                         key={index}
                         activeOpacity={0.85}
                         style={styles.signatureCard}
+                        onPress={() => openFoodDetails(item)}
                       >
                         <View style={styles.signatureImageContainer}>
                           <Image
@@ -923,21 +922,13 @@ export default function HomeScreen() {
                               </Text>
                             </View>
 
-                            <TouchableOpacity
-                              activeOpacity={0.8}
-                              style={styles.signatureAddButton}
-                              onPress={() =>
-                                router.push({
-                                  pathname: "/auth/login",
-                                  params: {
-                                    mode: item.mode,
-                                    category: item.name,
-                                  },
-                                })
-                              }
-                            >
-                              <Ionicons name="add" size={22} color="#000000" />
-                            </TouchableOpacity>
+                            <View style={styles.signatureAddButton}>
+                              <Ionicons
+                                name="arrow-forward"
+                                size={18}
+                                color="#000000"
+                              />
+                            </View>
                           </View>
                         </View>
                       </TouchableOpacity>
