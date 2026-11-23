@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   View,
@@ -18,16 +17,8 @@ const WHITE = "#FFFFFF";
 const GRAY = "#A0A0A0";
 
 export default function OrderConfirmed() {
-  const {
-    id,
-    name,
-    price,
-    quantity,
-    total,
-    address,
-    phone,
-    paymentMethod,
-  } = useLocalSearchParams();
+  const { id, name, price, quantity, total, address, phone, paymentMethod } =
+    useLocalSearchParams();
 
   const itemPrice = Number(price) || 0;
   const itemQuantity = Number(quantity) || 1;
@@ -56,16 +47,14 @@ export default function OrderConfirmed() {
           <Text style={styles.successTitle}>Order Confirmed!</Text>
 
           <Text style={styles.successDescription}>
-            Thank you for choosing Royal Kitchen & Caterer.
-            Your order details are shown below.
+            Thank you for choosing Royal Kitchen & Caterer. Your order details
+            are shown below.
           </Text>
 
           {/* Order Reference */}
           <View style={styles.referenceCard}>
             <Text style={styles.referenceLabel}>ORDER REFERENCE</Text>
-            <Text style={styles.referenceNumber}>
-              #{orderReference}
-            </Text>
+            <Text style={styles.referenceNumber}>#{orderReference}</Text>
             <Text style={styles.referenceNote}>
               Keep this reference for your records
             </Text>
@@ -77,16 +66,12 @@ export default function OrderConfirmed() {
 
             <View style={styles.detailRow}>
               <Text style={styles.label}>Food Item</Text>
-              <Text style={styles.value}>
-                {String(name || "Food Item")}
-              </Text>
+              <Text style={styles.value}>{String(name || "Food Item")}</Text>
             </View>
 
             <View style={styles.detailRow}>
               <Text style={styles.label}>Item ID</Text>
-              <Text style={styles.value}>
-                {String(id || "N/A")}
-              </Text>
+              <Text style={styles.value}>{String(id || "N/A")}</Text>
             </View>
 
             <View style={styles.detailRow}>
@@ -110,9 +95,7 @@ export default function OrderConfirmed() {
 
             <View style={styles.totalRow}>
               <Text style={styles.totalLabel}>Total Amount</Text>
-              <Text style={styles.totalAmount}>
-                ₹{orderTotal.toFixed(2)}
-              </Text>
+              <Text style={styles.totalAmount}>₹{orderTotal.toFixed(2)}</Text>
             </View>
           </View>
 
@@ -121,11 +104,7 @@ export default function OrderConfirmed() {
             <Text style={styles.sectionTitle}>Delivery Details</Text>
 
             <View style={styles.infoRow}>
-              <Ionicons
-                name="location-outline"
-                size={21}
-                color={GOLD}
-              />
+              <Ionicons name="location-outline" size={21} color={GOLD} />
               <View style={styles.infoContent}>
                 <Text style={styles.infoLabel}>Delivery Address</Text>
                 <Text style={styles.infoValue}>
@@ -135,11 +114,7 @@ export default function OrderConfirmed() {
             </View>
 
             <View style={styles.infoRow}>
-              <Ionicons
-                name="call-outline"
-                size={20}
-                color={GOLD}
-              />
+              <Ionicons name="call-outline" size={20} color={GOLD} />
               <View style={styles.infoContent}>
                 <Text style={styles.infoLabel}>Contact Number</Text>
                 <Text style={styles.infoValue}>
@@ -157,8 +132,8 @@ export default function OrderConfirmed() {
               color={GOLD}
             />
             <Text style={styles.messageText}>
-              Your order confirmation is displayed. Our team will
-              contact you regarding delivery.
+              Your order confirmation is displayed. Our team will contact you
+              regarding delivery.
             </Text>
           </View>
 
@@ -168,14 +143,8 @@ export default function OrderConfirmed() {
             onPress={handleGoHome}
             activeOpacity={0.8}
           >
-            <Text style={styles.homeButtonText}>
-              BACK TO HOME
-            </Text>
-            <Ionicons
-              name="arrow-forward"
-              size={18}
-              color={BLACK}
-            />
+            <Text style={styles.homeButtonText}>BACK TO HOME</Text>
+            <Ionicons name="arrow-forward" size={18} color={BLACK} />
           </TouchableOpacity>
 
           <Text style={styles.footerText}>
@@ -260,7 +229,7 @@ const styles = StyleSheet.create({
 
   referenceNote: {
     color: GRAY,
-    fontSize: 11,
+    fontSize: 14,
     marginTop: 8,
   },
 
@@ -276,7 +245,7 @@ const styles = StyleSheet.create({
 
   sectionTitle: {
     color: WHITE,
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: "bold",
     marginBottom: 20,
   },
@@ -291,13 +260,13 @@ const styles = StyleSheet.create({
 
   label: {
     color: GRAY,
-    fontSize: 13,
+    fontSize: 15,
     flex: 1,
   },
 
   value: {
     color: WHITE,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: "500",
     flex: 1,
     textAlign: "right",
@@ -313,12 +282,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 12,
+    marginTop: 10,
   },
 
   totalLabel: {
     color: WHITE,
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: "bold",
   },
 
@@ -341,13 +310,13 @@ const styles = StyleSheet.create({
 
   infoLabel: {
     color: GRAY,
-    fontSize: 12,
+    fontSize: 16,
     marginBottom: 5,
   },
 
   infoValue: {
     color: WHITE,
-    fontSize: 14,
+    fontSize: 18,
     lineHeight: 21,
   },
 
@@ -364,7 +333,7 @@ const styles = StyleSheet.create({
 
   messageText: {
     color: "#D6C7A9",
-    fontSize: 12,
+    fontSize: 13,
     lineHeight: 19,
     flex: 1,
   },
@@ -377,19 +346,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 12,
+    gap: 10,
   },
 
   homeButtonText: {
     color: BLACK,
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: "bold",
     letterSpacing: 1.2,
   },
 
   footerText: {
     color: GRAY,
-    fontSize: 11,
+    fontSize: 12,
     textAlign: "center",
     marginTop: 24,
   },

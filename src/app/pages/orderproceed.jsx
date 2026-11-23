@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
   subtitle: {
     color: "#999999",
     fontSize: 13,
-    marginTop: 8,
+    marginTop: 2,
     marginBottom: 22,
     lineHeight: 20,
   },
@@ -248,12 +248,15 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     padding: 17,
     marginBottom: 17,
+    borderColor : "#cca402",
+    borderWidth: 0.4,
   },
   sectionTitle: {
-    color: "#FFFFFF",
-    fontSize: 17,
+    color: "#cca402",
+    fontSize: 19,
     fontWeight: "700",
     marginBottom: 19,
+    // textAlign : "center",
   },
   orderRow: {
     flexDirection: "row",
@@ -266,17 +269,17 @@ const styles = StyleSheet.create({
   },
   itemName: {
     color: "#FFFFFF",
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "700",
   },
   itemQuantity: {
     color: "#999999",
-    fontSize: 12,
-    marginTop: 6,
+    fontSize: 15,
+    marginTop: 4,
   },
   itemPrice: {
     color: GOLD,
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: "800",
   },
   divider: {
@@ -291,16 +294,16 @@ const styles = StyleSheet.create({
   },
   mutedText: {
     color: "#999999",
-    fontSize: 13,
+    fontSize: 14,
   },
   valueText: {
     color: "#FFFFFF",
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: "600",
   },
   totalLabel: {
     color: "#FFFFFF",
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: "700",
   },
   totalPrice: {
@@ -310,7 +313,7 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     color: "#CCCCCC",
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: "600",
     marginBottom: 9,
     marginTop: 5,
@@ -335,7 +338,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#292929",
-    gap: 12,
+    gap: 10,
   },
   paymentText: {
     flex: 1,

@@ -58,17 +58,14 @@ const foodImages = {
 };
 
 export default function ViewDetails() {
-  const { id, name, description, price, mode } =
-    useLocalSearchParams();
+  const { id, name, description, price, mode } = useLocalSearchParams();
 
   const [quantity, setQuantity] = useState(1);
 
   const foodName = name || "Food Details";
   const foodDescription =
     description || "Freshly prepared with delicious ingredients.";
-  const foodPrice = Number(
-    String(price || "0").replace(/[^0-9.]/g, "")
-  );
+  const foodPrice = Number(String(price || "0").replace(/[^0-9.]/g, ""));
 
   const imageSource = foodImages[foodName];
 
@@ -85,25 +82,22 @@ export default function ViewDetails() {
   };
 
   const handleOrder = () => {
-  router.push({
-    pathname: "/pages/orderproceed",
-    params: {
-      id: String(id || ""),
-      name: String(foodName),
-      description: String(foodDescription),
-      price: String(foodPrice),
-      mode: String(mode || ""),
-      quantity: String(quantity),
-    },
-  });
-};
+    router.push({
+      pathname: "/pages/orderproceed",
+      params: {
+        id: String(id || ""),
+        name: String(foodName),
+        description: String(foodDescription),
+        price: String(foodPrice),
+        mode: String(mode || ""),
+        quantity: String(quantity),
+      },
+    });
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor={BLACK}
-      />
+      <StatusBar barStyle="light-content" backgroundColor={BLACK} />
 
       <View style={styles.container}>
         {/* HEADER */}
@@ -113,11 +107,7 @@ export default function ViewDetails() {
             activeOpacity={0.8}
             onPress={() => router.back()}
           >
-            <Ionicons
-              name="arrow-back"
-              size={23}
-              color={GOLD}
-            />
+            <Ionicons name="arrow-back" size={23} color={GOLD} />
           </TouchableOpacity>
 
           <Text style={styles.headerTitle}>FOOD DETAILS</Text>
@@ -139,11 +129,7 @@ export default function ViewDetails() {
               />
             ) : (
               <View style={styles.imagePlaceholder}>
-                <Ionicons
-                  name="restaurant-outline"
-                  size={55}
-                  color={GOLD}
-                />
+                <Ionicons name="restaurant-outline" size={55} color={GOLD} />
               </View>
             )}
 
@@ -176,9 +162,7 @@ export default function ViewDetails() {
           <View style={styles.detailsContainer}>
             <Text style={styles.foodName}>{foodName}</Text>
 
-            <Text style={styles.foodDescription}>
-              {foodDescription}
-            </Text>
+            <Text style={styles.foodDescription}>{foodDescription}</Text>
 
             <View style={styles.priceRow}>
               <Text style={styles.priceLabel}>Price</Text>
@@ -188,83 +172,55 @@ export default function ViewDetails() {
             <View style={styles.divider} />
 
             {/* QUANTITY */}
-            <Text style={styles.sectionTitle}>
-              Select Quantity
-            </Text>
+            <View style={styles.quantityContent}>
+              <Text style={styles.sectionTitle}>Select Quantity</Text>
 
-            <View style={styles.quantityContainer}>
-              <TouchableOpacity
-                style={styles.quantityButton}
-                activeOpacity={0.8}
-                onPress={decreaseQuantity}
-              >
-                <Ionicons
-                  name="remove"
-                  size={20}
-                  color={GOLD}
-                />
-              </TouchableOpacity>
+              <View style={styles.quantityContainer}>
+                <TouchableOpacity
+                  style={styles.quantityButton}
+                  activeOpacity={0.8}
+                  onPress={decreaseQuantity}
+                >
+                  <Ionicons name="remove" size={20} color={GOLD} />
+                </TouchableOpacity>
 
-              <Text style={styles.quantityText}>
-                {quantity}
-              </Text>
+                <Text style={styles.quantityText}>{quantity}</Text>
 
-              <TouchableOpacity
-                style={styles.quantityButton}
-                activeOpacity={0.8}
-                onPress={increaseQuantity}
-              >
-                <Ionicons
-                  name="add"
-                  size={20}
-                  color={GOLD}
-                />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.quantityButton}
+                  activeOpacity={0.8}
+                  onPress={increaseQuantity}
+                >
+                  <Ionicons name="add" size={20} color={GOLD} />
+                </TouchableOpacity>
+              </View>
             </View>
 
             <View style={styles.divider} />
 
             {/* ORDER SUMMARY */}
             <View style={styles.summaryContainer}>
-              <Text style={styles.sectionTitle}>
-                Order Summary
-              </Text>
+              <Text style={styles.sectionTitle}>Order Summary</Text>
 
               <View style={styles.summaryRow}>
-                <Text style={styles.summaryLabel}>
-                  Item
-                </Text>
-                <Text style={styles.summaryValue}>
-                  {foodName}
-                </Text>
+                <Text style={styles.summaryLabel}>Item</Text>
+                <Text style={styles.summaryValue}>{foodName}</Text>
               </View>
 
               <View style={styles.summaryRow}>
-                <Text style={styles.summaryLabel}>
-                  Quantity
-                </Text>
-                <Text style={styles.summaryValue}>
-                  {quantity}
-                </Text>
+                <Text style={styles.summaryLabel}>Quantity</Text>
+                <Text style={styles.summaryValue}>{quantity}</Text>
               </View>
 
               <View style={styles.summaryRow}>
-                <Text style={styles.summaryLabel}>
-                  Price per item
-                </Text>
-                <Text style={styles.summaryValue}>
-                  ₹{foodPrice}
-                </Text>
+                <Text style={styles.summaryLabel}>Price per item</Text>
+                <Text style={styles.summaryValue}>₹{foodPrice}</Text>
               </View>
 
               <View style={styles.totalRow}>
-                <Text style={styles.totalLabel}>
-                  Total Amount
-                </Text>
+                <Text style={styles.totalLabel}>Total Amount</Text>
 
-                <Text style={styles.totalPrice}>
-                  ₹{totalPrice}
-                </Text>
+                <Text style={styles.totalPrice}>₹{totalPrice}</Text>
               </View>
             </View>
 
@@ -274,15 +230,9 @@ export default function ViewDetails() {
               activeOpacity={0.85}
               onPress={handleOrder}
             >
-              <Text style={styles.orderButtonText}>
-                ORDER NOW
-              </Text>
+              <Text style={styles.orderButtonText}>ORDER NOW</Text>
 
-              <Ionicons
-                name="arrow-forward"
-                size={19}
-                color={BLACK}
-              />
+              <Ionicons name="arrow-forward" size={19} color={BLACK} />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -290,9 +240,7 @@ export default function ViewDetails() {
               activeOpacity={0.8}
               onPress={() => router.back()}
             >
-              <Text style={styles.continueButtonText}>
-                Continue Exploring
-              </Text>
+              <Text style={styles.continueButtonText}>Continue Exploring</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -446,8 +394,15 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 20,
     fontWeight: "700",
-    marginBottom: 14,
     textAlign: "center",
+  },
+
+  quantityContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    gap: 10,
   },
 
   quantityContainer: {
@@ -481,13 +436,15 @@ const styles = StyleSheet.create({
     backgroundColor: CARD,
     borderRadius: 13,
     padding: 17,
+    borderColor: "#cca402",
+    borderWidth: 1,
   },
 
   summaryRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 15,
+    marginVertical:12,
   },
 
   summaryLabel: {
