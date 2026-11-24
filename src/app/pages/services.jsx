@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   View,
@@ -20,19 +21,38 @@ const CARD = "#111111";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200",
-  wedding: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800",
-  privateDining: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800",
-  corporate: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800",
-  catering: "https://images.unsplash.com/photo-1555244162-803834f70033?w=800",
+  wedding:
+    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800",
+  privateDining:
+    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800",
+  corporate:
+    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800",
+  catering:
+    "https://images.unsplash.com/photo-1555244162-803834f70033?w=800",
   chef: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=900",
+  restaurant:
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+  buffet:
+    "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800",
+  event:
+    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800",
+  hospitality:
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
 };
 
 const services = [
   {
+    icon: "restaurant-outline",
+    title: "Restaurant Dining",
+    description:
+      "Enjoy delicious cuisine, elegant surroundings and exceptional dining experiences with family and friends.",
+    image: images.restaurant,
+  },
+  {
     icon: "heart-outline",
     title: "Grand Wedding & Events",
     description:
-      "Make your special celebrations unforgettable with our royal dining and premium catering services.",
+      "Make your special celebrations unforgettable with royal dining and premium catering services.",
     image: images.wedding,
   },
   {
@@ -46,7 +66,7 @@ const services = [
     icon: "business-outline",
     title: "Corporate Banquets",
     description:
-      "Elegant dining arrangements for corporate meetings and business occasions.",
+      "Elegant dining arrangements for corporate meetings, conferences and business occasions.",
     image: images.corporate,
   },
   {
@@ -56,10 +76,43 @@ const services = [
       "Exceptional food, presentation and hospitality for every special occasion.",
     image: images.catering,
   },
+  {
+    icon: "fast-food-outline",
+    title: "Buffet Services",
+    description:
+      "Delight your guests with beautifully presented buffet arrangements and diverse menu options.",
+    image: images.buffet,
+  },
+  {
+    icon: "people-outline",
+    title: "Event Catering",
+    description:
+      "Professional food and hospitality arrangements for private parties and large gatherings.",
+    image: images.event,
+  },
+  {
+    icon: "star-outline",
+    title: "Premium Hospitality",
+    description:
+      "Experience personalized attention, elegant service and memorable moments for every guest.",
+    image: images.hospitality,
+  },
 ];
 
 export default function Services() {
   const { guests } = useLocalSearchParams();
+
+  const selectedGuests = Array.isArray(guests) ? guests[0] : guests;
+
+  const openContact = (service = "") => {
+    router.push({
+      pathname: "/pages/contact",
+      params: {
+        service,
+        guests: selectedGuests || "",
+      },
+    });
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -70,43 +123,64 @@ export default function Services() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          {/* SECTION 1 - HERO */}
-          <ImageBackground
-            source={{ uri: images.hero }}
-            style={styles.hero}
-            imageStyle={styles.heroImage}
-          >
-            <View style={styles.heroOverlay}>
-              <Text style={styles.eyebrow}>
-                ROYAL KITCHEN SERVICES
-              </Text>
+          {/* PAGE HEADING */}
+          <View style={styles.heading}>
+            <Text style={styles.smallTitle}>
+              THE ROYAL KITCHEN & CATERER
+            </Text>
 
-              <Text style={styles.heroTitle}>
-                Our Regal{" "}
-                <Text style={styles.gold}>Culinary</Text>
-                {"\n"}Services
-              </Text>
+            <Text style={styles.title}>Our Services</Text>
 
-              <Text style={styles.heroDescription}>
-                Discover exceptional culinary experiences,
-                royal hospitality and personalized services
-                for every special occasion.
-              </Text>
+            <View style={styles.goldLine} />
 
-              <TouchableOpacity
-                style={styles.goldButton}
-                onPress={() => router.push("/pages/contact")}
-              >
-                <Text style={styles.goldButtonText}>
-                  Enquire Now
+            <Text style={styles.subtitle}>
+              Explore our premium catering services and royal hospitality.
+            </Text>
+          </View>
+
+          {/* SECTION 1 - COMPACT MOBILE HERO BANNER */}
+          <View style={styles.heroWrapper}>
+            <ImageBackground
+              source={{ uri: images.hero }}
+              style={styles.hero}
+              imageStyle={styles.heroImage}
+            >
+              <View style={styles.heroOverlay}>
+                <Text style={styles.eyebrow}>
+                  ROYAL KITCHEN SERVICES
                 </Text>
-              </TouchableOpacity>
-            </View>
-          </ImageBackground>
+
+                <Text style={styles.heroTitle}>
+                  Our Regal <Text style={styles.gold}>Culinary</Text>
+                  {"\n"}Services
+                </Text>
+
+                <Text style={styles.heroDescription}>
+                  Discover exceptional culinary experiences, royal hospitality
+                  and personalized services for every special occasion.
+                </Text>
+
+                <TouchableOpacity
+                  style={styles.goldButton}
+                  activeOpacity={0.85}
+                  onPress={() => openContact()}
+                >
+                  <Text style={styles.goldButtonText}>Enquire Now</Text>
+                  <Ionicons name="arrow-forward" size={13} color={BLACK} />
+                </TouchableOpacity>
+              </View>
+            </ImageBackground>
+          </View>
 
           {/* SECTION 2 - INTRODUCTION */}
           <View style={styles.introSection}>
-            <Text>Expected Guests: {guests || "Not selected"}</Text>
+            <View style={styles.guestInfo}>
+              <Ionicons name="people-outline" size={13} color={GOLD} />
+              <Text style={styles.expectedGuests}>
+                Expected Guests: {selectedGuests || "Not selected"}
+              </Text>
+            </View>
+
             <Text style={styles.smallGoldHeading}>
               OUR EXCLUSIVE SERVICES
             </Text>
@@ -117,14 +191,24 @@ export default function Services() {
             </Text>
 
             <Text style={styles.paragraphCenter}>
-              From grand celebrations to intimate dining,
-              we bring exceptional food, elegant presentation
-              and unforgettable hospitality to every event.
+              From grand celebrations to intimate dining, we bring exceptional
+              food, elegant presentation and unforgettable hospitality to every
+              event.
             </Text>
           </View>
 
           {/* SECTION 3 - SERVICE CARDS */}
           <View style={styles.servicesSection}>
+            <View style={styles.servicesHeading}>
+              <Text style={styles.smallGoldHeading}>
+                WHAT WE OFFER
+              </Text>
+
+              <Text style={styles.servicesTitle}>
+                Our Premium Services
+              </Text>
+            </View>
+
             <View style={styles.servicesGrid}>
               {services.map((item, index) => (
                 <View style={styles.serviceCard} key={index}>
@@ -150,12 +234,18 @@ export default function Services() {
                     </Text>
 
                     <TouchableOpacity
+                      activeOpacity={0.8}
                       style={styles.miniButton}
-                      onPress={() => router.push("/pages/contact")}
+                      onPress={() => openContact(item.title)}
                     >
                       <Text style={styles.miniButtonText}>
-                        Explore More
+                        Enquire Now
                       </Text>
+                      <Ionicons
+                        name="arrow-forward"
+                        size={11}
+                        color={GOLD}
+                      />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -181,17 +271,23 @@ export default function Services() {
                 </Text>
 
                 <Text style={styles.experienceDescription}>
-                  Our expert chefs and dedicated hospitality
-                  team make every occasion truly special.
+                  Our expert chefs and dedicated hospitality team make every
+                  occasion truly special.
                 </Text>
 
                 <TouchableOpacity
+                  activeOpacity={0.85}
                   style={styles.goldButton}
-                  onPress={() => router.push("/pages/contact")}
+                  onPress={() => openContact()}
                 >
                   <Text style={styles.goldButtonText}>
                     Contact Our Team
                   </Text>
+                  <Ionicons
+                    name="arrow-forward"
+                    size={14}
+                    color={BLACK}
+                  />
                 </TouchableOpacity>
               </View>
             </ImageBackground>
@@ -210,7 +306,11 @@ export default function Services() {
 
             <View style={styles.featureGrid}>
               <View style={styles.featureCard}>
-                <Ionicons name="restaurant-outline" size={22} color={GOLD} />
+                <Ionicons
+                  name="restaurant-outline"
+                  size={22}
+                  color={GOLD}
+                />
                 <Text style={styles.featureTitle}>Quality Cuisine</Text>
                 <Text style={styles.featureDescription}>
                   Carefully selected ingredients and exceptional flavours.
@@ -218,7 +318,11 @@ export default function Services() {
               </View>
 
               <View style={styles.featureCard}>
-                <Ionicons name="people-outline" size={22} color={GOLD} />
+                <Ionicons
+                  name="people-outline"
+                  size={22}
+                  color={GOLD}
+                />
                 <Text style={styles.featureTitle}>Expert Team</Text>
                 <Text style={styles.featureDescription}>
                   Experienced chefs and dedicated hospitality professionals.
@@ -226,7 +330,11 @@ export default function Services() {
               </View>
 
               <View style={styles.featureCard}>
-                <Ionicons name="star-outline" size={22} color={GOLD} />
+                <Ionicons
+                  name="star-outline"
+                  size={22}
+                  color={GOLD}
+                />
                 <Text style={styles.featureTitle}>Premium Service</Text>
                 <Text style={styles.featureDescription}>
                   Personalized attention for every guest and occasion.
@@ -234,7 +342,11 @@ export default function Services() {
               </View>
 
               <View style={styles.featureCard}>
-                <Ionicons name="heart-outline" size={22} color={GOLD} />
+                <Ionicons
+                  name="heart-outline"
+                  size={22}
+                  color={GOLD}
+                />
                 <Text style={styles.featureTitle}>Royal Experience</Text>
                 <Text style={styles.featureDescription}>
                   Memorable celebrations with elegant dining experiences.
@@ -268,9 +380,55 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
 
-  // Hero
+  // PAGE HEADING
+  heading: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    alignItems: "center",
+  },
+
+  smallTitle: {
+    color: GOLD,
+    fontSize: 14,
+    letterSpacing: 3,
+    fontWeight: "700",
+  },
+
+  title: {
+    color: "#FFFFFF",
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+
+  goldLine: {
+    width: 48,
+    height: 2,
+    backgroundColor: GOLD,
+    marginTop: 4,
+  },
+
+  subtitle: {
+    color: "#AAAAAA",
+    fontSize: 13,
+    textAlign: "center",
+    marginTop: 4,
+  },
+
+  // HERO BANNER
+  heroWrapper: {
+    marginHorizontal: 12,
+    marginTop: 8,
+    marginBottom: 5,
+    borderWidth: 1,
+    borderColor: "#806900",
+    borderRadius: 12,
+    overflow: "hidden",
+  },
+
   hero: {
-    height: 200,
+    height: 205,
+    width: "100%",
     justifyContent: "center",
   },
 
@@ -283,21 +441,24 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.68)",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
+    paddingVertical: 12,
   },
 
   eyebrow: {
     color: GOLD,
     fontSize: 8,
-    letterSpacing: 1.5,
+    letterSpacing: 1.7,
+    marginBottom: 9,
   },
 
   heroTitle: {
     color: "#FFFFFF",
-    fontSize: 23,
+    fontSize: 25,
     fontWeight: "bold",
     fontFamily: "Georgia",
     textAlign: "center",
+    lineHeight: 31,
   },
 
   gold: {
@@ -306,31 +467,50 @@ const styles = StyleSheet.create({
 
   heroDescription: {
     color: "#E0E0E0",
-    fontSize: 10,
+    fontSize: 9,
     textAlign: "center",
-    lineHeight: 16,
-    maxWidth: 290,
+    lineHeight: 14,
+    maxWidth: 280,
+    marginTop: 8,
   },
 
   goldButton: {
     backgroundColor: GOLD,
     borderRadius: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 9,
-    marginTop: 13,
+    paddingHorizontal: 17,
+    paddingVertical: 8,
+    marginTop: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 7,
   },
 
   goldButtonText: {
     color: BLACK,
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: "bold",
   },
 
-  // Introduction
+  // INTRODUCTION
   introSection: {
     paddingHorizontal: 17,
     paddingTop: 25,
     paddingBottom: 18,
+  },
+
+  guestInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    marginBottom: 18,
+  },
+
+  expectedGuests: {
+    color: "#AAAAAA",
+    fontSize: 10,
+    textAlign: "center",
   },
 
   smallGoldHeading: {
@@ -359,11 +539,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
 
-  // Service cards
+  // SERVICE CARDS
   servicesSection: {
     paddingHorizontal: 13,
     paddingTop: 8,
     paddingBottom: 20,
+  },
+
+  servicesHeading: {
+    marginBottom: 15,
+  },
+
+  servicesTitle: {
+    color: "#FFFFFF",
+    fontSize: 19,
+    fontWeight: "bold",
+    fontFamily: "Georgia",
+    textAlign: "center",
   },
 
   servicesGrid: {
@@ -415,6 +607,9 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 5,
     alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: 5,
     marginTop: 9,
   },
 
@@ -424,7 +619,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  // Experience banner
+  // EXPERIENCE BANNER
   experienceSection: {
     paddingTop: 8,
   },
@@ -463,7 +658,7 @@ const styles = StyleSheet.create({
     marginTop: 9,
   },
 
-  // Why choose us
+  // WHY CHOOSE US
   whySection: {
     paddingHorizontal: 15,
     paddingTop: 24,
@@ -513,32 +708,5 @@ const styles = StyleSheet.create({
 
   bottomSpace: {
     height: 10,
-  },
-
-  // Fixed bottom navigation
-  bottomNav: {
-    height: 57,
-    backgroundColor: BLACK,
-    borderTopWidth: 1,
-    borderTopColor: "#665500",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-
-  navItem: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 2,
-  },
-
-  navLabel: {
-    color: GOLD,
-    fontSize: 8,
-  },
-
-  activeNavLabel: {
-    fontWeight: "bold",
   },
 });
