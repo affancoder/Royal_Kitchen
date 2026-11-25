@@ -182,9 +182,6 @@ export default function Services() {
 
             <View style={styles.goldLine} />
 
-            <Text style={styles.subtitle}>
-              Explore our premium catering services and royal hospitality.
-            </Text>
           </View>
 
           {/* SECTION 1 - HERO BANNER */}
@@ -219,16 +216,13 @@ export default function Services() {
           {/* SECTION 2 - INTRODUCTION */}
           <View style={styles.introSection}>
 
-            <Text style={styles.smallGoldHeading}>OUR EXCLUSIVE SERVICES</Text>
+            <Text style={styles.smallGoldHeading}>PLAN YOUR CATERING</Text>
 
             <Text style={styles.sectionTitle}>
-              Explore Our Luxury & Royal{"\n"}
+              Our Luxury & Royal&nbsp;
               <Text style={styles.gold}>Culinary Services</Text>
             </Text>
 
-            <Text style={styles.paragraphCenter}>
-              Exceptional food, elegant presentation and royal hospitality for every occasion.
-            </Text>
           </View>
 
           {/* SECTION 3 - INTERACTIVE CATERING BOOKING */}
@@ -567,13 +561,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 
-  subtitle: {
-    color: "#AAAAAA",
-    fontSize: 13,
-    textAlign: "center",
-    marginTop: 4,
-  },
-
   // HERO BANNER
   heroWrapper: {
     marginHorizontal: 12,
@@ -666,15 +653,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     lineHeight: 28,
     textAlign: "center",
-  },
-
-  paragraphCenter: {
-    color: "#AAAAAA",
-    fontSize: 12,
-    textAlign: "center",
-    lineHeight: 15,
-    marginTop: 10,
-    paddingHorizontal: 8,
   },
 
   // CATERING BOOKING SECTION
