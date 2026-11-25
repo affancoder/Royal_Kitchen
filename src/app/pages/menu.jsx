@@ -95,7 +95,7 @@ const menuItems = [
     image: butterChicken,
   },
   {
-    name: "Chocolate Lava Cake",
+    name: "Chocolate Cake",
     category: "Desserts",
     foodType: "Veg",
     price: "₹249",
@@ -159,7 +159,7 @@ const menuItems = [
     image: VegMomo,
   },
   {
-    name: "Ice Creame",
+    name: "Ice Cream",
     category: "Starter",
     foodType: "Veg",
     price: "₹179",

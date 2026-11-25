@@ -210,7 +210,7 @@ const chefSpecials = [
   },
   {
     id: "7",
-    name: "Ice Cream Combo",
+    name: "Ice Cream",
     description: "Creamy vanilla ice cream with chocolate sauce",
     price: "₹179",
     image: IceCream,
