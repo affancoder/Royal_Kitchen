@@ -122,38 +122,38 @@ const foodCategories = [
   },
   {
     id: "3",
-    name: "Chicken Biryani",
-    mode: "non-veg",
-    image: chickenbiryani,
-    price: "₹449",
-  },
-  {
-    id: "4",
-    name: "Butter Chicken",
-    mode: "non-veg",
-    image: butterChicken,
-    price: "₹429",
-  },
-  {
-    id: "5",
-    name: "Dal Makhni",
-    mode: "veg",
-    image: DalMakhni,
-    price: "₹329",
-  },
-  {
-    id: "6",
     name: "Fish Curry",
     mode: "non-veg",
     image: FishCurry,
     price: "₹389",
   },
   {
-    id: "7",
+    id: "4",
+    name: "Chicken Biryani",
+    mode: "non-veg",
+    image: chickenbiryani,
+    price: "₹449",
+  },
+  {
+    id: "5",
     name: "Burger",
     mode: "veg",
     image: burger,
     price: "₹129",
+  },
+  {
+    id: "6",
+    name: "Butter Chicken",
+    mode: "non-veg",
+    image: butterChicken,
+    price: "₹429",
+  },
+  {
+    id: "7",
+    name: "Dal Makhni",
+    mode: "veg",
+    image: DalMakhni,
+    price: "₹329",
   },
   {
     id: "8",
@@ -198,6 +198,7 @@ const chefSpecials = [
     description: "Creamy tomato gravy with juicy chicken",
     price: "₹429",
     image: butterChicken,
+    bestseller: true,
     mode: "non-veg",
   },
   {
@@ -215,6 +216,7 @@ const chefSpecials = [
     price: "₹89",
     image: chocolateCake,
     mode: "non-veg",
+    bestseller: true,
   },
   {
     id: "7",
@@ -2028,24 +2030,24 @@ const styles = StyleSheet.create({
 
   royalLabel: {
     color: GOLD,
-    fontSize: 10,
+    fontSize: 12,
     letterSpacing: 2,
     fontWeight: "bold",
-    marginBottom: 9,
+    marginBottom: 4,
   },
 
   royalHeading: {
     color: "#FFFFFF",
-    fontSize: 25,
+    fontSize: 26,
     fontWeight: "bold",
     fontFamily: "Georgia",
   },
 
   royalSubheading: {
     color: "#999999",
-    fontSize: 13,
-    marginTop: 7,
-    marginBottom: 22,
+    fontSize: 14,
+    marginTop: 2,
+    marginBottom: 18,
   },
 
   featureOptions: {
@@ -2073,7 +2075,7 @@ const styles = StyleSheet.create({
 
   featureOptionText: {
     color: "#999999",
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: "600",
   },
 
@@ -2100,7 +2102,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#40350F",
     padding: 16,
-    marginTop: 15,
+    marginTop: 12,
   },
 
   featureIconLarge: {
@@ -2114,21 +2116,21 @@ const styles = StyleSheet.create({
 
   featureDetailTitle: {
     color: "#FFFFFF",
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
   },
 
   featureDetailSubtitle: {
     color: GOLD,
-    fontSize: 11,
-    marginTop: 3,
+    fontSize: 12,
+    marginTop: 1,
   },
 
   featureDescription: {
     color: "#AAAAAA",
-    fontSize: 11,
+    fontSize: 12,
     lineHeight: 17,
-    marginTop: 8,
+    marginTop: 4,
   },
 
   featureCounter: {
@@ -2139,7 +2141,7 @@ const styles = StyleSheet.create({
 
   featureCounterText: {
     color: "#777777",
-    fontSize: 9,
+    fontSize: 10,
     letterSpacing: 1,
   },
 
@@ -2147,34 +2149,32 @@ const styles = StyleSheet.create({
 
   excellenceSection: {
     paddingHorizontal: 16,
-    paddingTop: 25,
     paddingBottom: 25,
   },
 
   excellenceEyebrow: {
     color: GOLD,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "bold",
     letterSpacing: 2.5,
     textAlign: "center",
-    // marginBottom: 9,
   },
 
   excellenceTitle: {
     color: "#FFFFFF",
-    fontSize: 21,
+    fontSize: 26,
     fontFamily: "Georgia",
     fontWeight: "bold",
     textAlign: "center",
-    lineHeight: 29,
+    marginTop: 4,
   },
 
   paragraphCenter: {
     color: "#AAAAAA",
-    fontSize: 11,
+    fontSize: 12,
     textAlign: "center",
     lineHeight: 18,
-    marginTop: 10,
+    marginTop: 8,
     marginBottom: 20,
     paddingHorizontal: 8,
   },

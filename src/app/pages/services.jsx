@@ -853,9 +853,9 @@ const styles = StyleSheet.create({
   },
 
   serviceDescription: {
-    color: "#AAAAAA",
+    color: "#fff",
     fontSize: 12,
-    lineHeight: 12,
+    lineHeight: 15,
     marginTop: 5,
     minHeight: 48,
   },
@@ -863,8 +863,8 @@ const styles = StyleSheet.create({
   miniButton: {
     borderWidth: 1,
     borderColor: GOLD,
-    borderRadius: 15,
-    paddingVertical: 6,
+    borderRadius: 6,
+    paddingVertical: 4,
     paddingHorizontal: 5,
     alignItems: "center",
     justifyContent: "center",
@@ -875,7 +875,7 @@ const styles = StyleSheet.create({
 
   miniButtonText: {
     color: GOLD,
-    fontSize: 8,
+    fontSize: 12,
     textAlign: "center",
   },
 
@@ -885,7 +885,7 @@ const styles = StyleSheet.create({
   },
 
   experienceBanner: {
-    height: 215,
+    height: 200,
     justifyContent: "center",
   },
 
@@ -903,7 +903,7 @@ const styles = StyleSheet.create({
 
   experienceTitle: {
     color: "#FFFFFF",
-    fontSize: 21,
+    fontSize: 26,
     fontWeight: "bold",
     fontFamily: "Georgia",
     textAlign: "center",
@@ -912,7 +912,7 @@ const styles = StyleSheet.create({
 
   experienceDescription: {
     color: "#DDDDDD",
-    fontSize: 9,
+    fontSize: 12,
     textAlign: "center",
     lineHeight: 15,
     marginTop: 9,
@@ -927,11 +927,10 @@ const styles = StyleSheet.create({
 
   whyTitle: {
     color: "#FFFFFF",
-    fontSize: 20,
+    fontSize: 26,
     fontFamily: "Georgia",
     fontWeight: "bold",
     textAlign: "center",
-    lineHeight: 27,
     marginBottom: 17,
   },
 
@@ -944,7 +943,6 @@ const styles = StyleSheet.create({
 
   featureCard: {
     width: "48%",
-    minHeight: 115,
     backgroundColor: CARD,
     borderWidth: 1,
     borderColor: "#554700",
@@ -954,16 +952,15 @@ const styles = StyleSheet.create({
 
   featureTitle: {
     color: GOLD,
-    fontSize: 10,
+    fontSize: 17,
     fontWeight: "bold",
     marginTop: 8,
     marginBottom: 5,
   },
 
   featureDescription: {
-    color: "#AAAAAA",
-    fontSize: 8,
-    lineHeight: 13,
+    color: "#fff",
+    fontSize: 12,
   },
 
   bottomSpace: {
