@@ -108,51 +108,59 @@ const excellenceFeatures = [
 const foodCategories = [
   {
     id: "1",
-    name: "Paneer",
+    name: "Paneer Tikka",
     mode: "veg",
     image: paneer,
+    price: "₹369",
   },
   {
     id: "2",
     name: "Veg Biryani",
     mode: "veg",
     image: vegBiryani,
+    price: "₹249",
   },
   {
     id: "3",
-    name: "Chicken",
+    name: "Chicken Biryani",
     mode: "non-veg",
     image: chickenbiryani,
+    price: "₹449",
   },
   {
     id: "4",
     name: "Butter Chicken",
     mode: "non-veg",
     image: butterChicken,
+    price: "₹429",
   },
   {
     id: "5",
-    name: "Dal Makhani",
+    name: "Dal Makhni",
     mode: "veg",
     image: DalMakhni,
+    price: "₹329",
   },
   {
     id: "6",
     name: "Fish Curry",
     mode: "non-veg",
     image: FishCurry,
+    price: "₹389",
   },
   {
     id: "7",
     name: "Burger",
     mode: "veg",
     image: burger,
+    price: "₹129",
   },
   {
     id: "8",
-    name: "Pizza",
+    name: "Cheese Pizza",
     mode: "veg",
     image: pizza,
+    price: "₹203",
   },
 ];
 
@@ -675,10 +683,13 @@ export default function HomeScreen() {
                         activeOpacity={0.8}
                         onPress={() =>
                           router.push({
-                            pathname: "/pages/menu",
+                            pathname: "/pages/viewdetails",
                             params: {
-                              mode: item.mode,
-                              category: item.name,
+                              id: String(item.id || item.name),
+                              name: item.name,
+                              description: item.description || "",
+                              price: String(item.price || ""),
+                              mode: item.mode || item.foodType || "Veg",
                             },
                           })
                         }

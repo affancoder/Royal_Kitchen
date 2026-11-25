@@ -64,7 +64,6 @@ const foodImages = {
   "Veg Biryani": vegBiryani,
   "Veg Combo": VegThali,
   "Biryani Combo": biryaniCombo,
-  // "Snacks": snacks,
   "Spicy Snacks": snacks,
   "Family Feast": lunchCombo,
   "Home Party": homeParty,
