@@ -46,7 +46,7 @@ const BLACK = "#000000";
 const CARD = "#111111";
 
 const foodImages = {
-  "Royal Paneer Tikka": paneertikka,
+  "Paneer Tikka": paneertikka,
   "Tandoori Chicken" : TandooriChicken,
   "Chicken Biryani": chickenbiryani,
   "Royal Dum Biryani": DumBiyani,

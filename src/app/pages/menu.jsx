@@ -63,7 +63,7 @@ const foodPreferences = [
 
 const menuItems = [
   {
-    name: "Royal Paneer Tikka",
+    name: "Paneer Tikka",
     category: "Starters",
     foodType: "Veg",
     price: "₹349",
